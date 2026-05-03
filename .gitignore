@@ -1,0 +1,28 @@
+# Build outputs
+/build/
+/assets/
+*.o
+*.elf
+*.iso
+*.img
+*.log
+*.bin
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Local editor state
+/.vscode/
+
+# ROMs, BIOS dumps and private keys
+/rom_library/
+/bios/**/*.bin
+/bios/**/*.rom
+/bios/**/*.ROM
+/bios/**/*.txt
+/bios/**/*.cfg
+
+# Third-party build products inside submodules
+/third_party/*/build*/
+/third_party/*/.cache/

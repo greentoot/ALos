@@ -1,0 +1,50 @@
+// ItemPickup.jack - Objets ramassables sur la carte
+class ItemPickup {
+    field int x, y;
+    field int itemType;  // Type d'objet (0-3)
+    field int quantity;
+    field int mapId;
+    field boolean collected;
+    
+    constructor ItemPickup new(int posX, int posY, int type, int qty, int map) {
+        let x = posX;
+        let y = posY;
+        let itemType = type;
+        let quantity = qty;
+        let mapId = map;
+        let collected = false;
+        return this;
+    }
+    
+    method int getX() { return x; }
+    method int getY() { return y; }
+    method int getItemType() { return itemType; }
+    method int getQuantity() { return quantity; }
+    method int getMapId() { return mapId; }
+    method boolean isCollected() { return collected; }
+    
+    method void collect() {
+        let collected = true;
+        return;
+    }
+    
+    method boolean isAtPosition(int checkX, int checkY) {
+        return (x = checkX) & (y = checkY) & (~collected);
+    }
+    
+    method void draw() {
+        var int location;
+        if (collected) {
+            return;
+        }
+        
+        let location = ((y * 16) * 32) + ((x * 16) / 16);
+        do Sprites.drawpokeballsauvage(location);
+        return;
+    }
+    
+    method void dispose() {
+        do Memory.deAlloc(this);
+        return;
+    }
+}

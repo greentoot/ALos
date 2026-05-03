@@ -1,0 +1,86 @@
+
+// ItemPickupManager.jack - Gestion des objets ramassables
+class ItemPickupManager {
+    field Array items;
+    field int itemCount;
+    field int maxItems;
+    
+    constructor ItemPickupManager new() {
+        let maxItems = 20;
+        let itemCount = 0;
+        let items = Array.new(maxItems);
+        
+        do initItems();
+        
+        return this;
+    }
+    
+    method void initItems() {
+        // Map 0 - Village
+        let items[0] = ItemPickup.new(1, 2, 1, 3, 0);  // 3 Potions
+        let items[1] = ItemPickup.new(14, 10, 0, 5, 0); // 5 Pokeballs
+        let itemCount = 2;
+        
+        // Map 1 - Route 1
+        let items[2] = ItemPickup.new(5, 8, 1, 2, 1);   // 2 Potions
+        let items[3] = ItemPickup.new(18, 12, 0, 3, 1); // 3 Pokeballs
+        let items[4] = ItemPickup.new(12, 5, 2, 1, 1);  // 1 Super Potion
+        let itemCount = 5;
+        
+        // Map 2 - Forêt
+        let items[5] = ItemPickup.new(3, 13, 2, 2, 2);  // 2 Super Potions
+        let items[6] = ItemPickup.new(15, 8, 3, 1, 2);   // 1 Rappel
+        let items[7] = ItemPickup.new(5, 1, 0, 5, 2);   // 5 Pokeballs
+        let itemCount = 8;
+        
+        return;
+    }
+    
+    method ItemPickup checkPickup(int playerX, int playerY, int mapId) {
+        var int i;
+        var ItemPickup item;
+        
+        let i = 0;
+        while (i < itemCount) {
+            let item = items[i];
+            if ((item.getMapId() = mapId) & item.isAtPosition(playerX, playerY)) {
+                return item;
+            }
+            let i = i + 1;
+        }
+        
+        return null;
+    }
+    
+    method void drawForMap(int mapId) {
+        var int i;
+        var ItemPickup item;
+        
+        let i = 0;
+        while (i < itemCount) {
+            let item = items[i];
+            if (item.getMapId() = mapId) {
+                do item.draw();
+            }
+            let i = i + 1;
+        }
+        
+        return;
+    }
+    
+    method void dispose() {
+        var int i;
+        var ItemPickup item;
+        
+        let i = 0;
+        while (i < itemCount) {
+            let item = items[i];
+            do item.dispose();
+            let i = i + 1;
+        }
+        
+        do items.dispose();
+        do Memory.deAlloc(this);
+        return;
+    }
+}

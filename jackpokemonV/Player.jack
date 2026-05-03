@@ -1,0 +1,105 @@
+class Player {
+    field int x, y;
+    field int direction;
+    field Pokemon pokemon;
+    field Team team;
+    field MapManager mapManager;
+    field Money money;
+    field int storyProgress;  // NOUVEAU: 0=début, 1=vu mère, 2=a starter, 3=libre
+    
+    constructor Player new(int startX, int startY) {
+        let x = startX;
+        let y = startY;
+        let direction = 0;
+        let pokemon = null;
+        let team = Team.new();
+        let money = Money.new();
+        let storyProgress = 0;  // Commence au début de l'histoire
+        return this;
+    }
+    
+    method int getX() { return x; }
+    method int getY() { return y; }
+    method int getDirection() { return direction; }
+    method Pokemon getPokemon() { return team.getActive(); }
+    method Team getTeam() { return team; }
+    method Money getMoney() { return money; }
+    method int getStoryProgress() { return storyProgress; }
+    
+    method void setStoryProgress(int progress) {
+        let storyProgress = progress;
+        return;
+    }
+    
+    method boolean hasStarter() {
+        return storyProgress > 1;
+    }
+    
+    method void setPosition(int newX, int newY) {
+        let x = newX;
+        let y = newY;
+        return;
+    }
+    
+    method void setMapManager(MapManager manager) {
+        let mapManager = manager;
+        return;
+    }
+    
+    method void move(int dx, int dy) {
+        let x = x + dx;
+        let y = y + dy;
+        
+        if (dx < 0) { let direction = 2; }
+        if (dx > 0) { let direction = 3; }
+        if (dy < 0) { let direction = 1; }
+        if (dy > 0) { let direction = 0; }
+        
+        return;
+    }
+
+    method void setDirection(int dx, int dy) {
+        if (dy = -1) { let direction = 1; } // Haut
+        if (dy = 1) { let direction = 0; }  // Bas
+        if (dx = -1) { let direction = 2; } // Gauche
+        if (dx = 1) { let direction = 3; }  // Droite
+        return;
+    }
+
+    method void setDirectionValue(int newDirection) {
+        if ((newDirection > -1) & (newDirection < 4)) {
+            let direction = newDirection;
+        }
+        return;
+    }
+    
+    method void draw() {
+        var int location;
+        let location = ((y * 16) * 32) + ((x * 16) / 16);
+        
+        if (direction = 0) { do Sprites.drawPlayerDown(location); }
+        if (direction = 1) { do Sprites.drawPlayerUp(location); }
+        if (direction = 2) { do Sprites.drawPlayerLeft(location); }
+        if (direction = 3) { do Sprites.drawPlayerRight(location); }
+        
+        return;
+    }
+    
+    method void erase() {
+        var int px, py;
+        let px = x * 16;
+        let py = y * 16;
+        
+        do Screen.setColor(false);
+        do Screen.drawRectangle(px, py, px + 15, py + 15);
+        
+        return;
+    }
+    
+    method void dispose() {
+        do team.dispose();
+        do money.dispose();
+        do Memory.deAlloc(this);
+        return;
+    }
+}

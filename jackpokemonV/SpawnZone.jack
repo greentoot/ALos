@@ -1,0 +1,106 @@
+// SpawnZone.jack - Gère les apparitions de Pokémon par zone
+class SpawnZone {
+    
+    // Vérifie si une tuile d'herbe est adjacente à l'eau
+    function boolean isNearWater(Map map, int x, int y) {
+        var int tile;
+        
+        // Vérifier les 4 directions
+        // Haut
+        let tile = map.getTile(x, y - 1);
+        if (tile = 2) { return true; }
+        
+        // Bas
+        let tile = map.getTile(x, y + 1);
+        if (tile = 2) { return true; }
+        
+        // Gauche
+        let tile = map.getTile(x - 1, y);
+        if (tile = 2) { return true; }
+        
+        // Droite
+        let tile = map.getTile(x + 1, y);
+        if (tile = 2) { return true; }
+        
+        return false;
+    }
+    
+    // Retourne un type de Pokémon aléatoire selon la map et la zone
+    function int getWildPokemon(int mapId, Map map, int x, int y) {
+        var boolean nearWater;
+        var int pokemonType, roll;
+        
+        let nearWater = SpawnZone.isNearWater(map, x, y);
+        
+        // MAP 0 - Zone de départ (Pokémon types 0-4: Salamèche, Carapuce, Bulbizarre, Pikachu, Roucool)
+        if (mapId = 0) {
+            if (nearWater) {
+                // Près de l'eau: plus de chances d'avoir Carapuce (type 1)
+                let roll = Random.randRange(0, 100);
+                if (roll < 50) { return 1; } // Carapuce 50%
+                if (roll < 75) { return 9; } // Stari 25%
+                return Random.randRange(0, 3); // Autres 25%
+            } else {
+                // Loin de l'eau: distribution normale
+                return Random.randRange(0, 3);
+            }
+        }
+        
+        // MAP 1 - Zone intermédiaire (Pokémon types 0-9)
+        if (mapId = 1) {
+            if (nearWater) {
+                // Près de l'eau: types Eau
+                let roll = Random.randRange(0, 100);
+                if (roll < 40) { return 1; }  // Carapuce 40%
+                if (roll < 70) { return 9; }  // Stari 30%
+                return Random.randRange(3, 7); // Autres 15%
+            } else {
+                // Loin de l'eau
+                return Random.randRange(3, 7);
+            }
+        }
+        
+        // MAP 2 - Zone avancée (Pokémon types 0-15: tous)
+        if (mapId = 2) {
+            if (nearWater) {
+                // Près de l'eau: types Eau principalement
+                let roll = Random.randRange(0, 100);
+                if (roll < 30) { return 1; }  // Carapuce 30%
+                if (roll < 50) { return 9; }  // Stari 20%
+                return Random.randRange(7, 10); // Autres 30%
+            } else {
+                // Loin de l'eau: tous les types
+                return Random.randRange(7, 10);
+            }
+        }
+        
+        // MAP 3, 4, 5, 6 - Bâtiments (PAS de Pokémon sauvages)
+        if ((mapId = 3) | (mapId = 4) | (mapId = 5) | (mapId = 6)| (mapId = 8)) {
+            return -1; // Pas de Pokémon dans les bâtiments
+        }
+        
+        // Par défaut (ne devrait pas arriver)
+        return Random.randRange(0, 4);
+    }
+    
+    // Obtient le niveau du Pokémon selon la map
+    function int getPokemonLevel(int mapId) {
+        // MAP 0: Niveaux 3-7
+        if (mapId = 0) {
+            return Random.randRange(1, 3);
+        }
+        
+        // MAP 1: Niveaux 6-10
+        if (mapId = 1) {
+            return Random.randRange(3, 5);
+        }
+        
+        // MAP 2: Niveaux 10-15
+        if (mapId = 2) {
+            return Random.randRange(5, 8);
+        }
+        
+        // Par défaut
+        return Random.randRange(3, 7);
+    }
+}

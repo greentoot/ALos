@@ -1,0 +1,877 @@
+function Pokemon.new 0
+    push constant 8
+    call Memory.alloc 1
+    pop pointer 0
+    push argument 0
+    pop this 0
+    push argument 1
+    pop this 1
+    push constant 4
+    call Array.new 1
+    pop this 6
+    push constant 0
+    pop this 7
+    push constant 0
+    push this 6
+    add
+    push constant 0
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 1
+    push this 6
+    add
+    push constant 0
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 2
+    push this 6
+    add
+    push constant 0
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 3
+    push this 6
+    add
+    push constant 0
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push pointer 0
+    call Pokemon.initStats 1
+    pop temp 0
+    push pointer 0
+    call Pokemon.initMoves 1
+    pop temp 0
+    push pointer 0
+    return
+function Pokemon.initStats 0
+    push argument 0
+    pop pointer 0
+    push this 0
+    push constant 0
+    eq
+    not
+    if-goto Pokemon_1
+    push constant 39
+    push this 1
+    add
+    pop this 3
+    push constant 52
+    push this 1
+    add
+    pop this 4
+    push constant 43
+    push this 1
+    add
+    pop this 5
+    goto Pokemon_0
+label Pokemon_1
+label Pokemon_0
+    push this 0
+    push constant 1
+    eq
+    not
+    if-goto Pokemon_3
+    push constant 44
+    push this 1
+    add
+    pop this 3
+    push constant 48
+    push this 1
+    add
+    pop this 4
+    push constant 65
+    push this 1
+    add
+    pop this 5
+    goto Pokemon_2
+label Pokemon_3
+label Pokemon_2
+    push this 0
+    push constant 2
+    eq
+    not
+    if-goto Pokemon_5
+    push constant 60
+    push this 1
+    add
+    pop this 3
+    push constant 60
+    push this 1
+    add
+    pop this 4
+    push constant 60
+    push this 1
+    add
+    pop this 5
+    goto Pokemon_4
+label Pokemon_5
+label Pokemon_4
+    push this 0
+    push constant 3
+    eq
+    not
+    if-goto Pokemon_7
+    push constant 35
+    push this 1
+    add
+    pop this 3
+    push constant 55
+    push this 1
+    add
+    pop this 4
+    push constant 40
+    push this 1
+    add
+    pop this 5
+    goto Pokemon_6
+label Pokemon_7
+label Pokemon_6
+    push this 0
+    push constant 4
+    eq
+    not
+    if-goto Pokemon_9
+    push constant 40
+    push this 1
+    add
+    pop this 3
+    push constant 45
+    push this 1
+    add
+    pop this 4
+    push constant 40
+    push this 1
+    add
+    pop this 5
+    goto Pokemon_8
+label Pokemon_9
+label Pokemon_8
+    push this 0
+    push constant 5
+    eq
+    not
+    if-goto Pokemon_11
+    push constant 30
+    push this 1
+    add
+    pop this 3
+    push constant 56
+    push this 1
+    add
+    pop this 4
+    push constant 35
+    push this 1
+    add
+    pop this 5
+    goto Pokemon_10
+label Pokemon_11
+label Pokemon_10
+    push this 0
+    push constant 6
+    eq
+    not
+    if-goto Pokemon_13
+    push constant 50
+    push this 1
+    add
+    pop this 3
+    push constant 75
+    push this 1
+    add
+    pop this 4
+    push constant 85
+    push this 1
+    add
+    pop this 5
+    goto Pokemon_12
+label Pokemon_13
+label Pokemon_12
+    push this 0
+    push constant 7
+    eq
+    not
+    if-goto Pokemon_15
+    push constant 30
+    push this 1
+    add
+    pop this 3
+    push constant 45
+    push this 1
+    add
+    pop this 4
+    push constant 55
+    push this 1
+    add
+    pop this 5
+    goto Pokemon_14
+label Pokemon_15
+label Pokemon_14
+    push this 0
+    push constant 8
+    eq
+    not
+    if-goto Pokemon_17
+    push constant 70
+    push this 1
+    add
+    pop this 3
+    push constant 70
+    push this 1
+    add
+    pop this 4
+    push constant 80
+    push this 1
+    add
+    pop this 5
+    goto Pokemon_16
+label Pokemon_17
+label Pokemon_16
+    push this 0
+    push constant 9
+    eq
+    not
+    if-goto Pokemon_19
+    push constant 50
+    push this 1
+    add
+    pop this 3
+    push constant 42
+    push this 1
+    add
+    pop this 4
+    push constant 43
+    push this 1
+    add
+    pop this 5
+    goto Pokemon_18
+label Pokemon_19
+label Pokemon_18
+    push this 0
+    push constant 10
+    eq
+    not
+    if-goto Pokemon_21
+    push constant 60
+    push this 1
+    add
+    pop this 3
+    push constant 90
+    push this 1
+    add
+    pop this 4
+    push constant 55
+    push this 1
+    add
+    pop this 5
+    goto Pokemon_20
+label Pokemon_21
+label Pokemon_20
+    push this 0
+    push constant 11
+    eq
+    not
+    if-goto Pokemon_23
+    push constant 250
+    push this 1
+    add
+    pop this 3
+    push constant 80
+    push this 1
+    add
+    pop this 4
+    push constant 100
+    push this 1
+    add
+    pop this 5
+    goto Pokemon_22
+label Pokemon_23
+label Pokemon_22
+    push this 3
+    pop this 2
+    push constant 0
+    return
+function Pokemon.initMoves 0
+    push argument 0
+    pop pointer 0
+    push pointer 0
+    call Pokemon.clearMoves 1
+    pop temp 0
+    push this 0
+    push constant 0
+    eq
+    not
+    if-goto Pokemon_25
+    push constant 0
+    push this 6
+    add
+    push constant 0
+    push constant 40
+    push constant 0
+    call Move.new 3
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 1
+    push this 6
+    add
+    push constant 1
+    push constant 40
+    push constant 1
+    call Move.new 3
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 2
+    pop this 7
+    goto Pokemon_24
+label Pokemon_25
+label Pokemon_24
+    push this 0
+    push constant 1
+    eq
+    not
+    if-goto Pokemon_27
+    push constant 0
+    push this 6
+    add
+    push constant 2
+    push constant 35
+    push constant 0
+    call Move.new 3
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 1
+    push this 6
+    add
+    push constant 3
+    push constant 40
+    push constant 2
+    call Move.new 3
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 2
+    pop this 7
+    goto Pokemon_26
+label Pokemon_27
+label Pokemon_26
+    push this 0
+    push constant 2
+    eq
+    not
+    if-goto Pokemon_29
+    push constant 0
+    push this 6
+    add
+    push constant 4
+    push constant 35
+    push constant 0
+    call Move.new 3
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 1
+    push this 6
+    add
+    push constant 5
+    push constant 45
+    push constant 3
+    call Move.new 3
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 2
+    pop this 7
+    goto Pokemon_28
+label Pokemon_29
+label Pokemon_28
+    push this 0
+    push constant 3
+    eq
+    not
+    if-goto Pokemon_31
+    push constant 0
+    push this 6
+    add
+    push constant 6
+    push constant 40
+    push constant 0
+    call Move.new 3
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 1
+    push this 6
+    add
+    push constant 7
+    push constant 40
+    push constant 4
+    call Move.new 3
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 2
+    pop this 7
+    goto Pokemon_30
+label Pokemon_31
+label Pokemon_30
+    push this 0
+    push constant 4
+    eq
+    not
+    if-goto Pokemon_33
+    push constant 0
+    push this 6
+    add
+    push constant 8
+    push constant 35
+    push constant 0
+    call Move.new 3
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 1
+    push this 6
+    add
+    push constant 9
+    push constant 60
+    push constant 5
+    call Move.new 3
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 2
+    pop this 7
+    goto Pokemon_32
+label Pokemon_33
+label Pokemon_32
+    push this 0
+    push constant 5
+    eq
+    not
+    if-goto Pokemon_35
+    push constant 0
+    push this 6
+    add
+    push constant 6
+    push constant 40
+    push constant 0
+    call Move.new 3
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 1
+    push this 6
+    add
+    push constant 12
+    push constant 45
+    push constant 0
+    call Move.new 3
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 2
+    pop this 7
+    goto Pokemon_34
+label Pokemon_35
+label Pokemon_34
+    push this 0
+    push constant 6
+    eq
+    not
+    if-goto Pokemon_37
+    push constant 0
+    push this 6
+    add
+    push constant 0
+    push constant 40
+    push constant 7
+    call Move.new 3
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 1
+    push this 6
+    add
+    push constant 14
+    push constant 50
+    push constant 7
+    call Move.new 3
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 2
+    pop this 7
+    goto Pokemon_36
+label Pokemon_37
+label Pokemon_36
+    push this 0
+    push constant 7
+    eq
+    not
+    if-goto Pokemon_39
+    push constant 0
+    push this 6
+    add
+    push constant 3
+    push constant 40
+    push constant 2
+    call Move.new 3
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 1
+    push this 6
+    add
+    push constant 15
+    push constant 55
+    push constant 2
+    call Move.new 3
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 2
+    pop this 7
+    goto Pokemon_38
+label Pokemon_39
+label Pokemon_38
+    push this 0
+    push constant 8
+    eq
+    not
+    if-goto Pokemon_41
+    push constant 0
+    push this 6
+    add
+    push constant 1
+    push constant 80
+    push constant 1
+    call Move.new 3
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 1
+    push this 6
+    add
+    push constant 12
+    push constant 90
+    push constant 0
+    call Move.new 3
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 2
+    pop this 7
+    goto Pokemon_40
+label Pokemon_41
+label Pokemon_40
+    push this 0
+    push constant 9
+    eq
+    not
+    if-goto Pokemon_43
+    push constant 0
+    push this 6
+    add
+    push constant 4
+    push constant 30
+    push constant 0
+    call Move.new 3
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 1
+    push this 6
+    add
+    push constant 14
+    push constant 50
+    push constant 3
+    call Move.new 3
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 2
+    pop this 7
+    goto Pokemon_42
+label Pokemon_43
+label Pokemon_42
+    push this 0
+    push constant 10
+    eq
+    not
+    if-goto Pokemon_45
+    push constant 0
+    push this 6
+    add
+    push constant 0
+    push constant 50
+    push constant 0
+    call Move.new 3
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 1
+    push this 6
+    add
+    push constant 14
+    push constant 80
+    push constant 3
+    call Move.new 3
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 2
+    pop this 7
+    goto Pokemon_44
+label Pokemon_45
+label Pokemon_44
+    push this 0
+    push constant 11
+    eq
+    not
+    if-goto Pokemon_47
+    push constant 0
+    push this 6
+    add
+    push constant 0
+    push constant 50
+    push constant 0
+    call Move.new 3
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 1
+    push this 6
+    add
+    push constant 14
+    push constant 80
+    push constant 3
+    call Move.new 3
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 2
+    pop this 7
+    goto Pokemon_46
+label Pokemon_47
+label Pokemon_46
+    push constant 0
+    return
+function Pokemon.getType 0
+    push argument 0
+    pop pointer 0
+    push this 0
+    return
+function Pokemon.getLevel 0
+    push argument 0
+    pop pointer 0
+    push this 1
+    return
+function Pokemon.getHp 0
+    push argument 0
+    pop pointer 0
+    push this 2
+    return
+function Pokemon.getMaxHp 0
+    push argument 0
+    pop pointer 0
+    push this 3
+    return
+function Pokemon.getAttack 0
+    push argument 0
+    pop pointer 0
+    push this 4
+    return
+function Pokemon.getDefense 0
+    push argument 0
+    pop pointer 0
+    push this 5
+    return
+function Pokemon.getMove 0
+    push argument 0
+    pop pointer 0
+    push argument 1
+    push this 6
+    add
+    pop pointer 1
+    push that 0
+    return
+function Pokemon.getMoveCount 0
+    push argument 0
+    pop pointer 0
+    push this 7
+    return
+function Pokemon.takeDamage 0
+    push argument 0
+    pop pointer 0
+    push this 2
+    push argument 1
+    sub
+    pop this 2
+    push this 2
+    push constant 0
+    lt
+    not
+    if-goto Pokemon_49
+    push constant 0
+    pop this 2
+    goto Pokemon_48
+label Pokemon_49
+label Pokemon_48
+    push constant 0
+    return
+function Pokemon.isFainted 0
+    push argument 0
+    pop pointer 0
+    push this 2
+    push constant 1
+    lt
+    return
+function Pokemon.heal 0
+    push argument 0
+    pop pointer 0
+    push this 3
+    pop this 2
+    push constant 0
+    return
+function Pokemon.clearMoves 2
+    push argument 0
+    pop pointer 0
+    push this 6
+    push constant 0
+    eq
+    not
+    not
+    if-goto Pokemon_51
+    push constant 0
+    pop local 0
+label Pokemon_52
+    push local 0
+    push this 7
+    lt
+    not
+    if-goto Pokemon_53
+    push local 0
+    push this 6
+    add
+    pop pointer 1
+    push that 0
+    pop local 1
+    push local 1
+    push constant 0
+    eq
+    not
+    not
+    if-goto Pokemon_55
+    push local 1
+    call Move.dispose 1
+    pop temp 0
+    push local 0
+    push this 6
+    add
+    push constant 0
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    goto Pokemon_54
+label Pokemon_55
+label Pokemon_54
+    push local 0
+    push constant 1
+    add
+    pop local 0
+    goto Pokemon_52
+label Pokemon_53
+    goto Pokemon_50
+label Pokemon_51
+label Pokemon_50
+    push constant 0
+    pop this 7
+    push constant 0
+    return
+function Pokemon.dispose 2
+    push argument 0
+    pop pointer 0
+    push this 6
+    push constant 0
+    eq
+    not
+    not
+    if-goto Pokemon_57
+    push constant 0
+    pop local 0
+label Pokemon_58
+    push local 0
+    push this 7
+    lt
+    not
+    if-goto Pokemon_59
+    push local 0
+    push this 6
+    add
+    pop pointer 1
+    push that 0
+    pop local 1
+    push local 1
+    push constant 0
+    eq
+    not
+    not
+    if-goto Pokemon_61
+    push local 1
+    call Move.dispose 1
+    pop temp 0
+    goto Pokemon_60
+label Pokemon_61
+label Pokemon_60
+    push local 0
+    push constant 1
+    add
+    pop local 0
+    goto Pokemon_58
+label Pokemon_59
+    push this 6
+    call Array.dispose 1
+    pop temp 0
+    goto Pokemon_56
+label Pokemon_57
+label Pokemon_56
+    push pointer 0
+    call Memory.deAlloc 1
+    pop temp 0
+    push constant 0
+    return

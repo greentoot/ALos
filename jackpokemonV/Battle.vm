@@ -1,0 +1,2090 @@
+function Battle.new 0
+    push constant 9
+    call Memory.alloc 1
+    pop pointer 0
+    push argument 0
+    pop this 0
+    push argument 1
+    pop this 1
+    push argument 2
+    pop this 2
+    push argument 3
+    pop this 3
+    push constant 0
+    pop this 4
+    push constant 0
+    pop this 5
+    push constant 0
+    pop this 6
+    push constant 0
+    pop this 7
+    push argument 4
+    pop this 8
+    push pointer 0
+    return
+function Battle.setEnemyTeam 0
+    push argument 0
+    pop pointer 0
+    push argument 1
+    pop this 4
+    push constant 0
+    return
+function Battle.drawSwitchMenu 4
+    push argument 0
+    pop pointer 0
+    push constant 0
+    call Screen.setColor 1
+    pop temp 0
+    push constant 0
+    push constant 152
+    push constant 511
+    push constant 255
+    call Screen.drawRectangle 4
+    pop temp 0
+    push constant 19
+    push constant 2
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.printChoisirPokemon 0
+    pop temp 0
+    push this 3
+    call Team.getCount 1
+    pop local 1
+    push constant 0
+    pop local 0
+    push constant 0
+    pop local 2
+label Battle_0
+    push local 0
+    push local 1
+    lt
+    not
+    if-goto Battle_1
+    push this 3
+    push local 0
+    call Team.getPokemon 2
+    pop local 3
+    push local 3
+    push this 0
+    eq
+    not
+    not
+    if-goto Battle_3
+    push local 2
+    push constant 3
+    lt
+    not
+    if-goto Battle_5
+    push constant 20
+    push local 2
+    add
+    push constant 2
+    call Output.moveCursor 2
+    pop temp 0
+    push local 0
+    push this 7
+    eq
+    not
+    if-goto Battle_7
+    push constant 62
+    call Output.printChar 1
+    pop temp 0
+    goto Battle_6
+label Battle_7
+    push constant 32
+    call Output.printChar 1
+    pop temp 0
+label Battle_6
+    push local 0
+    push constant 1
+    add
+    call Output.printInt 1
+    pop temp 0
+    push constant 46
+    call Output.printChar 1
+    pop temp 0
+    push constant 32
+    call Output.printChar 1
+    pop temp 0
+    push local 3
+    call Pokemon.getType 1
+    call Strings.printPokemonName 1
+    pop temp 0
+    push constant 32
+    call Output.printChar 1
+    pop temp 0
+    call Strings.printHP 0
+    pop temp 0
+    push local 3
+    call Pokemon.getHp 1
+    call Output.printInt 1
+    pop temp 0
+    push constant 47
+    call Output.printChar 1
+    pop temp 0
+    push local 3
+    call Pokemon.getMaxHp 1
+    call Output.printInt 1
+    pop temp 0
+    push local 3
+    call Pokemon.isFainted 1
+    not
+    if-goto Battle_9
+    push constant 32
+    call Output.printChar 1
+    pop temp 0
+    push constant 91
+    call Output.printChar 1
+    pop temp 0
+    push constant 75
+    call Output.printChar 1
+    pop temp 0
+    push constant 79
+    call Output.printChar 1
+    pop temp 0
+    push constant 93
+    call Output.printChar 1
+    pop temp 0
+    goto Battle_8
+label Battle_9
+label Battle_8
+    push local 2
+    push constant 1
+    add
+    pop local 2
+    goto Battle_4
+label Battle_5
+label Battle_4
+    goto Battle_2
+label Battle_3
+label Battle_2
+    push local 0
+    push constant 1
+    add
+    pop local 0
+    goto Battle_0
+label Battle_1
+    push local 2
+    push constant 3
+    lt
+    not
+    if-goto Battle_11
+    push constant 20
+    push local 2
+    add
+    push constant 35
+    call Output.moveCursor 2
+    pop temp 0
+    goto Battle_10
+label Battle_11
+    push constant 22
+    push constant 35
+    call Output.moveCursor 2
+    pop temp 0
+label Battle_10
+    call Strings.printRetour 0
+    pop temp 0
+    push constant 0
+    return
+function Battle.isInSwitchMenu 0
+    push argument 0
+    pop pointer 0
+    push this 6
+    return
+function Battle.hasStab 0
+    push argument 0
+    pop pointer 0
+    push argument 1
+    push constant 0
+    eq
+    push argument 2
+    push constant 1
+    eq
+    and
+    not
+    if-goto Battle_13
+    push constant 1
+    neg
+    return
+    goto Battle_12
+label Battle_13
+label Battle_12
+    push argument 1
+    push constant 1
+    eq
+    push argument 2
+    push constant 2
+    eq
+    and
+    not
+    if-goto Battle_15
+    push constant 1
+    neg
+    return
+    goto Battle_14
+label Battle_15
+label Battle_14
+    push argument 1
+    push constant 2
+    eq
+    push argument 2
+    push constant 3
+    eq
+    and
+    not
+    if-goto Battle_17
+    push constant 1
+    neg
+    return
+    goto Battle_16
+label Battle_17
+label Battle_16
+    push argument 1
+    push constant 3
+    eq
+    push argument 2
+    push constant 4
+    eq
+    and
+    not
+    if-goto Battle_19
+    push constant 1
+    neg
+    return
+    goto Battle_18
+label Battle_19
+label Battle_18
+    push argument 1
+    push constant 4
+    eq
+    push argument 2
+    push constant 5
+    eq
+    and
+    not
+    if-goto Battle_21
+    push constant 1
+    neg
+    return
+    goto Battle_20
+label Battle_21
+label Battle_20
+    push argument 1
+    push constant 5
+    eq
+    push argument 2
+    push constant 6
+    eq
+    and
+    not
+    if-goto Battle_23
+    push constant 1
+    neg
+    return
+    goto Battle_22
+label Battle_23
+label Battle_22
+    push argument 1
+    push constant 6
+    eq
+    push argument 2
+    push constant 0
+    eq
+    and
+    not
+    if-goto Battle_25
+    push constant 1
+    neg
+    return
+    goto Battle_24
+label Battle_25
+label Battle_24
+    push argument 1
+    push constant 7
+    eq
+    push argument 2
+    push constant 3
+    eq
+    and
+    not
+    if-goto Battle_27
+    push constant 1
+    neg
+    return
+    goto Battle_26
+label Battle_27
+label Battle_26
+    push argument 1
+    push constant 8
+    eq
+    push argument 2
+    push constant 7
+    eq
+    and
+    not
+    if-goto Battle_29
+    push constant 1
+    neg
+    return
+    goto Battle_28
+label Battle_29
+label Battle_28
+    push argument 1
+    push constant 9
+    eq
+    push argument 2
+    push constant 2
+    eq
+    and
+    not
+    if-goto Battle_31
+    push constant 1
+    neg
+    return
+    goto Battle_30
+label Battle_31
+label Battle_30
+    push constant 0
+    return
+function Battle.setInSwitchMenu 0
+    push argument 0
+    pop pointer 0
+    push argument 1
+    pop this 6
+    push constant 0
+    return
+function Battle.getSwitchSelectedIndex 0
+    push argument 0
+    pop pointer 0
+    push this 7
+    return
+function Battle.switchPokemon 3
+    push argument 0
+    pop pointer 0
+    push this 3
+    push argument 1
+    call Team.getPokemon 2
+    pop local 0
+    push local 0
+    call Pokemon.isFainted 1
+    not
+    if-goto Battle_33
+    push constant 18
+    push constant 0
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.printPokemonKO 0
+    pop temp 0
+    push constant 1500
+    call Sys.wait 1
+    pop temp 0
+    push constant 0
+    return
+    goto Battle_32
+label Battle_33
+label Battle_32
+    push local 0
+    push this 0
+    eq
+    not
+    if-goto Battle_35
+    push constant 18
+    push constant 0
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.printDejaActif 0
+    pop temp 0
+    push constant 1500
+    call Sys.wait 1
+    pop temp 0
+    push constant 0
+    return
+    goto Battle_34
+label Battle_35
+label Battle_34
+    push constant 0
+    pop this 6
+    push this 3
+    push argument 1
+    call Team.setActive 2
+    pop temp 0
+    push local 0
+    pop this 0
+    push constant 18
+    push constant 0
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.printReviens 0
+    pop temp 0
+    push constant 1000
+    call Sys.wait 1
+    pop temp 0
+    push this 1
+    push constant 0
+    push this 1
+    call Pokemon.getMoveCount 1
+    push constant 1
+    sub
+    call Random.randRange 2
+    call Pokemon.getMove 2
+    pop local 2
+    push pointer 0
+    push this 1
+    push this 0
+    push local 2
+    call Battle.calculateDamage 4
+    pop local 1
+    push this 0
+    push local 1
+    call Pokemon.takeDamage 2
+    pop temp 0
+    push constant 18
+    push constant 0
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.printEnnemiInflige 0
+    pop temp 0
+    push local 1
+    call Output.printInt 1
+    pop temp 0
+    call Strings.printDegats 0
+    pop temp 0
+    push constant 1500
+    call Sys.wait 1
+    pop temp 0
+    push this 0
+    call Pokemon.isFainted 1
+    not
+    if-goto Battle_37
+    push constant 2
+    return
+    goto Battle_36
+label Battle_37
+label Battle_36
+    push constant 0
+    return
+function Battle.moveSwitchSelection 1
+    push argument 0
+    pop pointer 0
+    push this 3
+    call Team.getCount 1
+    pop local 0
+    push this 7
+    push argument 1
+    add
+    pop this 7
+    push this 7
+    push constant 0
+    lt
+    not
+    if-goto Battle_39
+    push constant 0
+    pop this 7
+    goto Battle_38
+label Battle_39
+label Battle_38
+    push this 7
+    push local 0
+    push constant 1
+    sub
+    gt
+    not
+    if-goto Battle_41
+    push local 0
+    push constant 1
+    sub
+    pop this 7
+    goto Battle_40
+label Battle_41
+label Battle_40
+    push constant 0
+    return
+function Battle.draw 0
+    push argument 0
+    pop pointer 0
+    call Screen.clearScreen 0
+    pop temp 0
+    push pointer 0
+    push constant 370
+    push constant 50
+    call Battle.drawEnemyPokemon 3
+    pop temp 0
+    push pointer 0
+    push constant 80
+    push constant 120
+    call Battle.drawPlayerPokemon 3
+    pop temp 0
+    push pointer 0
+    call Battle.drawBattleInfo 1
+    pop temp 0
+    push constant 0
+    return
+function Battle.drawEnemyPokemon 1
+    push argument 0
+    pop pointer 0
+    push this 1
+    call Pokemon.getType 1
+    pop local 0
+    push pointer 0
+    push argument 1
+    push argument 2
+    push local 0
+    push constant 0
+    call Battle.drawPokemonSprite 5
+    pop temp 0
+    push constant 1
+    push constant 40
+    call Output.moveCursor 2
+    pop temp 0
+    push pointer 0
+    push local 0
+    call Battle.printPokemonName 2
+    pop temp 0
+    call Strings.printNv 0
+    pop temp 0
+    push this 1
+    call Pokemon.getLevel 1
+    call Output.printInt 1
+    pop temp 0
+    push this 1
+    call Pokemon.getLevel 1
+    push constant 50
+    gt
+    not
+    if-goto Battle_43
+    push pointer 0
+    push argument 1
+    push constant 30
+    sub
+    push argument 2
+    push constant 50
+    add
+    push constant 35
+    push constant 35
+    call Battle.drawHpBar 5
+    pop temp 0
+    goto Battle_42
+label Battle_43
+    push pointer 0
+    push argument 1
+    push constant 30
+    sub
+    push argument 2
+    push constant 50
+    add
+    push this 1
+    call Pokemon.getHp 1
+    push this 1
+    call Pokemon.getMaxHp 1
+    call Battle.drawHpBar 5
+    pop temp 0
+label Battle_42
+    push constant 0
+    return
+function Battle.drawPlayerPokemon 1
+    push argument 0
+    pop pointer 0
+    push this 0
+    call Pokemon.getType 1
+    pop local 0
+    push pointer 0
+    push argument 1
+    push argument 2
+    push local 0
+    push constant 1
+    neg
+    call Battle.drawPokemonSprite 5
+    pop temp 0
+    push constant 14
+    push constant 1
+    call Output.moveCursor 2
+    pop temp 0
+    push pointer 0
+    push local 0
+    call Battle.printPokemonName 2
+    pop temp 0
+    call Strings.printNv 0
+    pop temp 0
+    push this 0
+    call Pokemon.getLevel 1
+    call Output.printInt 1
+    pop temp 0
+    push this 0
+    call Pokemon.getLevel 1
+    push constant 50
+    gt
+    not
+    if-goto Battle_45
+    push pointer 0
+    push argument 1
+    push constant 30
+    sub
+    push argument 2
+    push constant 50
+    add
+    push constant 35
+    push constant 35
+    call Battle.drawHpBar 5
+    pop temp 0
+    goto Battle_44
+label Battle_45
+    push pointer 0
+    push argument 1
+    push constant 80
+    add
+    push argument 2
+    push constant 20
+    add
+    push this 0
+    call Pokemon.getHp 1
+    push this 0
+    call Pokemon.getMaxHp 1
+    call Battle.drawHpBar 5
+    pop temp 0
+label Battle_44
+    push constant 0
+    return
+function Battle.drawPokemonSprite 0
+    push argument 0
+    pop pointer 0
+    push argument 1
+    push argument 2
+    push argument 3
+    call Sprites.drawPokemon 3
+    pop temp 0
+    push constant 0
+    return
+function Battle.drawHpBar 2
+    push argument 0
+    pop pointer 0
+    push constant 60
+    pop local 0
+    push argument 4
+    push constant 1
+    lt
+    not
+    if-goto Battle_47
+    push constant 1
+    pop argument 4
+    goto Battle_46
+label Battle_47
+label Battle_46
+    push argument 3
+    push local 0
+    call Math.multiply 2
+    push argument 4
+    call Math.divide 2
+    pop local 1
+    push argument 2
+    push constant 11
+    call Math.divide 2
+    push argument 1
+    push constant 8
+    call Math.divide 2
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.printHP 0
+    pop temp 0
+    push constant 1
+    neg
+    call Screen.setColor 1
+    pop temp 0
+    push argument 1
+    push constant 20
+    add
+    push argument 2
+    push argument 1
+    push constant 20
+    add
+    push local 0
+    add
+    push argument 2
+    push constant 4
+    add
+    call Screen.drawRectangle 4
+    pop temp 0
+    push constant 0
+    call Screen.setColor 1
+    pop temp 0
+    push argument 1
+    push constant 21
+    add
+    push argument 2
+    push constant 1
+    add
+    push argument 1
+    push constant 19
+    add
+    push local 0
+    add
+    push argument 2
+    push constant 3
+    add
+    call Screen.drawRectangle 4
+    pop temp 0
+    push constant 1
+    neg
+    call Screen.setColor 1
+    pop temp 0
+    push local 1
+    push constant 0
+    gt
+    not
+    if-goto Battle_49
+    push argument 1
+    push constant 21
+    add
+    push argument 2
+    push constant 1
+    add
+    push argument 1
+    push constant 20
+    add
+    push local 1
+    add
+    push argument 2
+    push constant 3
+    add
+    call Screen.drawRectangle 4
+    pop temp 0
+    goto Battle_48
+label Battle_49
+label Battle_48
+    push constant 0
+    return
+function Battle.drawBattleInfo 3
+    push argument 0
+    pop pointer 0
+    push constant 19
+    push constant 0
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.printChoisissezAttaque 0
+    pop temp 0
+    push this 0
+    call Pokemon.getMoveCount 1
+    pop local 1
+    push constant 0
+    pop local 0
+label Battle_50
+    push local 0
+    push local 1
+    lt
+    not
+    if-goto Battle_51
+    push this 0
+    push local 0
+    call Pokemon.getMove 2
+    pop local 2
+    push constant 20
+    push local 0
+    add
+    push constant 2
+    call Output.moveCursor 2
+    pop temp 0
+    push local 0
+    push constant 1
+    add
+    call Output.printInt 1
+    pop temp 0
+    push constant 46
+    call Output.printChar 1
+    pop temp 0
+    push constant 32
+    call Output.printChar 1
+    pop temp 0
+    push pointer 0
+    push local 2
+    call Move.getId 1
+    call Battle.printMoveName 2
+    pop temp 0
+    push constant 32
+    call Output.printChar 1
+    pop temp 0
+    push constant 40
+    call Output.printChar 1
+    pop temp 0
+    push local 2
+    call Move.getPower 1
+    call Output.printInt 1
+    pop temp 0
+    push constant 41
+    call Output.printChar 1
+    pop temp 0
+    push local 0
+    push constant 1
+    add
+    pop local 0
+    goto Battle_50
+label Battle_51
+    push constant 20
+    push constant 35
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.printCapturer 0
+    pop temp 0
+    push constant 21
+    push constant 35
+    call Output.moveCursor 2
+    pop temp 0
+    push constant 40
+    call Output.printChar 1
+    pop temp 0
+    push constant 73
+    call Output.printChar 1
+    pop temp 0
+    push constant 41
+    call Output.printChar 1
+    pop temp 0
+    push constant 32
+    call Output.printChar 1
+    pop temp 0
+    call Strings.printInventaire 0
+    pop temp 0
+    push constant 22
+    push constant 35
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.printFuir 0
+    pop temp 0
+    push constant 0
+    return
+function Battle.printPokemonName 0
+    push argument 0
+    pop pointer 0
+    push argument 1
+    push constant 0
+    eq
+    not
+    if-goto Battle_53
+    call Strings.printSalameche 0
+    pop temp 0
+    goto Battle_52
+label Battle_53
+label Battle_52
+    push argument 1
+    push constant 1
+    eq
+    not
+    if-goto Battle_55
+    call Strings.printCarapuce 0
+    pop temp 0
+    goto Battle_54
+label Battle_55
+label Battle_54
+    push argument 1
+    push constant 2
+    eq
+    not
+    if-goto Battle_57
+    call Strings.printBulbizarre 0
+    pop temp 0
+    goto Battle_56
+label Battle_57
+label Battle_56
+    push argument 1
+    push constant 3
+    eq
+    not
+    if-goto Battle_59
+    call Strings.printPikachu 0
+    pop temp 0
+    goto Battle_58
+label Battle_59
+label Battle_58
+    push argument 1
+    push constant 4
+    eq
+    not
+    if-goto Battle_61
+    call Strings.printRoucool 0
+    pop temp 0
+    goto Battle_60
+label Battle_61
+label Battle_60
+    push argument 1
+    push constant 5
+    eq
+    not
+    if-goto Battle_63
+    call Strings.printRattata 0
+    pop temp 0
+    goto Battle_62
+label Battle_63
+label Battle_62
+    push argument 1
+    push constant 6
+    eq
+    not
+    if-goto Battle_65
+    call Strings.printSabelette 0
+    pop temp 0
+    goto Battle_64
+label Battle_65
+label Battle_64
+    push argument 1
+    push constant 7
+    eq
+    not
+    if-goto Battle_67
+    call Strings.printStari 0
+    pop temp 0
+    goto Battle_66
+label Battle_67
+label Battle_66
+    push argument 1
+    push constant 8
+    eq
+    not
+    if-goto Battle_69
+    call Strings.printArcanin 0
+    pop temp 0
+    goto Battle_68
+label Battle_69
+label Battle_68
+    push argument 1
+    push constant 9
+    eq
+    not
+    if-goto Battle_71
+    call Strings.printTaupiqueur 0
+    pop temp 0
+    goto Battle_70
+label Battle_71
+label Battle_70
+    push argument 1
+    push constant 10
+    eq
+    not
+    if-goto Battle_73
+    call Strings.printTriopikeur 0
+    pop temp 0
+    goto Battle_72
+label Battle_73
+label Battle_72
+    push argument 1
+    push constant 11
+    eq
+    not
+    if-goto Battle_75
+    call Strings.printNoadkoko 0
+    pop temp 0
+    goto Battle_74
+label Battle_75
+label Battle_74
+    push constant 0
+    return
+function Battle.printMoveName 0
+    push argument 0
+    pop pointer 0
+    push argument 1
+    push constant 0
+    eq
+    not
+    if-goto Battle_77
+    call Strings.printGriffe 0
+    pop temp 0
+    goto Battle_76
+label Battle_77
+label Battle_76
+    push argument 1
+    push constant 1
+    eq
+    not
+    if-goto Battle_79
+    call Strings.printFlammeche 0
+    pop temp 0
+    goto Battle_78
+label Battle_79
+label Battle_78
+    push argument 1
+    push constant 2
+    eq
+    not
+    if-goto Battle_81
+    call Strings.printCharge 0
+    pop temp 0
+    goto Battle_80
+label Battle_81
+label Battle_80
+    push argument 1
+    push constant 3
+    eq
+    not
+    if-goto Battle_83
+    call Strings.printPistoletO 0
+    pop temp 0
+    goto Battle_82
+label Battle_83
+label Battle_82
+    push argument 1
+    push constant 4
+    eq
+    not
+    if-goto Battle_85
+    call Strings.printCharge 0
+    pop temp 0
+    goto Battle_84
+label Battle_85
+label Battle_84
+    push argument 1
+    push constant 5
+    eq
+    not
+    if-goto Battle_87
+    call Strings.printFouetLianes 0
+    pop temp 0
+    goto Battle_86
+label Battle_87
+label Battle_86
+    push argument 1
+    push constant 6
+    eq
+    not
+    if-goto Battle_89
+    call Strings.printViveAttaque 0
+    pop temp 0
+    goto Battle_88
+label Battle_89
+label Battle_88
+    push argument 1
+    push constant 7
+    eq
+    not
+    if-goto Battle_91
+    call Strings.printEclair 0
+    pop temp 0
+    goto Battle_90
+label Battle_91
+label Battle_90
+    push argument 1
+    push constant 8
+    eq
+    not
+    if-goto Battle_93
+    call Strings.printPicpic 0
+    pop temp 0
+    goto Battle_92
+label Battle_93
+label Battle_92
+    push argument 1
+    push constant 9
+    eq
+    not
+    if-goto Battle_95
+    call Strings.printCruAile 0
+    pop temp 0
+    goto Battle_94
+label Battle_95
+label Battle_94
+    push argument 1
+    push constant 10
+    eq
+    not
+    if-goto Battle_97
+    call Strings.printTeleport 0
+    pop temp 0
+    goto Battle_96
+label Battle_97
+label Battle_96
+    push argument 1
+    push constant 11
+    eq
+    not
+    if-goto Battle_99
+    call Strings.printChocMental 0
+    pop temp 0
+    goto Battle_98
+label Battle_99
+label Battle_98
+    push argument 1
+    push constant 12
+    eq
+    not
+    if-goto Battle_101
+    call Strings.printCrocDeMort 0
+    pop temp 0
+    goto Battle_100
+label Battle_101
+label Battle_100
+    push argument 1
+    push constant 13
+    eq
+    not
+    if-goto Battle_103
+    call Strings.printPoudreDodo 0
+    pop temp 0
+    goto Battle_102
+label Battle_103
+label Battle_102
+    push argument 1
+    push constant 14
+    eq
+    not
+    if-goto Battle_105
+    call Strings.printSeisme 0
+    pop temp 0
+    goto Battle_104
+label Battle_105
+label Battle_104
+    push argument 1
+    push constant 15
+    eq
+    not
+    if-goto Battle_107
+    call Strings.printHydrocanon 0
+    pop temp 0
+    goto Battle_106
+label Battle_107
+label Battle_106
+    push constant 0
+    return
+function Battle.attack 4
+    push argument 0
+    pop pointer 0
+    push argument 1
+    push this 0
+    call Pokemon.getMoveCount 1
+    push constant 1
+    sub
+    gt
+    not
+    if-goto Battle_109
+    push constant 0
+    return
+    goto Battle_108
+label Battle_109
+label Battle_108
+    push this 0
+    push argument 1
+    call Pokemon.getMove 2
+    pop local 0
+    push pointer 0
+    push this 0
+    push this 1
+    push local 0
+    call Battle.calculateDamage 4
+    pop local 1
+    push pointer 0
+    push local 0
+    call Move.getType 1
+    push this 1
+    call Pokemon.getType 1
+    call Battle.getEffectiveness 3
+    pop local 3
+    push this 1
+    push local 1
+    call Pokemon.takeDamage 2
+    pop temp 0
+    push constant 18
+    push constant 0
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.printVousInfligez 0
+    pop temp 0
+    push local 1
+    call Output.printInt 1
+    pop temp 0
+    call Strings.printDegats 0
+    pop temp 0
+    push constant 1000
+    call Sys.wait 1
+    pop temp 0
+    push local 3
+    call Strings.printeffectiveness 1
+    pop temp 0
+    push this 1
+    call Pokemon.isFainted 1
+    not
+    if-goto Battle_111
+    push constant 18
+    push constant 0
+    call Output.moveCursor 2
+    pop temp 0
+    push this 1
+    call Pokemon.getType 1
+    call Strings.printPokemonName 1
+    pop temp 0
+    push constant 32
+    call Output.printChar 1
+    pop temp 0
+    call Strings.printPokemonKO 0
+    pop temp 0
+    push constant 2000
+    call Sys.wait 1
+    pop temp 0
+    push this 4
+    push constant 0
+    eq
+    not
+    not
+    if-goto Battle_113
+    push this 4
+    call Team.hasAlivePokemon 1
+    not
+    if-goto Battle_115
+    push pointer 0
+    call Battle.switchEnemyPokemon 1
+    return
+    goto Battle_114
+label Battle_115
+    push constant 1
+    return
+label Battle_114
+    goto Battle_112
+label Battle_113
+    push constant 1
+    return
+label Battle_112
+    goto Battle_110
+label Battle_111
+label Battle_110
+    push this 1
+    push constant 0
+    push this 1
+    call Pokemon.getMoveCount 1
+    push constant 1
+    sub
+    call Random.randRange 2
+    call Pokemon.getMove 2
+    pop local 0
+    push pointer 0
+    push this 1
+    push this 0
+    push local 0
+    call Battle.calculateDamage 4
+    pop local 2
+    push this 0
+    push local 2
+    call Pokemon.takeDamage 2
+    pop temp 0
+    push constant 18
+    push constant 0
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.printEnnemiInflige 0
+    pop temp 0
+    push local 2
+    call Output.printInt 1
+    pop temp 0
+    call Strings.printDegats 0
+    pop temp 0
+    push constant 1500
+    call Sys.wait 1
+    pop temp 0
+    push this 0
+    call Pokemon.isFainted 1
+    not
+    if-goto Battle_117
+    push pointer 0
+    call Battle.hasAlivePokemon 1
+    not
+    if-goto Battle_119
+    push pointer 0
+    call Battle.forceSwitchPokemon 1
+    return
+    goto Battle_118
+label Battle_119
+    push constant 2
+    return
+label Battle_118
+    goto Battle_116
+label Battle_117
+label Battle_116
+    push constant 0
+    return
+function Battle.switchEnemyPokemon 4
+    push argument 0
+    pop pointer 0
+    push this 1
+    pop local 3
+    push this 4
+    call Team.getCount 1
+    pop local 1
+    push constant 0
+    pop local 0
+label Battle_120
+    push local 0
+    push local 1
+    lt
+    not
+    if-goto Battle_121
+    push this 4
+    push local 0
+    call Team.getPokemon 2
+    pop local 2
+    push local 2
+    push constant 0
+    eq
+    not
+    not
+    if-goto Battle_123
+    push local 2
+    call Pokemon.isFainted 1
+    not
+    not
+    if-goto Battle_125
+    push this 4
+    push local 0
+    call Team.setActive 2
+    pop temp 0
+    push local 2
+    pop this 1
+    push local 3
+    push local 2
+    eq
+    not
+    not
+    if-goto Battle_127
+    goto Battle_126
+label Battle_127
+label Battle_126
+    push constant 18
+    push constant 0
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.printledresseurenvoie 0
+    pop temp 0
+    push local 2
+    call Pokemon.getType 1
+    call Strings.printPokemonName 1
+    pop temp 0
+    push constant 33
+    call Output.printChar 1
+    pop temp 0
+    push constant 2000
+    call Sys.wait 1
+    pop temp 0
+    push pointer 0
+    call Battle.draw 1
+    pop temp 0
+    push constant 0
+    return
+    goto Battle_124
+label Battle_125
+label Battle_124
+    goto Battle_122
+label Battle_123
+label Battle_122
+    push local 0
+    push constant 1
+    add
+    pop local 0
+    goto Battle_120
+label Battle_121
+    push constant 1
+    return
+function Battle.hasAlivePokemon 0
+    push argument 0
+    pop pointer 0
+    push this 3
+    call Team.hasAlivePokemon 1
+    return
+function Battle.canBattle 0
+    push argument 0
+    pop pointer 0
+    push argument 1
+    call Team.hasAlivePokemon 1
+    return
+function Battle.forceSwitchPokemon 3
+    push argument 0
+    pop pointer 0
+    push this 3
+    call Team.getCount 1
+    pop local 1
+    push constant 0
+    pop local 0
+    push constant 18
+    push constant 0
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.printpokemonkoafficherautre 0
+    pop temp 0
+    push constant 2000
+    call Sys.wait 1
+    pop temp 0
+label Battle_128
+    push local 0
+    push local 1
+    lt
+    not
+    if-goto Battle_129
+    push this 3
+    push local 0
+    call Team.getPokemon 2
+    pop local 2
+    push local 2
+    push constant 0
+    eq
+    not
+    not
+    if-goto Battle_131
+    push local 2
+    call Pokemon.isFainted 1
+    not
+    not
+    if-goto Battle_133
+    push this 3
+    push local 0
+    call Team.setActive 2
+    pop temp 0
+    push local 2
+    pop this 0
+    push constant 18
+    push constant 0
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.printAllez 0
+    pop temp 0
+    push local 2
+    call Pokemon.getType 1
+    call Strings.printPokemonName 1
+    pop temp 0
+    push constant 33
+    call Output.printChar 1
+    pop temp 0
+    push constant 1500
+    call Sys.wait 1
+    pop temp 0
+    push constant 0
+    return
+    goto Battle_132
+label Battle_133
+label Battle_132
+    goto Battle_130
+label Battle_131
+label Battle_130
+    push local 0
+    push constant 1
+    add
+    pop local 0
+    goto Battle_128
+label Battle_129
+    push constant 2
+    return
+function Battle.attemptCapture 5
+    push argument 0
+    pop pointer 0
+    push this 8
+    push constant 0
+    call Inventory.hasItem 2
+    not
+    not
+    if-goto Battle_135
+    push constant 18
+    push constant 0
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.printPasAssezObjets 0
+    pop temp 0
+    push constant 1500
+    call Sys.wait 1
+    pop temp 0
+    push constant 0
+    return
+    goto Battle_134
+label Battle_135
+label Battle_134
+    push this 1
+    call Pokemon.getHp 1
+    push constant 100
+    call Math.multiply 2
+    push this 1
+    call Pokemon.getMaxHp 1
+    call Math.divide 2
+    pop local 1
+    push constant 100
+    push local 1
+    sub
+    pop local 0
+    push this 2
+    push this 1
+    call Pokemon.getType 1
+    call Pokedex.isCaptured 2
+    not
+    if-goto Battle_137
+    push local 0
+    push constant 20
+    add
+    pop local 0
+    goto Battle_136
+label Battle_137
+label Battle_136
+    push constant 0
+    push constant 100
+    call Random.randRange 2
+    pop local 2
+    push constant 18
+    push constant 0
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.printLancerPokeball 0
+    pop temp 0
+    push constant 0
+    pop local 4
+label Battle_138
+    push local 4
+    push constant 3
+    lt
+    not
+    if-goto Battle_139
+    push constant 100
+    push constant 32
+    call Math.multiply 2
+    push constant 15
+    add
+    pop local 3
+    push local 3
+    call Sprites.drawPokeball 1
+    pop temp 0
+    push constant 300
+    call Sys.wait 1
+    pop temp 0
+    push constant 0
+    call Screen.setColor 1
+    pop temp 0
+    push constant 240
+    push constant 100
+    push constant 255
+    push constant 107
+    call Screen.drawRectangle 4
+    pop temp 0
+    push constant 200
+    call Sys.wait 1
+    pop temp 0
+    push local 4
+    push constant 1
+    add
+    pop local 4
+    goto Battle_138
+label Battle_139
+    push local 2
+    push local 0
+    lt
+    not
+    if-goto Battle_141
+    push this 8
+    push constant 0
+    call Inventory.useItem 2
+    pop temp 0
+    push this 2
+    push this 1
+    call Pokemon.getType 1
+    call Pokedex.capture 2
+    pop temp 0
+    push constant 18
+    push constant 0
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.printPokemonCapture 0
+    pop temp 0
+    push constant 2000
+    call Sys.wait 1
+    pop temp 0
+    push this 3
+    push this 1
+    call Team.addPokemon 2
+    pop temp 0
+    push constant 3
+    return
+    goto Battle_140
+label Battle_141
+    push this 8
+    push constant 0
+    call Inventory.useItem 2
+    pop temp 0
+    push constant 18
+    push constant 0
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.printPokemonEchappe 0
+    pop temp 0
+    push constant 1500
+    call Sys.wait 1
+    pop temp 0
+    push pointer 0
+    call Battle.doEnemyAttack 1
+    return
+label Battle_140
+function Battle.doEnemyAttack 2
+    push argument 0
+    pop pointer 0
+    push this 1
+    push constant 0
+    push this 1
+    call Pokemon.getMoveCount 1
+    push constant 1
+    sub
+    call Random.randRange 2
+    call Pokemon.getMove 2
+    pop local 0
+    push pointer 0
+    push this 1
+    push this 0
+    push local 0
+    call Battle.calculateDamage 4
+    pop local 1
+    push this 0
+    push local 1
+    call Pokemon.takeDamage 2
+    pop temp 0
+    push constant 18
+    push constant 0
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.printEnnemiInflige 0
+    pop temp 0
+    push local 1
+    call Output.printInt 1
+    pop temp 0
+    call Strings.printDegats 0
+    pop temp 0
+    push constant 1500
+    call Sys.wait 1
+    pop temp 0
+    push this 0
+    call Pokemon.isFainted 1
+    not
+    if-goto Battle_143
+    push constant 2
+    return
+    goto Battle_142
+label Battle_143
+label Battle_142
+    push constant 0
+    return
+function Battle.calculateDamage 7
+    push argument 0
+    pop pointer 0
+    push argument 1
+    call Pokemon.getLevel 1
+    pop local 4
+    push argument 3
+    call Move.getPower 1
+    pop local 5
+    push argument 1
+    call Pokemon.getAttack 1
+    pop local 2
+    push argument 2
+    call Pokemon.getDefense 1
+    pop local 3
+    push constant 2
+    push local 4
+    call Math.multiply 2
+    push constant 5
+    call Math.divide 2
+    pop local 0
+    push local 0
+    push constant 2
+    add
+    pop local 0
+    push local 0
+    push local 5
+    call Math.multiply 2
+    push local 2
+    call Math.multiply 2
+    push local 3
+    call Math.divide 2
+    pop local 0
+    push local 0
+    push constant 50
+    call Math.divide 2
+    pop local 0
+    push local 0
+    push constant 2
+    add
+    pop local 0
+    push pointer 0
+    push argument 3
+    call Move.getType 1
+    push argument 2
+    call Pokemon.getType 1
+    call Battle.getEffectiveness 3
+    pop local 1
+    push local 0
+    push local 1
+    call Math.multiply 2
+    push constant 10
+    call Math.divide 2
+    pop local 0
+    push pointer 0
+    push argument 1
+    call Pokemon.getType 1
+    push argument 3
+    call Move.getType 1
+    call Battle.hasStab 3
+    not
+    if-goto Battle_145
+    push local 0
+    push constant 15
+    call Math.multiply 2
+    push constant 10
+    call Math.divide 2
+    pop local 0
+    goto Battle_144
+label Battle_145
+label Battle_144
+    push constant 85
+    push constant 0
+    push constant 15
+    call Random.randRange 2
+    add
+    pop local 6
+    push local 0
+    push local 6
+    call Math.multiply 2
+    push constant 100
+    call Math.divide 2
+    pop local 0
+    push local 0
+    push constant 1
+    lt
+    not
+    if-goto Battle_147
+    push constant 1
+    pop local 0
+    goto Battle_146
+label Battle_147
+label Battle_146
+    push local 0
+    return
+function Battle.getEffectiveness 0
+    push argument 0
+    pop pointer 0
+    push argument 1
+    push constant 1
+    eq
+    not
+    if-goto Battle_149
+    push argument 2
+    push constant 3
+    eq
+    not
+    if-goto Battle_151
+    push constant 20
+    return
+    goto Battle_150
+label Battle_151
+label Battle_150
+    push argument 2
+    push constant 2
+    eq
+    not
+    if-goto Battle_153
+    push constant 5
+    return
+    goto Battle_152
+label Battle_153
+label Battle_152
+    push argument 2
+    push constant 1
+    eq
+    not
+    if-goto Battle_155
+    push constant 5
+    return
+    goto Battle_154
+label Battle_155
+label Battle_154
+    push argument 2
+    push constant 7
+    eq
+    not
+    if-goto Battle_157
+    push constant 5
+    return
+    goto Battle_156
+label Battle_157
+label Battle_156
+    goto Battle_148
+label Battle_149
+label Battle_148
+    push argument 1
+    push constant 2
+    eq
+    not
+    if-goto Battle_159
+    push argument 2
+    push constant 1
+    eq
+    not
+    if-goto Battle_161
+    push constant 20
+    return
+    goto Battle_160
+label Battle_161
+label Battle_160
+    push argument 2
+    push constant 7
+    eq
+    not
+    if-goto Battle_163
+    push constant 20
+    return
+    goto Battle_162
+label Battle_163
+label Battle_162
+    push argument 2
+    push constant 3
+    eq
+    not
+    if-goto Battle_165
+    push constant 5
+    return
+    goto Battle_164
+label Battle_165
+label Battle_164
+    push argument 2
+    push constant 2
+    eq
+    not
+    if-goto Battle_167
+    push constant 5
+    return
+    goto Battle_166
+label Battle_167
+label Battle_166
+    goto Battle_158
+label Battle_159
+label Battle_158
+    push argument 1
+    push constant 3
+    eq
+    not
+    if-goto Battle_169
+    push argument 2
+    push constant 2
+    eq
+    not
+    if-goto Battle_171
+    push constant 20
+    return
+    goto Battle_170
+label Battle_171
+label Battle_170
+    push argument 2
+    push constant 7
+    eq
+    not
+    if-goto Battle_173
+    push constant 20
+    return
+    goto Battle_172
+label Battle_173
+label Battle_172
+    push argument 2
+    push constant 1
+    eq
+    not
+    if-goto Battle_175
+    push constant 5
+    return
+    goto Battle_174
+label Battle_175
+label Battle_174
+    push argument 2
+    push constant 3
+    eq
+    not
+    if-goto Battle_177
+    push constant 5
+    return
+    goto Battle_176
+label Battle_177
+label Battle_176
+    push argument 2
+    push constant 5
+    eq
+    not
+    if-goto Battle_179
+    push constant 5
+    return
+    goto Battle_178
+label Battle_179
+label Battle_178
+    goto Battle_168
+label Battle_169
+label Battle_168
+    push argument 1
+    push constant 4
+    eq
+    not
+    if-goto Battle_181
+    push argument 2
+    push constant 2
+    eq
+    not
+    if-goto Battle_183
+    push constant 20
+    return
+    goto Battle_182
+label Battle_183
+label Battle_182
+    push argument 2
+    push constant 5
+    eq
+    not
+    if-goto Battle_185
+    push constant 20
+    return
+    goto Battle_184
+label Battle_185
+label Battle_184
+    push argument 2
+    push constant 3
+    eq
+    not
+    if-goto Battle_187
+    push constant 5
+    return
+    goto Battle_186
+label Battle_187
+label Battle_186
+    push argument 2
+    push constant 4
+    eq
+    not
+    if-goto Battle_189
+    push constant 5
+    return
+    goto Battle_188
+label Battle_189
+label Battle_188
+    push argument 2
+    push constant 7
+    eq
+    not
+    if-goto Battle_191
+    push constant 0
+    return
+    goto Battle_190
+label Battle_191
+label Battle_190
+    goto Battle_180
+label Battle_181
+label Battle_180
+    push argument 1
+    push constant 5
+    eq
+    not
+    if-goto Battle_193
+    push argument 2
+    push constant 3
+    eq
+    not
+    if-goto Battle_195
+    push constant 20
+    return
+    goto Battle_194
+label Battle_195
+label Battle_194
+    push argument 2
+    push constant 4
+    eq
+    not
+    if-goto Battle_197
+    push constant 5
+    return
+    goto Battle_196
+label Battle_197
+label Battle_196
+    push argument 2
+    push constant 7
+    eq
+    not
+    if-goto Battle_199
+    push constant 5
+    return
+    goto Battle_198
+label Battle_199
+label Battle_198
+    goto Battle_192
+label Battle_193
+label Battle_192
+    push argument 1
+    push constant 6
+    eq
+    not
+    if-goto Battle_201
+    push argument 2
+    push constant 6
+    eq
+    not
+    if-goto Battle_203
+    push constant 5
+    return
+    goto Battle_202
+label Battle_203
+label Battle_202
+    goto Battle_200
+label Battle_201
+label Battle_200
+    push argument 1
+    push constant 7
+    eq
+    not
+    if-goto Battle_205
+    push argument 2
+    push constant 1
+    eq
+    not
+    if-goto Battle_207
+    push constant 20
+    return
+    goto Battle_206
+label Battle_207
+label Battle_206
+    push argument 2
+    push constant 4
+    eq
+    not
+    if-goto Battle_209
+    push constant 20
+    return
+    goto Battle_208
+label Battle_209
+label Battle_208
+    push argument 2
+    push constant 3
+    eq
+    not
+    if-goto Battle_211
+    push constant 5
+    return
+    goto Battle_210
+label Battle_211
+label Battle_210
+    push argument 2
+    push constant 5
+    eq
+    not
+    if-goto Battle_213
+    push constant 0
+    return
+    goto Battle_212
+label Battle_213
+label Battle_212
+    goto Battle_204
+label Battle_205
+label Battle_204
+    push constant 10
+    return
+function Battle.dispose 0
+    push argument 0
+    pop pointer 0
+    push this 1
+    call Pokemon.dispose 1
+    pop temp 0
+    push pointer 0
+    call Memory.deAlloc 1
+    pop temp 0
+    push constant 0
+    return
+function Battle.disposeWithoutEnemy 0
+    push argument 0
+    pop pointer 0
+    push pointer 0
+    call Memory.deAlloc 1
+    pop temp 0
+    push constant 0
+    return

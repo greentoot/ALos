@@ -1,0 +1,387 @@
+function Inventory.new 0
+    push constant 2
+    call Memory.alloc 1
+    pop pointer 0
+    push constant 4
+    pop this 1
+    push this 1
+    call Array.new 1
+    pop this 0
+    push constant 0
+    push this 0
+    add
+    push constant 0
+    push constant 5
+    call Item.new 2
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 1
+    push this 0
+    add
+    push constant 1
+    push constant 3
+    call Item.new 2
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 2
+    push this 0
+    add
+    push constant 2
+    push constant 1
+    call Item.new 2
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 3
+    push this 0
+    add
+    push constant 3
+    push constant 2
+    call Item.new 2
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push pointer 0
+    return
+function Inventory.getItem 0
+    push argument 0
+    pop pointer 0
+    push argument 1
+    push constant 0
+    lt
+    push argument 1
+    push this 1
+    push constant 1
+    sub
+    gt
+    or
+    not
+    if-goto Inventory_1
+    push constant 0
+    return
+    goto Inventory_0
+label Inventory_1
+label Inventory_0
+    push argument 1
+    push this 0
+    add
+    pop pointer 1
+    push that 0
+    return
+function Inventory.getQuantity 1
+    push argument 0
+    pop pointer 0
+    push pointer 0
+    push argument 1
+    call Inventory.getItem 2
+    pop local 0
+    push local 0
+    push constant 0
+    eq
+    not
+    if-goto Inventory_3
+    push constant 0
+    return
+    goto Inventory_2
+label Inventory_3
+label Inventory_2
+    push local 0
+    call Item.getQuantity 1
+    return
+function Inventory.useItem 1
+    push argument 0
+    pop pointer 0
+    push pointer 0
+    push argument 1
+    call Inventory.getItem 2
+    pop local 0
+    push local 0
+    push constant 0
+    eq
+    not
+    if-goto Inventory_5
+    push constant 0
+    return
+    goto Inventory_4
+label Inventory_5
+label Inventory_4
+    push local 0
+    call Item.useOne 1
+    return
+function Inventory.addItem 1
+    push argument 0
+    pop pointer 0
+    push pointer 0
+    push argument 1
+    call Inventory.getItem 2
+    pop local 0
+    push local 0
+    push constant 0
+    eq
+    not
+    not
+    if-goto Inventory_7
+    push local 0
+    push argument 2
+    call Item.addQuantity 2
+    pop temp 0
+    goto Inventory_6
+label Inventory_7
+label Inventory_6
+    push constant 0
+    return
+function Inventory.hasItem 0
+    push argument 0
+    pop pointer 0
+    push pointer 0
+    push argument 1
+    call Inventory.getQuantity 2
+    push constant 0
+    gt
+    return
+function Inventory.display 2
+    push argument 0
+    pop pointer 0
+    push constant 1
+    push constant 20
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.printInventaire 0
+    pop temp 0
+    push constant 2
+    push constant 15
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.drawseparation 0
+    pop temp 0
+    push constant 4
+    push constant 5
+    call Output.moveCursor 2
+    pop temp 0
+    push constant 49
+    call Output.printChar 1
+    pop temp 0
+    push constant 46
+    call Output.printChar 1
+    pop temp 0
+    push constant 32
+    call Output.printChar 1
+    pop temp 0
+    call Strings.printPokeball 0
+    pop temp 0
+    push constant 32
+    call Output.printChar 1
+    pop temp 0
+    push constant 120
+    call Output.printChar 1
+    pop temp 0
+    push constant 0
+    push this 0
+    add
+    pop pointer 1
+    push that 0
+    pop local 1
+    push local 1
+    call Item.getQuantity 1
+    call Output.printInt 1
+    pop temp 0
+    push constant 6
+    push constant 5
+    call Output.moveCursor 2
+    pop temp 0
+    push constant 50
+    call Output.printChar 1
+    pop temp 0
+    push constant 46
+    call Output.printChar 1
+    pop temp 0
+    push constant 32
+    call Output.printChar 1
+    pop temp 0
+    call Strings.printPotion 0
+    pop temp 0
+    push constant 32
+    call Output.printChar 1
+    pop temp 0
+    push constant 120
+    call Output.printChar 1
+    pop temp 0
+    push constant 1
+    push this 0
+    add
+    pop pointer 1
+    push that 0
+    pop local 1
+    push local 1
+    call Item.getQuantity 1
+    call Output.printInt 1
+    pop temp 0
+    push constant 32
+    call Output.printChar 1
+    pop temp 0
+    push constant 40
+    call Output.printChar 1
+    pop temp 0
+    push constant 43
+    call Output.printChar 1
+    pop temp 0
+    push constant 50
+    call Output.printChar 1
+    pop temp 0
+    push constant 48
+    call Output.printChar 1
+    pop temp 0
+    push constant 72
+    call Output.printChar 1
+    pop temp 0
+    push constant 80
+    call Output.printChar 1
+    pop temp 0
+    push constant 41
+    call Output.printChar 1
+    pop temp 0
+    push constant 8
+    push constant 5
+    call Output.moveCursor 2
+    pop temp 0
+    push constant 51
+    call Output.printChar 1
+    pop temp 0
+    push constant 46
+    call Output.printChar 1
+    pop temp 0
+    push constant 32
+    call Output.printChar 1
+    pop temp 0
+    call Strings.printSuperPotion 0
+    pop temp 0
+    push constant 32
+    call Output.printChar 1
+    pop temp 0
+    push constant 120
+    call Output.printChar 1
+    pop temp 0
+    push constant 2
+    push this 0
+    add
+    pop pointer 1
+    push that 0
+    pop local 1
+    push local 1
+    call Item.getQuantity 1
+    call Output.printInt 1
+    pop temp 0
+    push constant 32
+    call Output.printChar 1
+    pop temp 0
+    push constant 40
+    call Output.printChar 1
+    pop temp 0
+    push constant 43
+    call Output.printChar 1
+    pop temp 0
+    push constant 53
+    call Output.printChar 1
+    pop temp 0
+    push constant 48
+    call Output.printChar 1
+    pop temp 0
+    push constant 72
+    call Output.printChar 1
+    pop temp 0
+    push constant 80
+    call Output.printChar 1
+    pop temp 0
+    push constant 41
+    call Output.printChar 1
+    pop temp 0
+    push constant 10
+    push constant 5
+    call Output.moveCursor 2
+    pop temp 0
+    push constant 52
+    call Output.printChar 1
+    pop temp 0
+    push constant 46
+    call Output.printChar 1
+    pop temp 0
+    push constant 32
+    call Output.printChar 1
+    pop temp 0
+    call Strings.printRappel 0
+    pop temp 0
+    push constant 32
+    call Output.printChar 1
+    pop temp 0
+    push constant 120
+    call Output.printChar 1
+    pop temp 0
+    push constant 3
+    push this 0
+    add
+    pop pointer 1
+    push that 0
+    pop local 1
+    push local 1
+    call Item.getQuantity 1
+    call Output.printInt 1
+    pop temp 0
+    push constant 32
+    call Output.printChar 1
+    pop temp 0
+    push constant 40
+    call Output.printChar 1
+    pop temp 0
+    call Strings.printRanime 0
+    pop temp 0
+    push constant 41
+    call Output.printChar 1
+    pop temp 0
+    push constant 22
+    push constant 0
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.Appuyersurunetouche 0
+    pop temp 0
+    push constant 0
+    return
+function Inventory.dispose 2
+    push argument 0
+    pop pointer 0
+    push constant 0
+    pop local 0
+label Inventory_8
+    push local 0
+    push this 1
+    lt
+    not
+    if-goto Inventory_9
+    push local 0
+    push this 0
+    add
+    pop pointer 1
+    push that 0
+    pop local 1
+    push local 1
+    call Item.dispose 1
+    pop temp 0
+    push local 0
+    push constant 1
+    add
+    pop local 0
+    goto Inventory_8
+label Inventory_9
+    push this 0
+    call Array.dispose 1
+    pop temp 0
+    push pointer 0
+    call Memory.deAlloc 1
+    pop temp 0
+    push constant 0
+    return

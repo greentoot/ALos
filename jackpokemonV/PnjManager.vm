@@ -1,0 +1,494 @@
+function PnjManager.new 0
+    push constant 3
+    call Memory.alloc 1
+    pop pointer 0
+    push constant 20
+    pop this 2
+    push constant 0
+    pop this 1
+    push this 2
+    call Array.new 1
+    pop this 0
+    push pointer 0
+    call PnjManager.initPnj 1
+    pop temp 0
+    push pointer 0
+    return
+function PnjManager.initPnj 0
+    push argument 0
+    pop pointer 0
+    push constant 0
+    push this 0
+    add
+    push constant 12
+    push constant 8
+    push constant 35
+    push constant 0
+    push constant 0
+    call Pnj.new 5
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 1
+    pop this 1
+    push constant 1
+    push this 0
+    add
+    push constant 10
+    push constant 10
+    push constant 33
+    push constant 1
+    push constant 1
+    neg
+    call Pnj.new 5
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 2
+    push this 0
+    add
+    push constant 15
+    push constant 6
+    push constant 33
+    push constant 1
+    push constant 1
+    neg
+    call Pnj.new 5
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 3
+    pop this 1
+    push constant 3
+    push this 0
+    add
+    push constant 8
+    push constant 7
+    push constant 34
+    push constant 2
+    push constant 1
+    neg
+    call Pnj.new 5
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 4
+    push this 0
+    add
+    push constant 20
+    push constant 10
+    push constant 33
+    push constant 2
+    push constant 1
+    neg
+    call Pnj.new 5
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 5
+    pop this 1
+    push constant 5
+    push this 0
+    add
+    push constant 14
+    push constant 7
+    push constant 32
+    push constant 4
+    push constant 0
+    call Pnj.new 5
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 6
+    push this 0
+    add
+    push constant 20
+    push constant 7
+    push constant 36
+    push constant 4
+    push constant 0
+    call Pnj.new 5
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 7
+    pop this 1
+    push constant 7
+    push this 0
+    add
+    push constant 19
+    push constant 6
+    push constant 37
+    push constant 5
+    push constant 0
+    call Pnj.new 5
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 8
+    pop this 1
+    push constant 8
+    push this 0
+    add
+    push constant 15
+    push constant 7
+    push constant 31
+    push constant 3
+    push constant 0
+    call Pnj.new 5
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 9
+    push this 0
+    add
+    push constant 22
+    push constant 11
+    push constant 34
+    push constant 3
+    push constant 0
+    call Pnj.new 5
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 10
+    pop this 1
+    push constant 10
+    push this 0
+    add
+    push constant 16
+    push constant 1
+    push constant 31
+    push constant 7
+    push constant 1
+    neg
+    call Pnj.new 5
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 11
+    push this 0
+    add
+    push constant 2
+    push constant 13
+    push constant 34
+    push constant 7
+    push constant 1
+    neg
+    call Pnj.new 5
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 12
+    push this 0
+    add
+    push constant 29
+    push constant 14
+    push constant 34
+    push constant 7
+    push constant 1
+    neg
+    call Pnj.new 5
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 13
+    pop this 1
+    push constant 0
+    return
+function PnjManager.drawForMap 2
+    push argument 0
+    pop pointer 0
+    push constant 0
+    pop local 0
+label PnjManager_0
+    push local 0
+    push this 1
+    lt
+    not
+    if-goto PnjManager_1
+    push local 0
+    push this 0
+    add
+    pop pointer 1
+    push that 0
+    pop local 1
+    push local 1
+    call Pnj.getMapId 1
+    push argument 1
+    eq
+    not
+    if-goto PnjManager_3
+    push local 1
+    call Pnj.draw 1
+    pop temp 0
+    goto PnjManager_2
+label PnjManager_3
+label PnjManager_2
+    push local 0
+    push constant 1
+    add
+    pop local 0
+    goto PnjManager_0
+label PnjManager_1
+    push constant 0
+    return
+function PnjManager.checkInteraction 4
+    push argument 0
+    pop pointer 0
+    push constant 0
+    pop local 0
+label PnjManager_4
+    push local 0
+    push this 1
+    lt
+    not
+    if-goto PnjManager_5
+    push local 0
+    push this 0
+    add
+    pop pointer 1
+    push that 0
+    pop local 1
+    push local 1
+    call Pnj.getMapId 1
+    push argument 3
+    eq
+    not
+    if-goto PnjManager_7
+    push argument 1
+    push local 1
+    call Pnj.getX 1
+    sub
+    call Math.abs 1
+    pop local 2
+    push argument 2
+    push local 1
+    call Pnj.getY 1
+    sub
+    call Math.abs 1
+    pop local 3
+    push local 2
+    push constant 1
+    eq
+    push local 3
+    push constant 0
+    eq
+    and
+    push local 2
+    push constant 0
+    eq
+    push local 3
+    push constant 1
+    eq
+    and
+    or
+    not
+    if-goto PnjManager_9
+    push local 1
+    push argument 1
+    push argument 2
+    call Pnj.facePlayer 3
+    pop temp 0
+    push local 1
+    return
+    goto PnjManager_8
+label PnjManager_9
+label PnjManager_8
+    goto PnjManager_6
+label PnjManager_7
+label PnjManager_6
+    push local 0
+    push constant 1
+    add
+    pop local 0
+    goto PnjManager_4
+label PnjManager_5
+    push constant 0
+    return
+function PnjManager.isPnjAtPosition 2
+    push argument 0
+    pop pointer 0
+    push constant 0
+    pop local 0
+label PnjManager_10
+    push local 0
+    push this 1
+    lt
+    not
+    if-goto PnjManager_11
+    push local 0
+    push this 0
+    add
+    pop pointer 1
+    push that 0
+    pop local 1
+    push local 1
+    call Pnj.getMapId 1
+    push argument 3
+    eq
+    push local 1
+    push argument 1
+    push argument 2
+    call Pnj.isAtPosition 3
+    and
+    not
+    if-goto PnjManager_13
+    push constant 1
+    neg
+    return
+    goto PnjManager_12
+label PnjManager_13
+label PnjManager_12
+    push local 0
+    push constant 1
+    add
+    pop local 0
+    goto PnjManager_10
+label PnjManager_11
+    push constant 0
+    return
+function PnjManager.getPnjAt 2
+    push argument 0
+    pop pointer 0
+    push constant 0
+    pop local 0
+label PnjManager_14
+    push local 0
+    push this 1
+    lt
+    not
+    if-goto PnjManager_15
+    push local 0
+    push this 0
+    add
+    pop pointer 1
+    push that 0
+    pop local 1
+    push local 1
+    call Pnj.getMapId 1
+    push argument 3
+    eq
+    push local 1
+    push argument 1
+    push argument 2
+    call Pnj.isAtPosition 3
+    and
+    not
+    if-goto PnjManager_17
+    push local 1
+    return
+    goto PnjManager_16
+label PnjManager_17
+label PnjManager_16
+    push local 0
+    push constant 1
+    add
+    pop local 0
+    goto PnjManager_14
+label PnjManager_15
+    push constant 0
+    return
+function PnjManager.dispose 2
+    push argument 0
+    pop pointer 0
+    push constant 0
+    pop local 0
+label PnjManager_18
+    push local 0
+    push this 1
+    lt
+    not
+    if-goto PnjManager_19
+    push local 0
+    push this 0
+    add
+    pop pointer 1
+    push that 0
+    pop local 1
+    push local 1
+    call Pnj.dispose 1
+    pop temp 0
+    push local 0
+    push constant 1
+    add
+    pop local 0
+    goto PnjManager_18
+label PnjManager_19
+    push this 0
+    call Array.dispose 1
+    pop temp 0
+    push pointer 0
+    call Memory.deAlloc 1
+    pop temp 0
+    push constant 0
+    return
+function PnjManager.checkTrainerSight 4
+    push argument 0
+    pop pointer 0
+    push constant 0
+    pop local 0
+    push constant 4
+    pop local 3
+label PnjManager_20
+    push local 0
+    push this 1
+    lt
+    not
+    if-goto PnjManager_21
+    push local 0
+    push this 0
+    add
+    pop pointer 1
+    push that 0
+    pop local 2
+    push local 2
+    call Pnj.getMapId 1
+    push argument 3
+    eq
+    push local 2
+    call Pnj.getIsTrainer 1
+    and
+    push local 2
+    call Pnj.isDefeated 1
+    not
+    and
+    not
+    if-goto PnjManager_23
+    push local 2
+    push argument 1
+    push argument 2
+    push local 3
+    push argument 4
+    call Pnj.canSeePlayer 5
+    not
+    if-goto PnjManager_25
+    push local 2
+    return
+    goto PnjManager_24
+label PnjManager_25
+label PnjManager_24
+    goto PnjManager_22
+label PnjManager_23
+label PnjManager_22
+    push local 0
+    push constant 1
+    add
+    pop local 0
+    goto PnjManager_20
+label PnjManager_21
+    push constant 0
+    return

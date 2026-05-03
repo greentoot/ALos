@@ -1,0 +1,822 @@
+function ItemMenu.new 0
+    push constant 5
+    call Memory.alloc 1
+    pop pointer 0
+    push argument 0
+    pop this 0
+    push argument 1
+    pop this 1
+    push constant 0
+    pop this 2
+    push constant 0
+    pop this 3
+    push constant 0
+    pop this 4
+    push pointer 0
+    return
+function ItemMenu.display 0
+    push argument 0
+    pop pointer 0
+    push this 4
+    not
+    if-goto ItemMenu_1
+    push pointer 0
+    call ItemMenu.displayPokemonSelection 1
+    pop temp 0
+    goto ItemMenu_0
+label ItemMenu_1
+    push pointer 0
+    call ItemMenu.displayItemList 1
+    pop temp 0
+label ItemMenu_0
+    push constant 0
+    return
+function ItemMenu.displayItemList 1
+    push argument 0
+    pop pointer 0
+    call Screen.clearScreen 0
+    pop temp 0
+    push constant 1
+    push constant 20
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.printInventaire 0
+    pop temp 0
+    push constant 2
+    push constant 15
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.drawseparation 0
+    pop temp 0
+    push constant 3
+    push constant 2
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.Fleches_NavENTREE_SwapESC_Retour 0
+    pop temp 0
+    push constant 5
+    push constant 5
+    call Output.moveCursor 2
+    pop temp 0
+    push this 2
+    push constant 0
+    eq
+    not
+    if-goto ItemMenu_3
+    push constant 62
+    call Output.printChar 1
+    pop temp 0
+    goto ItemMenu_2
+label ItemMenu_3
+    push constant 32
+    call Output.printChar 1
+    pop temp 0
+label ItemMenu_2
+    push constant 49
+    call Output.printChar 1
+    pop temp 0
+    push constant 46
+    call Output.printChar 1
+    pop temp 0
+    push constant 32
+    call Output.printChar 1
+    pop temp 0
+    call Strings.printPokeball 0
+    pop temp 0
+    push constant 32
+    call Output.printChar 1
+    pop temp 0
+    push constant 120
+    call Output.printChar 1
+    pop temp 0
+    push this 0
+    push constant 0
+    call Inventory.getItem 2
+    pop local 0
+    push local 0
+    call Item.getQuantity 1
+    call Output.printInt 1
+    pop temp 0
+    push constant 7
+    push constant 5
+    call Output.moveCursor 2
+    pop temp 0
+    push this 2
+    push constant 1
+    eq
+    not
+    if-goto ItemMenu_5
+    push constant 62
+    call Output.printChar 1
+    pop temp 0
+    goto ItemMenu_4
+label ItemMenu_5
+    push constant 32
+    call Output.printChar 1
+    pop temp 0
+label ItemMenu_4
+    push constant 50
+    call Output.printChar 1
+    pop temp 0
+    push constant 46
+    call Output.printChar 1
+    pop temp 0
+    push constant 32
+    call Output.printChar 1
+    pop temp 0
+    call Strings.printPotion 0
+    pop temp 0
+    push constant 32
+    call Output.printChar 1
+    pop temp 0
+    push constant 120
+    call Output.printChar 1
+    pop temp 0
+    push this 0
+    push constant 1
+    call Inventory.getItem 2
+    pop local 0
+    push local 0
+    call Item.getQuantity 1
+    call Output.printInt 1
+    pop temp 0
+    push constant 32
+    call Output.printChar 1
+    pop temp 0
+    push constant 40
+    call Output.printChar 1
+    pop temp 0
+    push constant 43
+    call Output.printChar 1
+    pop temp 0
+    push constant 50
+    call Output.printChar 1
+    pop temp 0
+    push constant 48
+    call Output.printChar 1
+    pop temp 0
+    call Strings.printHP 0
+    pop temp 0
+    push constant 41
+    call Output.printChar 1
+    pop temp 0
+    push constant 9
+    push constant 5
+    call Output.moveCursor 2
+    pop temp 0
+    push this 2
+    push constant 2
+    eq
+    not
+    if-goto ItemMenu_7
+    push constant 62
+    call Output.printChar 1
+    pop temp 0
+    goto ItemMenu_6
+label ItemMenu_7
+    push constant 32
+    call Output.printChar 1
+    pop temp 0
+label ItemMenu_6
+    push constant 51
+    call Output.printChar 1
+    pop temp 0
+    push constant 46
+    call Output.printChar 1
+    pop temp 0
+    push constant 32
+    call Output.printChar 1
+    pop temp 0
+    call Strings.printSuperPotion 0
+    pop temp 0
+    push constant 32
+    call Output.printChar 1
+    pop temp 0
+    push constant 120
+    call Output.printChar 1
+    pop temp 0
+    push this 0
+    push constant 2
+    call Inventory.getItem 2
+    pop local 0
+    push local 0
+    call Item.getQuantity 1
+    call Output.printInt 1
+    pop temp 0
+    push constant 32
+    call Output.printChar 1
+    pop temp 0
+    push constant 40
+    call Output.printChar 1
+    pop temp 0
+    push constant 43
+    call Output.printChar 1
+    pop temp 0
+    push constant 53
+    call Output.printChar 1
+    pop temp 0
+    push constant 48
+    call Output.printChar 1
+    pop temp 0
+    call Strings.printHP 0
+    pop temp 0
+    push constant 41
+    call Output.printChar 1
+    pop temp 0
+    push constant 11
+    push constant 5
+    call Output.moveCursor 2
+    pop temp 0
+    push this 2
+    push constant 3
+    eq
+    not
+    if-goto ItemMenu_9
+    push constant 62
+    call Output.printChar 1
+    pop temp 0
+    goto ItemMenu_8
+label ItemMenu_9
+    push constant 32
+    call Output.printChar 1
+    pop temp 0
+label ItemMenu_8
+    push constant 52
+    call Output.printChar 1
+    pop temp 0
+    push constant 46
+    call Output.printChar 1
+    pop temp 0
+    push constant 32
+    call Output.printChar 1
+    pop temp 0
+    call Strings.printRappel 0
+    pop temp 0
+    push constant 32
+    call Output.printChar 1
+    pop temp 0
+    push constant 120
+    call Output.printChar 1
+    pop temp 0
+    push this 0
+    push constant 3
+    call Inventory.getItem 2
+    pop local 0
+    push local 0
+    call Item.getQuantity 1
+    call Output.printInt 1
+    pop temp 0
+    push constant 32
+    call Output.printChar 1
+    pop temp 0
+    push constant 40
+    call Output.printChar 1
+    pop temp 0
+    call Strings.printRanime 0
+    pop temp 0
+    push constant 41
+    call Output.printChar 1
+    pop temp 0
+    push constant 0
+    return
+function ItemMenu.displayPokemonSelection 3
+    push argument 0
+    pop pointer 0
+    call Screen.clearScreen 0
+    pop temp 0
+    push constant 1
+    push constant 12
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.printSelectionnerPokemon 0
+    pop temp 0
+    push constant 2
+    push constant 10
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.drawseparation 0
+    pop temp 0
+    push this 1
+    call Team.getCount 1
+    pop local 1
+    push constant 0
+    pop local 0
+label ItemMenu_10
+    push local 0
+    push local 1
+    lt
+    not
+    if-goto ItemMenu_11
+    push this 1
+    push local 0
+    call Team.getPokemon 2
+    pop local 2
+    push constant 4
+    push local 0
+    push constant 2
+    call Math.multiply 2
+    add
+    push constant 5
+    call Output.moveCursor 2
+    pop temp 0
+    push local 0
+    push this 3
+    eq
+    not
+    if-goto ItemMenu_13
+    push constant 62
+    call Output.printChar 1
+    pop temp 0
+    goto ItemMenu_12
+label ItemMenu_13
+    push constant 32
+    call Output.printChar 1
+    pop temp 0
+label ItemMenu_12
+    push local 0
+    push constant 1
+    add
+    call Output.printInt 1
+    pop temp 0
+    push constant 46
+    call Output.printChar 1
+    pop temp 0
+    push constant 32
+    call Output.printChar 1
+    pop temp 0
+    push local 2
+    call Pokemon.getType 1
+    call Strings.printPokemonName 1
+    pop temp 0
+    push constant 32
+    call Output.printChar 1
+    pop temp 0
+    call Strings.printHP 0
+    pop temp 0
+    push local 2
+    call Pokemon.getHp 1
+    call Output.printInt 1
+    pop temp 0
+    push constant 47
+    call Output.printChar 1
+    pop temp 0
+    push local 2
+    call Pokemon.getMaxHp 1
+    call Output.printInt 1
+    pop temp 0
+    push local 2
+    call Pokemon.isFainted 1
+    not
+    if-goto ItemMenu_15
+    push constant 32
+    call Output.printChar 1
+    pop temp 0
+    push constant 91
+    call Output.printChar 1
+    pop temp 0
+    push constant 75
+    call Output.printChar 1
+    pop temp 0
+    push constant 79
+    call Output.printChar 1
+    pop temp 0
+    push constant 93
+    call Output.printChar 1
+    pop temp 0
+    goto ItemMenu_14
+label ItemMenu_15
+label ItemMenu_14
+    push local 0
+    push constant 1
+    add
+    pop local 0
+    goto ItemMenu_10
+label ItemMenu_11
+    push constant 0
+    return
+function ItemMenu.moveSelection 0
+    push argument 0
+    pop pointer 0
+    push this 4
+    not
+    if-goto ItemMenu_17
+    push this 3
+    push argument 1
+    add
+    pop this 3
+    push this 3
+    push constant 0
+    lt
+    not
+    if-goto ItemMenu_19
+    push constant 0
+    pop this 3
+    goto ItemMenu_18
+label ItemMenu_19
+label ItemMenu_18
+    push this 3
+    push this 1
+    call Team.getCount 1
+    push constant 1
+    sub
+    gt
+    not
+    if-goto ItemMenu_21
+    push this 1
+    call Team.getCount 1
+    push constant 1
+    sub
+    pop this 3
+    goto ItemMenu_20
+label ItemMenu_21
+label ItemMenu_20
+    goto ItemMenu_16
+label ItemMenu_17
+    push this 2
+    push argument 1
+    add
+    pop this 2
+    push this 2
+    push constant 0
+    lt
+    not
+    if-goto ItemMenu_23
+    push constant 0
+    pop this 2
+    goto ItemMenu_22
+label ItemMenu_23
+label ItemMenu_22
+    push this 2
+    push constant 3
+    gt
+    not
+    if-goto ItemMenu_25
+    push constant 3
+    pop this 2
+    goto ItemMenu_24
+label ItemMenu_25
+label ItemMenu_24
+label ItemMenu_16
+    push constant 0
+    return
+function ItemMenu.handleInput 0
+    push argument 0
+    pop pointer 0
+    push argument 1
+    push constant 131
+    eq
+    not
+    if-goto ItemMenu_27
+    push pointer 0
+    push constant 1
+    neg
+    call ItemMenu.moveSelection 2
+    pop temp 0
+    goto ItemMenu_26
+label ItemMenu_27
+label ItemMenu_26
+    push argument 1
+    push constant 133
+    eq
+    not
+    if-goto ItemMenu_29
+    push pointer 0
+    push constant 1
+    call ItemMenu.moveSelection 2
+    pop temp 0
+    goto ItemMenu_28
+label ItemMenu_29
+label ItemMenu_28
+    push argument 1
+    push constant 128
+    eq
+    not
+    if-goto ItemMenu_31
+    push this 4
+    not
+    if-goto ItemMenu_33
+    push pointer 0
+    call ItemMenu.useItemOnPokemon 1
+    pop temp 0
+    goto ItemMenu_32
+label ItemMenu_33
+    push pointer 0
+    call ItemMenu.selectItem 1
+    pop temp 0
+label ItemMenu_32
+    goto ItemMenu_30
+label ItemMenu_31
+label ItemMenu_30
+    push constant 0
+    return
+function ItemMenu.selectItem 0
+    push argument 0
+    pop pointer 0
+    push this 2
+    push constant 0
+    eq
+    not
+    if-goto ItemMenu_35
+    push constant 20
+    push constant 5
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.printUniquementencombat 0
+    pop temp 0
+    push constant 1500
+    call Sys.wait 1
+    pop temp 0
+    push constant 0
+    return
+    goto ItemMenu_34
+label ItemMenu_35
+label ItemMenu_34
+    push this 0
+    push this 2
+    call Inventory.hasItem 2
+    not
+    not
+    if-goto ItemMenu_37
+    push constant 20
+    push constant 5
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.printPasAssezObjets 0
+    pop temp 0
+    push constant 1500
+    call Sys.wait 1
+    pop temp 0
+    push constant 0
+    return
+    goto ItemMenu_36
+label ItemMenu_37
+label ItemMenu_36
+    push constant 1
+    neg
+    pop this 4
+    push constant 0
+    pop this 3
+    push constant 0
+    return
+function ItemMenu.useItemOnPokemon 3
+    push argument 0
+    pop pointer 0
+    push this 1
+    push this 3
+    call Team.getPokemon 2
+    pop local 0
+    push this 2
+    push constant 1
+    eq
+    not
+    if-goto ItemMenu_39
+    push local 0
+    call Pokemon.isFainted 1
+    not
+    if-goto ItemMenu_41
+    push constant 20
+    push constant 5
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.printPokemonKO2 0
+    pop temp 0
+    push constant 1500
+    call Sys.wait 1
+    pop temp 0
+    push constant 0
+    return
+    goto ItemMenu_40
+label ItemMenu_41
+label ItemMenu_40
+    push local 0
+    call Pokemon.getHp 1
+    push local 0
+    call Pokemon.getMaxHp 1
+    eq
+    not
+    if-goto ItemMenu_43
+    push constant 20
+    push constant 5
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.printPokemonPleineVie 0
+    pop temp 0
+    push constant 1500
+    call Sys.wait 1
+    pop temp 0
+    push constant 0
+    return
+    goto ItemMenu_42
+label ItemMenu_43
+label ItemMenu_42
+    push local 0
+    call Pokemon.getHp 1
+    pop local 2
+    push constant 20
+    pop local 1
+    push pointer 0
+    push local 0
+    push local 1
+    call ItemMenu.healPokemon 3
+    pop temp 0
+    push this 0
+    push constant 1
+    call Inventory.useItem 2
+    pop temp 0
+    push constant 0
+    pop this 4
+    push constant 20
+    push constant 5
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.printPokemonSoigne 0
+    pop temp 0
+    push constant 1500
+    call Sys.wait 1
+    pop temp 0
+    goto ItemMenu_38
+label ItemMenu_39
+label ItemMenu_38
+    push this 2
+    push constant 2
+    eq
+    not
+    if-goto ItemMenu_45
+    push local 0
+    call Pokemon.isFainted 1
+    not
+    if-goto ItemMenu_47
+    push constant 20
+    push constant 5
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.printPokemonKO2 0
+    pop temp 0
+    push constant 1500
+    call Sys.wait 1
+    pop temp 0
+    push constant 0
+    return
+    goto ItemMenu_46
+label ItemMenu_47
+label ItemMenu_46
+    push local 0
+    call Pokemon.getHp 1
+    push local 0
+    call Pokemon.getMaxHp 1
+    eq
+    not
+    if-goto ItemMenu_49
+    push constant 20
+    push constant 5
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.printPokemonPleineVie 0
+    pop temp 0
+    push constant 1500
+    call Sys.wait 1
+    pop temp 0
+    push constant 0
+    return
+    goto ItemMenu_48
+label ItemMenu_49
+label ItemMenu_48
+    push local 0
+    call Pokemon.getHp 1
+    pop local 2
+    push constant 50
+    pop local 1
+    push pointer 0
+    push local 0
+    push local 1
+    call ItemMenu.healPokemon 3
+    pop temp 0
+    push this 0
+    push constant 2
+    call Inventory.useItem 2
+    pop temp 0
+    push constant 0
+    pop this 4
+    push constant 20
+    push constant 5
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.printPokemonSoigne 0
+    pop temp 0
+    push constant 1500
+    call Sys.wait 1
+    pop temp 0
+    goto ItemMenu_44
+label ItemMenu_45
+label ItemMenu_44
+    push this 2
+    push constant 3
+    eq
+    not
+    if-goto ItemMenu_51
+    push local 0
+    call Pokemon.isFainted 1
+    not
+    not
+    if-goto ItemMenu_53
+    push constant 20
+    push constant 5
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.printPokemonpasKO 0
+    pop temp 0
+    push constant 1500
+    call Sys.wait 1
+    pop temp 0
+    push constant 0
+    return
+    goto ItemMenu_52
+label ItemMenu_53
+label ItemMenu_52
+    push pointer 0
+    push local 0
+    push local 0
+    call Pokemon.getMaxHp 1
+    push constant 2
+    call Math.divide 2
+    call ItemMenu.healPokemon 3
+    pop temp 0
+    push this 0
+    push constant 3
+    call Inventory.useItem 2
+    pop temp 0
+    push constant 0
+    pop this 4
+    push constant 20
+    push constant 5
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.printPokemonRanime 0
+    pop temp 0
+    push constant 1500
+    call Sys.wait 1
+    pop temp 0
+    goto ItemMenu_50
+label ItemMenu_51
+label ItemMenu_50
+    push constant 0
+    return
+function ItemMenu.healPokemon 2
+    push argument 0
+    pop pointer 0
+    push argument 1
+    call Pokemon.getMaxHp 1
+    pop local 1
+    push argument 1
+    call Pokemon.getHp 1
+    push argument 2
+    add
+    pop local 0
+    push local 0
+    push local 1
+    gt
+    not
+    if-goto ItemMenu_55
+    push local 1
+    pop local 0
+    goto ItemMenu_54
+label ItemMenu_55
+label ItemMenu_54
+    push argument 1
+    call Pokemon.heal 1
+    pop temp 0
+label ItemMenu_56
+    push argument 1
+    call Pokemon.getHp 1
+    push local 0
+    gt
+    not
+    if-goto ItemMenu_57
+    push argument 1
+    push constant 1
+    call Pokemon.takeDamage 2
+    pop temp 0
+    goto ItemMenu_56
+label ItemMenu_57
+    push constant 0
+    return
+function ItemMenu.isInPokemonSelection 0
+    push argument 0
+    pop pointer 0
+    push this 4
+    return
+function ItemMenu.setInPokemonSelection 0
+    push argument 0
+    pop pointer 0
+    push argument 1
+    pop this 4
+    push constant 0
+    return
+function ItemMenu.dispose 0
+    push argument 0
+    pop pointer 0
+    push pointer 0
+    call Memory.deAlloc 1
+    pop temp 0
+    push constant 0
+    return

@@ -1,0 +1,157 @@
+function Random.init 0
+    push constant 12345
+    pop static 0
+    push constant 0
+    return
+function Random.next 0
+    push static 0
+    push constant 75
+    call Math.multiply 2
+    push constant 74
+    add
+    pop static 0
+label Random_0
+    push static 0
+    push constant 32767
+    gt
+    not
+    if-goto Random_1
+    push static 0
+    push constant 32767
+    sub
+    pop static 0
+    goto Random_0
+label Random_1
+label Random_2
+    push static 0
+    push constant 0
+    lt
+    not
+    if-goto Random_3
+    push static 0
+    push constant 32767
+    add
+    pop static 0
+    goto Random_2
+label Random_3
+    push static 0
+    push constant 0
+    lt
+    not
+    if-goto Random_5
+    push constant 0
+    pop static 0
+    goto Random_4
+label Random_5
+label Random_4
+    push static 0
+    push constant 32767
+    gt
+    not
+    if-goto Random_7
+    push constant 32767
+    pop static 0
+    goto Random_6
+label Random_7
+label Random_6
+    push static 0
+    return
+function Random.randRange 3
+    push argument 0
+    push argument 1
+    gt
+    not
+    if-goto Random_9
+    push argument 0
+    pop local 2
+    push argument 1
+    pop argument 0
+    push local 2
+    pop argument 1
+    goto Random_8
+label Random_9
+label Random_8
+    push argument 1
+    push argument 0
+    sub
+    push constant 1
+    add
+    pop local 0
+    push local 0
+    push constant 1
+    lt
+    not
+    if-goto Random_11
+    push argument 0
+    return
+    goto Random_10
+label Random_11
+label Random_10
+    call Random.next 0
+    pop local 1
+    push local 1
+    push constant 0
+    lt
+    not
+    if-goto Random_13
+    push local 1
+    neg
+    pop local 1
+    goto Random_12
+label Random_13
+label Random_12
+    push local 1
+    push local 1
+    push local 0
+    call Math.divide 2
+    push local 0
+    call Math.multiply 2
+    sub
+    pop local 2
+    push local 2
+    push constant 0
+    lt
+    not
+    if-goto Random_15
+    push local 2
+    neg
+    pop local 2
+    goto Random_14
+label Random_15
+label Random_14
+    push local 2
+    push local 0
+    push constant 1
+    sub
+    gt
+    not
+    if-goto Random_17
+    push constant 0
+    pop local 2
+    goto Random_16
+label Random_17
+label Random_16
+    push argument 0
+    push local 2
+    add
+    return
+function Random.chance 2
+    call Random.next 0
+    pop local 0
+    push local 0
+    push local 0
+    push constant 100
+    call Math.divide 2
+    push constant 100
+    call Math.multiply 2
+    sub
+    pop local 1
+    push local 1
+    push argument 0
+    lt
+    return
+function Random.reset 0
+    push constant 12345
+    pop static 0
+    push constant 0
+    return

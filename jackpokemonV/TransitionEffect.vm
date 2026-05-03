@@ -1,0 +1,248 @@
+function TransitionEffect.irisClose 4
+    push constant 256
+    pop local 1
+    push constant 128
+    pop local 2
+    push constant 180
+    pop local 0
+label TransitionEffect_0
+    push local 0
+    push constant 0
+    gt
+    not
+    if-goto TransitionEffect_1
+    push constant 1
+    neg
+    call Screen.setColor 1
+    pop temp 0
+    push constant 0
+    push constant 0
+    push constant 511
+    push constant 0
+    push local 2
+    push local 0
+    sub
+    call Math.max 2
+    call Screen.drawRectangle 4
+    pop temp 0
+    push constant 0
+    push constant 255
+    push local 2
+    push local 0
+    add
+    call Math.min 2
+    push constant 511
+    push constant 255
+    call Screen.drawRectangle 4
+    pop temp 0
+    push constant 0
+    push constant 0
+    push local 2
+    push local 0
+    sub
+    call Math.max 2
+    push constant 0
+    push local 1
+    push local 0
+    sub
+    call Math.max 2
+    push constant 255
+    push local 2
+    push local 0
+    add
+    call Math.min 2
+    call Screen.drawRectangle 4
+    pop temp 0
+    push constant 511
+    push local 1
+    push local 0
+    add
+    call Math.min 2
+    push constant 0
+    push local 2
+    push local 0
+    sub
+    call Math.max 2
+    push constant 511
+    push constant 255
+    push local 2
+    push local 0
+    add
+    call Math.min 2
+    call Screen.drawRectangle 4
+    pop temp 0
+    push local 0
+    push constant 15
+    sub
+    pop local 0
+    push constant 30
+    call Sys.wait 1
+    pop temp 0
+    goto TransitionEffect_0
+label TransitionEffect_1
+    push constant 1
+    neg
+    call Screen.setColor 1
+    pop temp 0
+    push constant 0
+    push constant 0
+    push constant 511
+    push constant 255
+    call Screen.drawRectangle 4
+    pop temp 0
+    push constant 0
+    return
+function TransitionEffect.flashEffect 1
+    push constant 0
+    pop local 0
+label TransitionEffect_2
+    push local 0
+    push argument 0
+    lt
+    not
+    if-goto TransitionEffect_3
+    push constant 0
+    call Screen.setColor 1
+    pop temp 0
+    push constant 0
+    push constant 0
+    push constant 511
+    push constant 255
+    call Screen.drawRectangle 4
+    pop temp 0
+    push constant 50
+    call Sys.wait 1
+    pop temp 0
+    push constant 1
+    neg
+    call Screen.setColor 1
+    pop temp 0
+    push constant 0
+    push constant 0
+    push constant 511
+    push constant 255
+    call Screen.drawRectangle 4
+    pop temp 0
+    push constant 50
+    call Sys.wait 1
+    pop temp 0
+    push local 0
+    push constant 1
+    add
+    pop local 0
+    goto TransitionEffect_2
+label TransitionEffect_3
+    push constant 0
+    return
+function TransitionEffect.wildBattleTransition 0
+    push constant 3
+    call TransitionEffect.flashEffect 1
+    pop temp 0
+    push constant 100
+    call Sys.wait 1
+    pop temp 0
+    call TransitionEffect.irisClose 0
+    pop temp 0
+    push constant 200
+    call Sys.wait 1
+    pop temp 0
+    push constant 0
+    return
+function TransitionEffect.trainerBattleTransition 0
+    push constant 4
+    call TransitionEffect.flashEffect 1
+    pop temp 0
+    push constant 50
+    call Sys.wait 1
+    pop temp 0
+    call TransitionEffect.irisClose 0
+    pop temp 0
+    push constant 200
+    call Sys.wait 1
+    pop temp 0
+    push constant 0
+    return
+function TransitionEffect.spiralClose 3
+    push constant 256
+    pop local 0
+label TransitionEffect_4
+    push local 0
+    push constant 0
+    gt
+    not
+    if-goto TransitionEffect_5
+    push constant 1
+    neg
+    call Screen.setColor 1
+    pop temp 0
+    push constant 256
+    push local 0
+    push constant 2
+    call Math.divide 2
+    sub
+    pop local 1
+    push constant 128
+    push local 0
+    push constant 4
+    call Math.divide 2
+    sub
+    pop local 2
+    push constant 0
+    push constant 0
+    push constant 511
+    push constant 0
+    push local 2
+    call Math.max 2
+    call Screen.drawRectangle 4
+    pop temp 0
+    push constant 0
+    push constant 255
+    push local 2
+    push local 0
+    push constant 2
+    call Math.divide 2
+    add
+    call Math.min 2
+    push constant 511
+    push constant 255
+    call Screen.drawRectangle 4
+    pop temp 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push local 1
+    call Math.max 2
+    push constant 255
+    call Screen.drawRectangle 4
+    pop temp 0
+    push constant 511
+    push local 1
+    push local 0
+    add
+    call Math.min 2
+    push constant 0
+    push constant 511
+    push constant 255
+    call Screen.drawRectangle 4
+    pop temp 0
+    push local 0
+    push constant 20
+    sub
+    pop local 0
+    push constant 30
+    call Sys.wait 1
+    pop temp 0
+    goto TransitionEffect_4
+label TransitionEffect_5
+    push constant 1
+    neg
+    call Screen.setColor 1
+    pop temp 0
+    push constant 0
+    push constant 0
+    push constant 511
+    push constant 255
+    call Screen.drawRectangle 4
+    pop temp 0
+    push constant 0
+    return

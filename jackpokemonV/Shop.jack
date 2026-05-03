@@ -1,0 +1,168 @@
+// Shop.jack - Boutique pour acheter des objets
+class Shop {
+    field Inventory inventory;
+    field Money money;
+    field int selectedItem;
+    field Array prices;
+    field int itemCount;
+    
+    constructor Shop new(Inventory inv, Money playerMoney) {
+        let inventory = inv;
+        let money = playerMoney;
+        let selectedItem = 0;
+        let itemCount = 4;
+        
+        // Prix des objets
+        let prices = Array.new(itemCount);
+        let prices[0] = 200;  // Pokeball
+        let prices[1] = 300;  // Potion
+        let prices[2] = 700;  // Super Potion
+        let prices[3] = 1500; // Rappel
+        
+        return this;
+    }
+    
+    method void display() {
+        do Screen.clearScreen();
+        
+        do Output.moveCursor(1, 20);
+        do Strings.printBoutique();
+        
+        do Output.moveCursor(2, 15);
+        do Strings.drawseparation();
+        
+        // Afficher l'argent
+        do Output.moveCursor(3, 2);
+        do Strings.printArgent();
+        do Output.printInt(money.getAmount());
+        do Output.printChar(36); // $
+        
+        do Output.moveCursor(4, 2);
+        do Strings.printSelectionnezObjet();
+        
+        // Pokeballs
+        do Output.moveCursor(6, 5);
+        if (selectedItem = 0) {
+            do Output.printChar(62); // >
+        } else {
+            do Output.printChar(32);
+        }
+        do Output.printChar(49);
+        do Output.printChar(46);
+        do Output.printChar(32);
+        do Strings.printPokeball();
+        do Output.printChar(32);
+        do Output.printChar(45);
+        do Output.printChar(32);
+        do Output.printInt(prices[0]);
+        do Output.printChar(36);
+        
+        // Potions
+        do Output.moveCursor(8, 5);
+        if (selectedItem = 1) {
+            do Output.printChar(62);
+        } else {
+            do Output.printChar(32);
+        }
+        do Output.printChar(50);
+        do Output.printChar(46);
+        do Output.printChar(32);
+        do Strings.printPotion();
+        do Output.printChar(32);
+        do Output.printChar(45);
+        do Output.printChar(32);
+        do Output.printInt(prices[1]);
+        do Output.printChar(36);
+        
+        // Super Potions
+        do Output.moveCursor(10, 5);
+        if (selectedItem = 2) {
+            do Output.printChar(62);
+        } else {
+            do Output.printChar(32);
+        }
+        do Output.printChar(51);
+        do Output.printChar(46);
+        do Output.printChar(32);
+        do Strings.printSuperPotion();
+        do Output.printChar(32);
+        do Output.printChar(45);
+        do Output.printChar(32);
+        do Output.printInt(prices[2]);
+        do Output.printChar(36);
+        
+        // Rappels
+        do Output.moveCursor(12, 5);
+        if (selectedItem = 3) {
+            do Output.printChar(62);
+        } else {
+            do Output.printChar(32);
+        }
+        do Output.printChar(52);
+        do Output.printChar(46);
+        do Output.printChar(32);
+        do Strings.printRappel();
+        do Output.printChar(32);
+        do Output.printChar(45);
+        do Output.printChar(32);
+        do Output.printInt(prices[3]);
+        do Output.printChar(36);
+        
+        do Output.moveCursor(20, 2);
+        do Strings.printEntreeAcheterQRetour();
+        
+        return;
+    }
+    
+    method void moveSelection(int direction) {
+        let selectedItem = selectedItem + direction;
+        if (selectedItem < 0) {
+            let selectedItem = 0;
+        }
+        if (selectedItem > 3) {
+            let selectedItem = 3;
+        }
+        return;
+    }
+    
+    method void handleInput(char key) {
+        if (key = 131) { do moveSelection(-1); }
+        if (key = 133) { do moveSelection(1); }
+        
+        if (key = 128) { // ENTREE
+            do buyItem();
+        }
+        
+        return;
+    }
+    
+    method void buyItem() {
+        var int price;
+        let price = prices[selectedItem];
+        
+        if (money.canAfford(price)) {
+            do money.spend(price);
+            do inventory.addItem(selectedItem, 1);
+            
+            do Output.moveCursor(22, 5);
+            do Strings.printAchatReussi();
+            do Sys.wait(1500);
+            do Output.moveCursor(22, 5);
+            do Strings.printespace();
+        } else {
+            do Output.moveCursor(22, 5);
+            do Strings.printPasAssezArgent();
+            do Sys.wait(1500);
+            do Output.moveCursor(22, 5);
+            do Strings.printespace();
+        }
+        
+        return;
+    }
+    
+    method void dispose() {
+        do prices.dispose();
+        do Memory.deAlloc(this);
+        return;
+    }
+}

@@ -1,0 +1,111 @@
+// TransitionEffect.jack - Effets de transition pour les combats
+class TransitionEffect {
+    
+    // Effet d'iris qui se ferme (cercle qui rétrécit)
+    function void irisClose() {
+        var int radius, centerX, centerY, i;
+        
+        let centerX = 256; // Centre de l'écran (512/2)
+        let centerY = 128; // Centre de l'écran (256/2)
+        let radius = 180;  // Rayon initial
+        
+        // Fermeture progressive du cercle
+        while (radius > 0) {
+            do Screen.setColor(true);
+            
+            // Dessiner les 4 rectangles noirs autour du cercle
+            // Haut
+            do Screen.drawRectangle(0, 0, 511, Math.max(0, centerY - radius));
+            // Bas
+            do Screen.drawRectangle(0, Math.min(255, centerY + radius), 511, 255);
+            // Gauche
+            do Screen.drawRectangle(0, Math.max(0, centerY - radius), 
+                                   Math.max(0, centerX - radius), 
+                                   Math.min(255, centerY + radius));
+            // Droite
+            do Screen.drawRectangle(Math.min(511, centerX + radius), 
+                                   Math.max(0, centerY - radius), 
+                                   511, 
+                                   Math.min(255, centerY + radius));
+            
+            let radius = radius - 15; // Vitesse de fermeture
+            do Sys.wait(30);
+        }
+        
+        // Écran complètement noir
+        do Screen.setColor(true);
+        do Screen.drawRectangle(0, 0, 511, 255);
+        
+        return;
+    }
+    
+    // Clignotements noir/blanc (flash effect)
+    function void flashEffect(int times) {
+        var int i;
+        let i = 0;
+        
+        while (i < times) {
+            // Blanc
+            do Screen.setColor(false);
+            do Screen.drawRectangle(0, 0, 511, 255);
+            do Sys.wait(50);
+            
+            // Noir
+            do Screen.setColor(true);
+            do Screen.drawRectangle(0, 0, 511, 255);
+            do Sys.wait(50);
+            
+            let i = i + 1;
+        }
+        
+        return;
+    }
+    
+    // Effet complet de transition de combat sauvage
+    function void wildBattleTransition() {
+        do TransitionEffect.flashEffect(3);    // 3 clignotements
+        do Sys.wait(100);
+        do TransitionEffect.irisClose();       // Fermeture en cercle
+        do Sys.wait(200);
+        return;
+    }
+    
+    // Effet complet de transition de combat dresseur (plus rapide)
+    function void trainerBattleTransition() {
+        do TransitionEffect.flashEffect(4);    // 4 clignotements (plus intense)
+        do Sys.wait(50);
+        do TransitionEffect.irisClose();       // Fermeture en cercle
+        do Sys.wait(200);
+        return;
+    }
+    
+    // Effet de spirale alternative (optionnel)
+    function void spiralClose() {
+        var int size, x, y;
+        let size = 256;
+        
+        while (size > 0) {
+            do Screen.setColor(true);
+            
+            // Dessiner des rectangles qui se resserrent
+            let x = (256 - (size / 2));
+            let y = (128 - (size / 4));
+            
+            // Haut
+            do Screen.drawRectangle(0, 0, 511, Math.max(0, y));
+            // Bas
+            do Screen.drawRectangle(0, Math.min(255, y + (size / 2)), 511, 255);
+            // Gauche
+            do Screen.drawRectangle(0, 0, Math.max(0, x), 255);
+            // Droite
+            do Screen.drawRectangle(Math.min(511, x + size), 0, 511, 255);
+            
+            let size = size - 20;
+            do Sys.wait(30);
+        }
+        
+        do Screen.setColor(true);
+        do Screen.drawRectangle(0, 0, 511, 255);
+        return;
+    }
+}

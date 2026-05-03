@@ -1,0 +1,166 @@
+class Team {
+    field Array pokemons;  // Tableau de 6 Pokémon
+    field int count;       // Nombre de Pokémon dans l'équipe
+    field int maxSize;     // Taille maximale (6)
+    field int activeIndex; // Index du Pokémon actif (celui qui combat)
+    
+    constructor Team new() {
+        let maxSize = 6;
+        let count = 0; // Commence vide
+        let activeIndex = 0;
+        let pokemons = Array.new(maxSize);
+        
+        // Initialiser tous les slots à null
+        let pokemons[0] = null;
+        let pokemons[1] = null;
+        let pokemons[2] = null;
+        let pokemons[3] = null;
+        let pokemons[4] = null;
+        let pokemons[5] = null;
+        
+        return this;
+    }
+
+    constructor Team newWithStarter(int starterType, int starterLevel) {
+        let maxSize = 6;
+        let count = 1;
+        let activeIndex = 0;
+        let pokemons = Array.new(maxSize);
+        
+        // Créer le Pokémon de départ
+        let pokemons[0] = Pokemon.new(starterType, starterLevel);
+        
+        // Initialiser les autres slots à null
+        let pokemons[1] = null;
+        let pokemons[2] = null;
+        let pokemons[3] = null;
+        let pokemons[4] = null;
+        let pokemons[5] = null;
+        
+        return this;
+    }
+    
+    method Pokemon getActive() {
+        return pokemons[activeIndex];
+    }
+    
+    method int getCount() {
+        return count;
+    }
+    
+    method int getMaxSize() {
+        return maxSize;
+    }
+    
+    method boolean isFull() {
+        return count = maxSize;
+    }
+    
+    method boolean addPokemon(Pokemon poke) {
+        if (count < maxSize) {
+            let pokemons[count] = poke;
+            let count = count + 1;
+            if (count = 1) {
+                let activeIndex = 0;
+            }
+            return true;
+        }
+        return false; // Équipe pleine
+    }
+    
+    method Pokemon getPokemon(int index) {
+        if ((index < 0) | (index > (count - 1))) {
+            return null;
+        }
+        return pokemons[index];
+    }
+    
+    method void setActive(int index) {
+        if ((index > -1) & (index < count)) {
+            let activeIndex = index;
+        }
+        return;
+    }
+    
+    method int getActiveIndex() {
+        return activeIndex;
+    }
+    
+    method void healAll() {
+        var int i;
+        var Pokemon poke;
+        let i = 0;
+        while (i < count) {
+            let poke = pokemons[i];
+            if (~(poke = null)) {
+                do poke.heal();
+            }
+            let i = i + 1;
+        }
+        return;
+    }
+    
+    method boolean hasAlivePokemon() {
+        var int i;
+        var Pokemon poke;
+        let i = 0;
+        while (i < count) {
+            let poke = pokemons[i];
+            if (~(poke = null)) {
+                if (~poke.isFainted()) {
+                    return true;
+                }
+            }
+            let i = i + 1;
+        }
+        return false;
+    }
+    
+    method void dispose() {
+        var int i;
+        var Pokemon poke;
+        let i = 0;
+        while (i < count) {
+            let poke = pokemons[i];
+            if (~(poke = null)) {
+                do poke.dispose();
+            }
+            let i = i + 1;
+        }
+        do pokemons.dispose();
+        do Memory.deAlloc(this);
+        return;
+    }
+    method void swapPokemon(int index1, int index2) {
+    var Pokemon temp;
+    
+    // Vérifier que les indices sont valides
+    if ((index1 < 0) | (index1 > (count - 1))) {
+        return;
+    }
+    if ((index2 < 0) | (index2 > (count - 1))) {
+        return;
+    }
+    
+    // Ne rien faire si même index
+    if (index1 = index2) {
+        return;
+    }
+    
+    // Échanger les Pokémon
+    let temp = pokemons[index1];
+    let pokemons[index1] = pokemons[index2];
+    let pokemons[index2] = temp;
+    
+    // Ajuster l'index actif si nécessaire
+    if (activeIndex = index1) {
+        let activeIndex = index2;
+    } else {
+        if (activeIndex = index2) {
+            let activeIndex = index1;
+        }
+    }
+    
+    return;
+}
+}

@@ -1,0 +1,460 @@
+function Team.new 0
+    push constant 4
+    call Memory.alloc 1
+    pop pointer 0
+    push constant 6
+    pop this 2
+    push constant 0
+    pop this 1
+    push constant 0
+    pop this 3
+    push this 2
+    call Array.new 1
+    pop this 0
+    push constant 0
+    push this 0
+    add
+    push constant 0
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 1
+    push this 0
+    add
+    push constant 0
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 2
+    push this 0
+    add
+    push constant 0
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 3
+    push this 0
+    add
+    push constant 0
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 4
+    push this 0
+    add
+    push constant 0
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 5
+    push this 0
+    add
+    push constant 0
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push pointer 0
+    return
+function Team.newWithStarter 0
+    push constant 4
+    call Memory.alloc 1
+    pop pointer 0
+    push constant 6
+    pop this 2
+    push constant 1
+    pop this 1
+    push constant 0
+    pop this 3
+    push this 2
+    call Array.new 1
+    pop this 0
+    push constant 0
+    push this 0
+    add
+    push argument 0
+    push argument 1
+    call Pokemon.new 2
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 1
+    push this 0
+    add
+    push constant 0
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 2
+    push this 0
+    add
+    push constant 0
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 3
+    push this 0
+    add
+    push constant 0
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 4
+    push this 0
+    add
+    push constant 0
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 5
+    push this 0
+    add
+    push constant 0
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push pointer 0
+    return
+function Team.getActive 0
+    push argument 0
+    pop pointer 0
+    push this 3
+    push this 0
+    add
+    pop pointer 1
+    push that 0
+    return
+function Team.getCount 0
+    push argument 0
+    pop pointer 0
+    push this 1
+    return
+function Team.getMaxSize 0
+    push argument 0
+    pop pointer 0
+    push this 2
+    return
+function Team.isFull 0
+    push argument 0
+    pop pointer 0
+    push this 1
+    push this 2
+    eq
+    return
+function Team.addPokemon 0
+    push argument 0
+    pop pointer 0
+    push this 1
+    push this 2
+    lt
+    not
+    if-goto Team_1
+    push this 1
+    push this 0
+    add
+    push argument 1
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push this 1
+    push constant 1
+    add
+    pop this 1
+    push this 1
+    push constant 1
+    eq
+    not
+    if-goto Team_3
+    push constant 0
+    pop this 3
+    goto Team_2
+label Team_3
+label Team_2
+    push constant 1
+    neg
+    return
+    goto Team_0
+label Team_1
+label Team_0
+    push constant 0
+    return
+function Team.getPokemon 0
+    push argument 0
+    pop pointer 0
+    push argument 1
+    push constant 0
+    lt
+    push argument 1
+    push this 1
+    push constant 1
+    sub
+    gt
+    or
+    not
+    if-goto Team_5
+    push constant 0
+    return
+    goto Team_4
+label Team_5
+label Team_4
+    push argument 1
+    push this 0
+    add
+    pop pointer 1
+    push that 0
+    return
+function Team.setActive 0
+    push argument 0
+    pop pointer 0
+    push argument 1
+    push constant 1
+    neg
+    gt
+    push argument 1
+    push this 1
+    lt
+    and
+    not
+    if-goto Team_7
+    push argument 1
+    pop this 3
+    goto Team_6
+label Team_7
+label Team_6
+    push constant 0
+    return
+function Team.getActiveIndex 0
+    push argument 0
+    pop pointer 0
+    push this 3
+    return
+function Team.healAll 2
+    push argument 0
+    pop pointer 0
+    push constant 0
+    pop local 0
+label Team_8
+    push local 0
+    push this 1
+    lt
+    not
+    if-goto Team_9
+    push local 0
+    push this 0
+    add
+    pop pointer 1
+    push that 0
+    pop local 1
+    push local 1
+    push constant 0
+    eq
+    not
+    not
+    if-goto Team_11
+    push local 1
+    call Pokemon.heal 1
+    pop temp 0
+    goto Team_10
+label Team_11
+label Team_10
+    push local 0
+    push constant 1
+    add
+    pop local 0
+    goto Team_8
+label Team_9
+    push constant 0
+    return
+function Team.hasAlivePokemon 2
+    push argument 0
+    pop pointer 0
+    push constant 0
+    pop local 0
+label Team_12
+    push local 0
+    push this 1
+    lt
+    not
+    if-goto Team_13
+    push local 0
+    push this 0
+    add
+    pop pointer 1
+    push that 0
+    pop local 1
+    push local 1
+    push constant 0
+    eq
+    not
+    not
+    if-goto Team_15
+    push local 1
+    call Pokemon.isFainted 1
+    not
+    not
+    if-goto Team_17
+    push constant 1
+    neg
+    return
+    goto Team_16
+label Team_17
+label Team_16
+    goto Team_14
+label Team_15
+label Team_14
+    push local 0
+    push constant 1
+    add
+    pop local 0
+    goto Team_12
+label Team_13
+    push constant 0
+    return
+function Team.dispose 2
+    push argument 0
+    pop pointer 0
+    push constant 0
+    pop local 0
+label Team_18
+    push local 0
+    push this 1
+    lt
+    not
+    if-goto Team_19
+    push local 0
+    push this 0
+    add
+    pop pointer 1
+    push that 0
+    pop local 1
+    push local 1
+    push constant 0
+    eq
+    not
+    not
+    if-goto Team_21
+    push local 1
+    call Pokemon.dispose 1
+    pop temp 0
+    goto Team_20
+label Team_21
+label Team_20
+    push local 0
+    push constant 1
+    add
+    pop local 0
+    goto Team_18
+label Team_19
+    push this 0
+    call Array.dispose 1
+    pop temp 0
+    push pointer 0
+    call Memory.deAlloc 1
+    pop temp 0
+    push constant 0
+    return
+function Team.swapPokemon 1
+    push argument 0
+    pop pointer 0
+    push argument 1
+    push constant 0
+    lt
+    push argument 1
+    push this 1
+    push constant 1
+    sub
+    gt
+    or
+    not
+    if-goto Team_23
+    push constant 0
+    return
+    goto Team_22
+label Team_23
+label Team_22
+    push argument 2
+    push constant 0
+    lt
+    push argument 2
+    push this 1
+    push constant 1
+    sub
+    gt
+    or
+    not
+    if-goto Team_25
+    push constant 0
+    return
+    goto Team_24
+label Team_25
+label Team_24
+    push argument 1
+    push argument 2
+    eq
+    not
+    if-goto Team_27
+    push constant 0
+    return
+    goto Team_26
+label Team_27
+label Team_26
+    push argument 1
+    push this 0
+    add
+    pop pointer 1
+    push that 0
+    pop local 0
+    push argument 1
+    push this 0
+    add
+    push argument 2
+    push this 0
+    add
+    pop pointer 1
+    push that 0
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push argument 2
+    push this 0
+    add
+    push local 0
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push this 3
+    push argument 1
+    eq
+    not
+    if-goto Team_29
+    push argument 2
+    pop this 3
+    goto Team_28
+label Team_29
+    push this 3
+    push argument 2
+    eq
+    not
+    if-goto Team_31
+    push argument 1
+    pop this 3
+    goto Team_30
+label Team_31
+label Team_30
+label Team_28
+    push constant 0
+    return

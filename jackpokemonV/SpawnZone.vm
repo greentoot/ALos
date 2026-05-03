@@ -1,0 +1,291 @@
+function SpawnZone.isNearWater 1
+    push argument 0
+    push argument 1
+    push argument 2
+    push constant 1
+    sub
+    call Map.getTile 3
+    pop local 0
+    push local 0
+    push constant 2
+    eq
+    not
+    if-goto SpawnZone_1
+    push constant 1
+    neg
+    return
+    goto SpawnZone_0
+label SpawnZone_1
+label SpawnZone_0
+    push argument 0
+    push argument 1
+    push argument 2
+    push constant 1
+    add
+    call Map.getTile 3
+    pop local 0
+    push local 0
+    push constant 2
+    eq
+    not
+    if-goto SpawnZone_3
+    push constant 1
+    neg
+    return
+    goto SpawnZone_2
+label SpawnZone_3
+label SpawnZone_2
+    push argument 0
+    push argument 1
+    push constant 1
+    sub
+    push argument 2
+    call Map.getTile 3
+    pop local 0
+    push local 0
+    push constant 2
+    eq
+    not
+    if-goto SpawnZone_5
+    push constant 1
+    neg
+    return
+    goto SpawnZone_4
+label SpawnZone_5
+label SpawnZone_4
+    push argument 0
+    push argument 1
+    push constant 1
+    add
+    push argument 2
+    call Map.getTile 3
+    pop local 0
+    push local 0
+    push constant 2
+    eq
+    not
+    if-goto SpawnZone_7
+    push constant 1
+    neg
+    return
+    goto SpawnZone_6
+label SpawnZone_7
+label SpawnZone_6
+    push constant 0
+    return
+function SpawnZone.getWildPokemon 3
+    push argument 1
+    push argument 2
+    push argument 3
+    call SpawnZone.isNearWater 3
+    pop local 0
+    push argument 0
+    push constant 0
+    eq
+    not
+    if-goto SpawnZone_9
+    push local 0
+    not
+    if-goto SpawnZone_11
+    push constant 0
+    push constant 100
+    call Random.randRange 2
+    pop local 2
+    push local 2
+    push constant 50
+    lt
+    not
+    if-goto SpawnZone_13
+    push constant 1
+    return
+    goto SpawnZone_12
+label SpawnZone_13
+label SpawnZone_12
+    push local 2
+    push constant 75
+    lt
+    not
+    if-goto SpawnZone_15
+    push constant 9
+    return
+    goto SpawnZone_14
+label SpawnZone_15
+label SpawnZone_14
+    push constant 0
+    push constant 3
+    call Random.randRange 2
+    return
+    goto SpawnZone_10
+label SpawnZone_11
+    push constant 0
+    push constant 3
+    call Random.randRange 2
+    return
+label SpawnZone_10
+    goto SpawnZone_8
+label SpawnZone_9
+label SpawnZone_8
+    push argument 0
+    push constant 1
+    eq
+    not
+    if-goto SpawnZone_17
+    push local 0
+    not
+    if-goto SpawnZone_19
+    push constant 0
+    push constant 100
+    call Random.randRange 2
+    pop local 2
+    push local 2
+    push constant 40
+    lt
+    not
+    if-goto SpawnZone_21
+    push constant 1
+    return
+    goto SpawnZone_20
+label SpawnZone_21
+label SpawnZone_20
+    push local 2
+    push constant 70
+    lt
+    not
+    if-goto SpawnZone_23
+    push constant 9
+    return
+    goto SpawnZone_22
+label SpawnZone_23
+label SpawnZone_22
+    push constant 3
+    push constant 7
+    call Random.randRange 2
+    return
+    goto SpawnZone_18
+label SpawnZone_19
+    push constant 3
+    push constant 7
+    call Random.randRange 2
+    return
+label SpawnZone_18
+    goto SpawnZone_16
+label SpawnZone_17
+label SpawnZone_16
+    push argument 0
+    push constant 2
+    eq
+    not
+    if-goto SpawnZone_25
+    push local 0
+    not
+    if-goto SpawnZone_27
+    push constant 0
+    push constant 100
+    call Random.randRange 2
+    pop local 2
+    push local 2
+    push constant 30
+    lt
+    not
+    if-goto SpawnZone_29
+    push constant 1
+    return
+    goto SpawnZone_28
+label SpawnZone_29
+label SpawnZone_28
+    push local 2
+    push constant 50
+    lt
+    not
+    if-goto SpawnZone_31
+    push constant 9
+    return
+    goto SpawnZone_30
+label SpawnZone_31
+label SpawnZone_30
+    push constant 7
+    push constant 10
+    call Random.randRange 2
+    return
+    goto SpawnZone_26
+label SpawnZone_27
+    push constant 7
+    push constant 10
+    call Random.randRange 2
+    return
+label SpawnZone_26
+    goto SpawnZone_24
+label SpawnZone_25
+label SpawnZone_24
+    push argument 0
+    push constant 3
+    eq
+    push argument 0
+    push constant 4
+    eq
+    or
+    push argument 0
+    push constant 5
+    eq
+    or
+    push argument 0
+    push constant 6
+    eq
+    or
+    push argument 0
+    push constant 8
+    eq
+    or
+    not
+    if-goto SpawnZone_33
+    push constant 1
+    neg
+    return
+    goto SpawnZone_32
+label SpawnZone_33
+label SpawnZone_32
+    push constant 0
+    push constant 4
+    call Random.randRange 2
+    return
+function SpawnZone.getPokemonLevel 0
+    push argument 0
+    push constant 0
+    eq
+    not
+    if-goto SpawnZone_35
+    push constant 1
+    push constant 3
+    call Random.randRange 2
+    return
+    goto SpawnZone_34
+label SpawnZone_35
+label SpawnZone_34
+    push argument 0
+    push constant 1
+    eq
+    not
+    if-goto SpawnZone_37
+    push constant 3
+    push constant 5
+    call Random.randRange 2
+    return
+    goto SpawnZone_36
+label SpawnZone_37
+label SpawnZone_36
+    push argument 0
+    push constant 2
+    eq
+    not
+    if-goto SpawnZone_39
+    push constant 5
+    push constant 8
+    call Random.randRange 2
+    return
+    goto SpawnZone_38
+label SpawnZone_39
+label SpawnZone_38
+    push constant 3
+    push constant 7
+    call Random.randRange 2
+    return

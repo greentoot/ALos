@@ -1,0 +1,393 @@
+function Pokedex.new 1
+    push constant 3
+    call Memory.alloc 1
+    pop pointer 0
+    push constant 12
+    pop this 1
+    push constant 0
+    pop this 2
+    push this 1
+    call Array.new 1
+    pop this 0
+    push constant 0
+    pop local 0
+label Pokedex_0
+    push local 0
+    push this 1
+    lt
+    not
+    if-goto Pokedex_1
+    push local 0
+    push this 0
+    add
+    push constant 0
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push local 0
+    push constant 1
+    add
+    pop local 0
+    goto Pokedex_0
+label Pokedex_1
+    push pointer 0
+    return
+function Pokedex.capture 0
+    push argument 0
+    pop pointer 0
+    push argument 1
+    push this 0
+    add
+    pop pointer 1
+    push that 0
+    not
+    not
+    if-goto Pokedex_3
+    push argument 1
+    push this 0
+    add
+    push constant 1
+    neg
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push this 2
+    push constant 1
+    add
+    pop this 2
+    goto Pokedex_2
+label Pokedex_3
+label Pokedex_2
+    push constant 0
+    return
+function Pokedex.isCaptured 0
+    push argument 0
+    pop pointer 0
+    push argument 1
+    push this 0
+    add
+    pop pointer 1
+    push that 0
+    return
+function Pokedex.getCapturedCount 0
+    push argument 0
+    pop pointer 0
+    push this 2
+    return
+function Pokedex.isComplete 0
+    push argument 0
+    pop pointer 0
+    push this 2
+    push this 1
+    eq
+    return
+function Pokedex.display 1
+    push argument 0
+    pop pointer 0
+    push constant 1
+    push constant 20
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.printPokedex 0
+    pop temp 0
+    push constant 2
+    push constant 15
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.drawseparationpokedex 0
+    pop temp 0
+    push constant 0
+    pop local 0
+label Pokedex_4
+    push local 0
+    push constant 5
+    lt
+    not
+    if-goto Pokedex_5
+    push constant 4
+    push local 0
+    add
+    push constant 2
+    call Output.moveCursor 2
+    pop temp 0
+    push local 0
+    push constant 1
+    add
+    call Output.printInt 1
+    pop temp 0
+    push constant 46
+    call Output.printChar 1
+    pop temp 0
+    push constant 32
+    call Output.printChar 1
+    pop temp 0
+    push pointer 0
+    push local 0
+    call Pokedex.printPokemonName 2
+    pop temp 0
+    push constant 32
+    call Output.printChar 1
+    pop temp 0
+    push constant 45
+    call Output.printChar 1
+    pop temp 0
+    push constant 32
+    call Output.printChar 1
+    pop temp 0
+    push local 0
+    push this 0
+    add
+    pop pointer 1
+    push that 0
+    not
+    if-goto Pokedex_7
+    push constant 79
+    call Output.printChar 1
+    pop temp 0
+    push constant 75
+    call Output.printChar 1
+    pop temp 0
+    goto Pokedex_6
+label Pokedex_7
+    push constant 63
+    call Output.printChar 1
+    pop temp 0
+    push constant 63
+    call Output.printChar 1
+    pop temp 0
+    push constant 63
+    call Output.printChar 1
+    pop temp 0
+label Pokedex_6
+    push local 0
+    push constant 1
+    add
+    pop local 0
+    goto Pokedex_4
+label Pokedex_5
+    push constant 5
+    pop local 0
+label Pokedex_8
+    push local 0
+    push this 1
+    lt
+    not
+    if-goto Pokedex_9
+    push constant 4
+    push local 0
+    push constant 5
+    sub
+    add
+    push constant 30
+    call Output.moveCursor 2
+    pop temp 0
+    push local 0
+    push constant 1
+    add
+    call Output.printInt 1
+    pop temp 0
+    push constant 46
+    call Output.printChar 1
+    pop temp 0
+    push constant 32
+    call Output.printChar 1
+    pop temp 0
+    push pointer 0
+    push local 0
+    call Pokedex.printPokemonName 2
+    pop temp 0
+    push constant 32
+    call Output.printChar 1
+    pop temp 0
+    push constant 45
+    call Output.printChar 1
+    pop temp 0
+    push constant 32
+    call Output.printChar 1
+    pop temp 0
+    push local 0
+    push this 0
+    add
+    pop pointer 1
+    push that 0
+    not
+    if-goto Pokedex_11
+    push constant 79
+    call Output.printChar 1
+    pop temp 0
+    push constant 75
+    call Output.printChar 1
+    pop temp 0
+    goto Pokedex_10
+label Pokedex_11
+    push constant 63
+    call Output.printChar 1
+    pop temp 0
+    push constant 63
+    call Output.printChar 1
+    pop temp 0
+    push constant 63
+    call Output.printChar 1
+    pop temp 0
+label Pokedex_10
+    push local 0
+    push constant 1
+    add
+    pop local 0
+    goto Pokedex_8
+label Pokedex_9
+    push constant 11
+    push constant 10
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.printTotal 0
+    pop temp 0
+    push this 2
+    call Output.printInt 1
+    pop temp 0
+    push constant 47
+    call Output.printChar 1
+    pop temp 0
+    push this 1
+    call Output.printInt 1
+    pop temp 0
+    push constant 0
+    return
+function Pokedex.printPokemonName 0
+    push argument 0
+    pop pointer 0
+    push argument 1
+    push constant 0
+    eq
+    not
+    if-goto Pokedex_13
+    call Strings.printSalameche 0
+    pop temp 0
+    goto Pokedex_12
+label Pokedex_13
+label Pokedex_12
+    push argument 1
+    push constant 1
+    eq
+    not
+    if-goto Pokedex_15
+    call Strings.printCarapuce 0
+    pop temp 0
+    goto Pokedex_14
+label Pokedex_15
+label Pokedex_14
+    push argument 1
+    push constant 2
+    eq
+    not
+    if-goto Pokedex_17
+    call Strings.printBulbizarre 0
+    pop temp 0
+    goto Pokedex_16
+label Pokedex_17
+label Pokedex_16
+    push argument 1
+    push constant 3
+    eq
+    not
+    if-goto Pokedex_19
+    call Strings.printPikachu 0
+    pop temp 0
+    goto Pokedex_18
+label Pokedex_19
+label Pokedex_18
+    push argument 1
+    push constant 4
+    eq
+    not
+    if-goto Pokedex_21
+    call Strings.printRoucool 0
+    pop temp 0
+    goto Pokedex_20
+label Pokedex_21
+label Pokedex_20
+    push argument 1
+    push constant 5
+    eq
+    not
+    if-goto Pokedex_23
+    call Strings.printRattata 0
+    pop temp 0
+    goto Pokedex_22
+label Pokedex_23
+label Pokedex_22
+    push argument 1
+    push constant 6
+    eq
+    not
+    if-goto Pokedex_25
+    call Strings.printSabelette 0
+    pop temp 0
+    goto Pokedex_24
+label Pokedex_25
+label Pokedex_24
+    push argument 1
+    push constant 7
+    eq
+    not
+    if-goto Pokedex_27
+    call Strings.printStari 0
+    pop temp 0
+    goto Pokedex_26
+label Pokedex_27
+label Pokedex_26
+    push argument 1
+    push constant 8
+    eq
+    not
+    if-goto Pokedex_29
+    call Strings.printArcanin 0
+    pop temp 0
+    goto Pokedex_28
+label Pokedex_29
+label Pokedex_28
+    push argument 1
+    push constant 9
+    eq
+    not
+    if-goto Pokedex_31
+    call Strings.printTaupiqueur 0
+    pop temp 0
+    goto Pokedex_30
+label Pokedex_31
+label Pokedex_30
+    push argument 1
+    push constant 10
+    eq
+    not
+    if-goto Pokedex_33
+    call Strings.printTriopikeur 0
+    pop temp 0
+    goto Pokedex_32
+label Pokedex_33
+label Pokedex_32
+    push argument 1
+    push constant 11
+    eq
+    not
+    if-goto Pokedex_35
+    call Strings.printNoadkoko 0
+    pop temp 0
+    goto Pokedex_34
+label Pokedex_35
+label Pokedex_34
+    push constant 0
+    return
+function Pokedex.dispose 0
+    push argument 0
+    pop pointer 0
+    push this 0
+    call Array.dispose 1
+    pop temp 0
+    push pointer 0
+    call Memory.deAlloc 1
+    pop temp 0
+    push constant 0
+    return

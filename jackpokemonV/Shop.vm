@@ -1,0 +1,424 @@
+function Shop.new 0
+    push constant 5
+    call Memory.alloc 1
+    pop pointer 0
+    push argument 0
+    pop this 0
+    push argument 1
+    pop this 1
+    push constant 0
+    pop this 2
+    push constant 4
+    pop this 4
+    push this 4
+    call Array.new 1
+    pop this 3
+    push constant 0
+    push this 3
+    add
+    push constant 200
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 1
+    push this 3
+    add
+    push constant 300
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 2
+    push this 3
+    add
+    push constant 700
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 3
+    push this 3
+    add
+    push constant 1500
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push pointer 0
+    return
+function Shop.display 0
+    push argument 0
+    pop pointer 0
+    call Screen.clearScreen 0
+    pop temp 0
+    push constant 1
+    push constant 20
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.printBoutique 0
+    pop temp 0
+    push constant 2
+    push constant 15
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.drawseparation 0
+    pop temp 0
+    push constant 3
+    push constant 2
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.printArgent 0
+    pop temp 0
+    push this 1
+    call Money.getAmount 1
+    call Output.printInt 1
+    pop temp 0
+    push constant 36
+    call Output.printChar 1
+    pop temp 0
+    push constant 4
+    push constant 2
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.printSelectionnezObjet 0
+    pop temp 0
+    push constant 6
+    push constant 5
+    call Output.moveCursor 2
+    pop temp 0
+    push this 2
+    push constant 0
+    eq
+    not
+    if-goto Shop_1
+    push constant 62
+    call Output.printChar 1
+    pop temp 0
+    goto Shop_0
+label Shop_1
+    push constant 32
+    call Output.printChar 1
+    pop temp 0
+label Shop_0
+    push constant 49
+    call Output.printChar 1
+    pop temp 0
+    push constant 46
+    call Output.printChar 1
+    pop temp 0
+    push constant 32
+    call Output.printChar 1
+    pop temp 0
+    call Strings.printPokeball 0
+    pop temp 0
+    push constant 32
+    call Output.printChar 1
+    pop temp 0
+    push constant 45
+    call Output.printChar 1
+    pop temp 0
+    push constant 32
+    call Output.printChar 1
+    pop temp 0
+    push constant 0
+    push this 3
+    add
+    pop pointer 1
+    push that 0
+    call Output.printInt 1
+    pop temp 0
+    push constant 36
+    call Output.printChar 1
+    pop temp 0
+    push constant 8
+    push constant 5
+    call Output.moveCursor 2
+    pop temp 0
+    push this 2
+    push constant 1
+    eq
+    not
+    if-goto Shop_3
+    push constant 62
+    call Output.printChar 1
+    pop temp 0
+    goto Shop_2
+label Shop_3
+    push constant 32
+    call Output.printChar 1
+    pop temp 0
+label Shop_2
+    push constant 50
+    call Output.printChar 1
+    pop temp 0
+    push constant 46
+    call Output.printChar 1
+    pop temp 0
+    push constant 32
+    call Output.printChar 1
+    pop temp 0
+    call Strings.printPotion 0
+    pop temp 0
+    push constant 32
+    call Output.printChar 1
+    pop temp 0
+    push constant 45
+    call Output.printChar 1
+    pop temp 0
+    push constant 32
+    call Output.printChar 1
+    pop temp 0
+    push constant 1
+    push this 3
+    add
+    pop pointer 1
+    push that 0
+    call Output.printInt 1
+    pop temp 0
+    push constant 36
+    call Output.printChar 1
+    pop temp 0
+    push constant 10
+    push constant 5
+    call Output.moveCursor 2
+    pop temp 0
+    push this 2
+    push constant 2
+    eq
+    not
+    if-goto Shop_5
+    push constant 62
+    call Output.printChar 1
+    pop temp 0
+    goto Shop_4
+label Shop_5
+    push constant 32
+    call Output.printChar 1
+    pop temp 0
+label Shop_4
+    push constant 51
+    call Output.printChar 1
+    pop temp 0
+    push constant 46
+    call Output.printChar 1
+    pop temp 0
+    push constant 32
+    call Output.printChar 1
+    pop temp 0
+    call Strings.printSuperPotion 0
+    pop temp 0
+    push constant 32
+    call Output.printChar 1
+    pop temp 0
+    push constant 45
+    call Output.printChar 1
+    pop temp 0
+    push constant 32
+    call Output.printChar 1
+    pop temp 0
+    push constant 2
+    push this 3
+    add
+    pop pointer 1
+    push that 0
+    call Output.printInt 1
+    pop temp 0
+    push constant 36
+    call Output.printChar 1
+    pop temp 0
+    push constant 12
+    push constant 5
+    call Output.moveCursor 2
+    pop temp 0
+    push this 2
+    push constant 3
+    eq
+    not
+    if-goto Shop_7
+    push constant 62
+    call Output.printChar 1
+    pop temp 0
+    goto Shop_6
+label Shop_7
+    push constant 32
+    call Output.printChar 1
+    pop temp 0
+label Shop_6
+    push constant 52
+    call Output.printChar 1
+    pop temp 0
+    push constant 46
+    call Output.printChar 1
+    pop temp 0
+    push constant 32
+    call Output.printChar 1
+    pop temp 0
+    call Strings.printRappel 0
+    pop temp 0
+    push constant 32
+    call Output.printChar 1
+    pop temp 0
+    push constant 45
+    call Output.printChar 1
+    pop temp 0
+    push constant 32
+    call Output.printChar 1
+    pop temp 0
+    push constant 3
+    push this 3
+    add
+    pop pointer 1
+    push that 0
+    call Output.printInt 1
+    pop temp 0
+    push constant 36
+    call Output.printChar 1
+    pop temp 0
+    push constant 20
+    push constant 2
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.printEntreeAcheterQRetour 0
+    pop temp 0
+    push constant 0
+    return
+function Shop.moveSelection 0
+    push argument 0
+    pop pointer 0
+    push this 2
+    push argument 1
+    add
+    pop this 2
+    push this 2
+    push constant 0
+    lt
+    not
+    if-goto Shop_9
+    push constant 0
+    pop this 2
+    goto Shop_8
+label Shop_9
+label Shop_8
+    push this 2
+    push constant 3
+    gt
+    not
+    if-goto Shop_11
+    push constant 3
+    pop this 2
+    goto Shop_10
+label Shop_11
+label Shop_10
+    push constant 0
+    return
+function Shop.handleInput 0
+    push argument 0
+    pop pointer 0
+    push argument 1
+    push constant 131
+    eq
+    not
+    if-goto Shop_13
+    push pointer 0
+    push constant 1
+    neg
+    call Shop.moveSelection 2
+    pop temp 0
+    goto Shop_12
+label Shop_13
+label Shop_12
+    push argument 1
+    push constant 133
+    eq
+    not
+    if-goto Shop_15
+    push pointer 0
+    push constant 1
+    call Shop.moveSelection 2
+    pop temp 0
+    goto Shop_14
+label Shop_15
+label Shop_14
+    push argument 1
+    push constant 128
+    eq
+    not
+    if-goto Shop_17
+    push pointer 0
+    call Shop.buyItem 1
+    pop temp 0
+    goto Shop_16
+label Shop_17
+label Shop_16
+    push constant 0
+    return
+function Shop.buyItem 1
+    push argument 0
+    pop pointer 0
+    push this 2
+    push this 3
+    add
+    pop pointer 1
+    push that 0
+    pop local 0
+    push this 1
+    push local 0
+    call Money.canAfford 2
+    not
+    if-goto Shop_19
+    push this 1
+    push local 0
+    call Money.spend 2
+    pop temp 0
+    push this 0
+    push this 2
+    push constant 1
+    call Inventory.addItem 3
+    pop temp 0
+    push constant 22
+    push constant 5
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.printAchatReussi 0
+    pop temp 0
+    push constant 1500
+    call Sys.wait 1
+    pop temp 0
+    push constant 22
+    push constant 5
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.printespace 0
+    pop temp 0
+    goto Shop_18
+label Shop_19
+    push constant 22
+    push constant 5
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.printPasAssezArgent 0
+    pop temp 0
+    push constant 1500
+    call Sys.wait 1
+    pop temp 0
+    push constant 22
+    push constant 5
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.printespace 0
+    pop temp 0
+label Shop_18
+    push constant 0
+    return
+function Shop.dispose 0
+    push argument 0
+    pop pointer 0
+    push this 3
+    call Array.dispose 1
+    pop temp 0
+    push pointer 0
+    call Memory.deAlloc 1
+    pop temp 0
+    push constant 0
+    return

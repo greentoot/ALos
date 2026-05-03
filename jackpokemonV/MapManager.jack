@@ -1,0 +1,70 @@
+class MapManager {
+    field Array maps;
+    field int currentMapId;
+    field int mapCount;
+    
+    constructor MapManager new() {
+        let mapCount = 9; // 9 maps (0-8)
+        let maps = Array.new(mapCount);
+        let currentMapId = 0;
+        
+        // Créer toutes les maps
+        let maps[0] = Map.new(0);
+        let maps[1] = Map.new(1);
+        let maps[2] = Map.new(2);
+        let maps[3] = Map.new(3);
+        let maps[4] = Map.new(4); 
+        let maps[5] = Map.new(5); 
+        let maps[6] = Map.new(6); 
+        let maps[7] = Map.new(7); 
+        let maps[8] = Map.new(8);
+        
+        return this;
+    }
+    
+    method Map getCurrentMap() {
+        return maps[currentMapId];
+    }
+    
+    method int getCurrentMapId() {
+        return currentMapId;
+    }
+
+    method void setCurrentMapId(int mapId) {
+        if ((mapId > -1) & (mapId < mapCount)) {
+            let currentMapId = mapId;
+        }
+        return;
+    }
+    
+    method void switchMap(int newMapId, int portalId) {
+        if ((newMapId < 0) | (newMapId > (mapCount - 1))) {
+            return;
+        }
+        
+        let currentMapId = newMapId;
+        
+        return;
+    }
+    
+    method void draw() {
+        var Map currentMap;
+        let currentMap = maps[currentMapId];
+        do currentMap.draw();
+        return;
+    }
+    
+    method void dispose() {
+        var int i;
+        var Map map;
+        let i = 0;
+        while (i < mapCount) {
+            let map = maps[i];
+            do map.dispose();
+            let i = i + 1;
+        }
+        do maps.dispose();
+        do Memory.deAlloc(this);
+        return;
+    }
+}

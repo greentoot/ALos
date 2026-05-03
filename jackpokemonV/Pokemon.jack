@@ -1,0 +1,235 @@
+class Pokemon {
+    field int type;
+    field int level;
+    field int hp;
+    field int maxHp;
+    field int attack;
+    field int defense;
+    field Array moves;
+    field int moveCount;
+    
+    constructor Pokemon new(int pokemonType, int pokemonLevel) {
+        let type = pokemonType;
+        let level = pokemonLevel;
+        
+        let moves = Array.new(4);
+        let moveCount = 0;
+        
+        // initialisé les slots à null AVANT initMoves
+        let moves[0] = null;
+        let moves[1] = null;
+        let moves[2] = null;
+        let moves[3] = null;
+        
+        do initStats();
+        do initMoves();  // Maintenant clearMoves() fonctionnera correctement
+        
+        return this;
+    }
+    
+    method void initStats() {
+        // Stats de base selon le type
+        if (type = 0) { // Salamèche
+            let maxHp = 39 + level;
+            let attack = 52 + level;
+            let defense = 43 + level;
+        }
+        if (type = 1) { // Carapuce
+            let maxHp = 44 + level;
+            let attack = 48 + level;
+            let defense = 65 + level;
+        }
+        if (type = 2) { // Bulbizarre
+            let maxHp = 60 + level;
+            let attack = 60 + level;
+            let defense = 60 + level;
+        }
+        if (type = 3) { // Pikachu
+            let maxHp = 35 + level;
+            let attack = 55 + level;
+            let defense = 40 + level;
+        }
+        if (type = 4) { // Roucool
+            let maxHp = 40 + level;
+            let attack = 45 + level;
+            let defense = 40 + level;
+        }
+        if (type = 5) { // Rattata
+            let maxHp = 30 + level;
+            let attack = 56 + level;
+            let defense = 35 + level;
+        }
+        if (type = 6) { // Sabelette
+            let maxHp = 50 + level;
+            let attack = 75 + level;
+            let defense = 85 + level;
+        }
+        if (type = 7) { // Stari
+            let maxHp = 30 + level;
+            let attack = 45 + level;
+            let defense = 55 + level;
+        }
+        if (type = 8) { // Arcanin
+            let maxHp = 70 + level;
+            let attack = 70 + level;
+            let defense = 80 + level;
+        }
+        if (type = 9) { // Taupiqueur
+            let maxHp = 50 + level;
+            let attack = 42 + level;
+            let defense = 43 + level;
+        }
+        if (type = 10) { // Triopikeur
+            let maxHp = 60 + level;
+            let attack = 90 + level;
+            let defense = 55 + level;
+        }
+        if (type = 11) { //Noadkoko
+            let maxHp = 250 + level;
+            let attack = 80 + level;
+            let defense = 100 + level;
+        }
+
+        
+        let hp = maxHp;
+        return;
+    }
+    
+    method void initMoves() {
+        //  CRUCIAL : Nettoyer les anciens moves AVANT d'en créer de nouveaux
+        do clearMoves();
+        
+        // Attaques selon le type
+        if (type = 0) { // Salamèche
+            let moves[0] = Move.new(0, 40, 0);
+            let moves[1] = Move.new(1, 40, 1);
+            let moveCount = 2;
+        }
+        if (type = 1) { // Carapuce
+            let moves[0] = Move.new(2, 35, 0);
+            let moves[1] = Move.new(3, 40, 2);
+            let moveCount = 2;
+        }
+        if (type = 2) { // Bulbizarre
+            let moves[0] = Move.new(4, 35, 0);
+            let moves[1] = Move.new(5, 45, 3);
+            let moveCount = 2;
+        }
+        if (type = 3) { // Pikachu
+            let moves[0] = Move.new(6, 40, 0);
+            let moves[1] = Move.new(7, 40, 4);
+            let moveCount = 2;
+        }
+        if (type = 4) { // Roucool
+            let moves[0] = Move.new(8, 35, 0);
+            let moves[1] = Move.new(9, 60, 5);
+            let moveCount = 2;
+        }
+        if (type = 5) { // Rattata
+            let moves[0] = Move.new(6, 40, 0);
+            let moves[1] = Move.new(12, 45, 0);
+            let moveCount = 2;
+        }
+        if (type = 6) { // Sabelette
+            let moves[0] = Move.new(0, 40, 7);
+            let moves[1] = Move.new(14, 50, 7);
+            let moveCount = 2;
+        }
+        if (type = 7) { // Stari
+            let moves[0] = Move.new(3, 40, 2);
+            let moves[1] = Move.new(15, 55, 2);
+            let moveCount = 2;
+        }
+        if (type = 8) { // Arcanin
+            let moves[0] = Move.new(1, 80, 1);
+            let moves[1] = Move.new(12, 90, 0);
+            let moveCount = 2;
+        }
+        if (type = 9) { // Taupiqueur
+            let moves[0] = Move.new(4, 30, 0);
+            let moves[1] = Move.new(14, 50, 3);
+            let moveCount = 2;
+        }
+        if (type = 10) { // Triopikeur
+            let moves[0] = Move.new(0, 50, 0);
+            let moves[1] = Move.new(14, 80, 3);
+            let moveCount = 2;
+        }
+        if (type = 11) { // Noadkoko
+            let moves[0] = Move.new(0, 50, 0);
+            let moves[1] = Move.new(14, 80, 3);
+            let moveCount = 2;
+        }
+        return;
+    }
+    
+    
+
+    
+
+    method int getType() { return type; }
+    method int getLevel() { return level; }
+    method int getHp() { return hp; }
+    method int getMaxHp() { return maxHp; }
+    method int getAttack() { return attack; }
+    method int getDefense() { return defense; }
+    method Move getMove(int index) { return moves[index]; }
+    method int getMoveCount() { return moveCount; }
+    
+    method void takeDamage(int damage) {
+        let hp = hp - damage;
+        if (hp < 0) { let hp = 0; }
+        return;
+    }
+    
+    method boolean isFainted() {
+        return hp < 1;
+    }
+    
+    method void heal() {
+        let hp = maxHp;
+        return;
+    }
+    
+    method void clearMoves() {
+        var int i;
+        var Move move;
+        
+        if (~(moves = null)) {
+            let i = 0;
+            while (i < moveCount) {
+                let move = moves[i];
+                if (~(move = null)) {
+                    do move.dispose();
+                    let moves[i] = null;  // Important : remettre à null après dispose
+                }
+                let i = i + 1;
+            }
+        }
+        let moveCount = 0;
+        return;
+    }
+    
+    method void dispose() {
+        var int i;
+        var Move move;
+        
+        // 1. D'abord nettoyer les moves
+        if (~(moves = null)) {
+            let i = 0;
+            while (i < moveCount) {
+                let move = moves[i];
+                if (~(move = null)) {
+                    do move.dispose();
+                }
+                let i = i + 1;
+            }
+            // 2. Ensuite libérer le tableau
+            do moves.dispose();
+        }
+        
+        // 3. Enfin libérer l'objet Pokemon lui-même
+        do Memory.deAlloc(this);
+        return;
+    }
+}

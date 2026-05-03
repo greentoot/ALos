@@ -1,0 +1,465 @@
+class Map {
+    field Array tiles;
+    field int width, height;
+    field int tileSize;
+    field int mapId;
+    
+    constructor Map new(int id) {
+        let mapId = id;
+        let width = 32;
+        let height = 16;
+        let tileSize = 16;
+        let tiles = Array.new(width * height);
+        
+        if (mapId = 0) { do initMap0(); }
+        if (mapId = 1) { do initMap1(); }
+        if (mapId = 2) { do initMap2(); }
+        if (mapId = 4) { do initMap4(); }
+        if (mapId = 3) { do initMap3(); }
+        if (mapId = 5) {do initMap5();}
+        if (mapId = 6) {do initMap6();} 
+        if (mapId = 7) {do initMap7();}
+        if (mapId = 8) {do initMap8();}
+                
+        return this;
+    }
+    
+    method void initMap0() { // première map
+        do setRow(0, 3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,150,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3);
+        do setRow(1, 3,3,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,3);
+        do setRow(2, 3,0,3,0,0,0,0,0,0,0,0,0,3,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,3);
+        do setRow(3, 3,0,3,0,0,0,0,5,5,0,0,0,3,3,0,0,0,0,0,3,3,0,0,6,0,0,0,0,0,3,3,3);
+        do setRow(4, 3,0,0,0,0,0,0,5,153,0,0,0,0,0,1,1,1,1,1,3,3,0,0,0,0,0,0,0,0,0,3,3);
+        do setRow(5, 3,0,0,0,0,0,0,0,33,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,3);
+        do setRow(6, 3,0,5,5,0,0,0,0,33,0,0,0,0,3,3,0,0,0,0,0,0,0,0,0,0,0,3,3,0,0,0,3);
+        do setRow(7, 3,0,5,156,0,0,0,0,33,3,3,0,0,3,3,0,0,0,0,0,0,0,3,3,0,0,3,3,0,0,0,3);
+        do setRow(8, 3,0,0,33,0,38,34,34,35,3,3,0,0,0,0,0,0,0,0,0,0,0,3,3,0,0,0,0,0,0,0,3);
+        do setRow(9, 3,0,0,36,34,35,3,3,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,3);
+        do setRow(10, 3,0,0,0,0,0,3,3,0,0,0,0,0,1,1,2,2,2,1,1,1,0,0,0,0,0,0,0,0,0,0,3);
+        do setRow(11, 3,0,0,0,0,0,0,0,0,0,0,0,0,1,2,2,2,2,2,2,1,1,0,0,0,4,0,0,0,0,3,3);
+        do setRow(12, 3,3,0,0,1,1,1,1,1,1,1,3,3,1,2,2,2,2,2,2,2,1,0,0,0,0,155,0,0,3,3,3);
+        do setRow(13, 3,3,3,0,1,1,1,1,1,1,1,3,3,1,1,2,2,2,2,2,2,1,0,0,0,0,154,0,0,3,3,3);
+        do setRow(14, 3,3,3,0,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,3,3,3);
+        do setRow(15, 3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3);
+        return;
+    }
+    
+    method void initMap1() { //deuxième map
+        do setRow(0, 3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3);
+        do setRow(1, 3,3,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,3);
+        do setRow(2, 151,0,0,0,0,0,1,1,3,1,3,0,0,0,0,0,2,2,3,3,4,0,0,3,3,2,2,3,3,3,3,3);
+        do setRow(3, 3,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,2,0,0,0,155,0,0,0,2,2,0,0,0,0,3);
+        do setRow(4, 3,3,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,154,0,0,0,0,0,0,0,0,0,3);
+        do setRow(5, 3,3,1,3,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3);
+        do setRow(6, 3,3,1,1,1,0,0,0,1,1,1,1,3,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,3);
+        do setRow(7, 3,3,1,3,1,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3);
+        do setRow(8, 3,3,0,0,0,0,0,0,1,3,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,3);
+        do setRow(9, 3,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,2,2,1,0,0,0,0,0,0,3);
+        do setRow(10, 3,3,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,2,2,1,0,0,0,0,1,1,3);
+        do setRow(11, 3,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,1,2,2,2,1,0,0,0,0,1,1,3);
+        do setRow(12, 3,3,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,1,1,3);
+        do setRow(13, 3,3,0,1,1,1,1,1,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,3);
+        do setRow(14, 3,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,3);
+        do setRow(15, 3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,150,0,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3);
+        return;
+    }
+    
+    method void initMap3() { //laboratoire
+        do setRow(0, 16,16,16,16,16,16,16,16,16,16,16,16,16,9,9,9,9,9,44,44,9,9,9,9,16,16,16,16,16,16,16,16);
+        do setRow(1, 16,16,16,16,16,16,16,16,16,16,16,16,16,8,8,8,8,8,8,8,43,43,43,43,16,16,16,16,16,16,16,16);
+        do setRow(2, 16,16,16,16,16,16,16,16,16,16,16,16,16,47,48,47,48,7,7,7,42,42,42,42,16,16,16,16,16,16,16,16);
+        do setRow(3, 16,16,16,16,16,16,16,16,16,16,16,16,16,46,45,46,45,7,7,7,7,7,7,7,16,16,16,16,16,16,16,16);
+        do setRow(4, 16,16,16,16,16,16,16,16,16,16,16,16,16,7,7,7,7,7,7,7,11,12,10,7,16,16,16,16,16,16,16,16);
+        do setRow(5, 16,16,16,16,16,16,16,16,16,16,16,16,16,7,7,7,7,7,7,7,7,7,7,7,16,16,16,16,16,16,16,16);
+        do setRow(6, 16,16,16,16,16,16,16,16,16,16,16,16,16,7,7,7,7,7,7,7,7,7,7,7,16,16,16,16,16,16,16,16);
+        do setRow(7, 16,16,16,16,16,16,16,16,16,16,16,16,16,7,7,7,7,7,7,7,7,7,7,7,16,16,16,16,16,16,16,16);
+        do setRow(8, 16,16,16,16,16,16,16,16,16,16,16,16,16,7,7,7,7,7,7,7,7,7,7,7,16,16,16,16,16,16,16,16);
+        do setRow(9, 16,16,16,16,16,16,16,16,16,16,16,16,16,43,43,43,43,7,7,7,43,43,43,43,16,16,16,16,16,16,16,16);
+        do setRow(10, 16,16,16,16,16,16,16,16,16,16,16,16,16,42,42,42,42,7,7,7,42,42,42,42,16,16,16,16,16,16,16,16);
+        do setRow(11, 16,16,16,16,16,16,16,16,16,16,16,16,16,7,7,7,7,7,7,7,7,7,7,7,16,16,16,16,16,16,16,16);
+        do setRow(12, 16,16,16,16,16,16,16,16,16,16,16,16,16,7,7,7,7,7,7,7,7,7,7,7,16,16,16,16,16,16,16,16);
+        do setRow(13, 16,16,16,16,16,16,16,16,16,16,16,16,16,7,7,7,7,7,7,7,7,7,7,7,16,16,16,16,16,16,16,16);
+        do setRow(14, 16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,153,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16);
+        do setRow(15, 16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16);
+            return;
+    }
+
+    method void initMap2() { //troisème map
+        do setRow(0, 3,3,3,3,3,3,3,3,3,3,3,3,3,2,2,2,2,2,2,2,3,3,3,3,160,3,3,3,3,3,3,3);
+        do setRow(1, 3,3,3,3,3,0,0,3,1,1,1,1,1,1,1,1,2,2,2,2,2,2,1,1,1,1,1,1,1,3,3,3);
+        do setRow(2, 3,3,3,0,0,0,0,3,3,1,1,1,1,1,1,0,0,0,2,2,2,2,0,2,2,1,1,1,1,1,1,3);
+        do setRow(3, 3,3,3,0,0,0,3,3,3,3,3,1,0,1,0,0,0,0,0,2,2,2,0,2,2,2,2,1,1,1,1,3);
+        do setRow(4, 3,3,0,0,0,3,3,3,3,3,3,3,0,0,0,0,1,1,0,0,0,0,0,2,2,2,2,2,2,2,0,3);
+        do setRow(5, 3,3,0,0,0,3,3,3,3,3,3,3,3,0,0,1,1,1,1,0,0,0,0,0,1,2,2,2,2,2,2,2);
+        do setRow(6, 3,0,0,0,1,1,3,3,3,3,3,3,3,0,0,1,1,0,0,0,0,3,3,3,1,1,1,1,1,2,2,2);
+        do setRow(7, 3,0,0,1,1,1,1,3,1,1,1,3,1,0,1,1,0,0,0,0,3,3,3,3,3,1,3,3,3,3,3,2);
+        do setRow(8, 3,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,3,3,3,3,3,3,3,3,3,3,3,3,3);
+        do setRow(9, 3,0,0,0,1,1,1,3,3,3,3,1,1,1,1,0,0,0,0,3,3,3,1,3,3,3,3,3,3,3,3,3);
+        do setRow(10, 3,0,0,0,1,1,3,3,3,3,3,3,1,1,1,0,0,0,0,0,0,0,1,1,1,1,3,3,1,1,1,0);
+        do setRow(11, 3,0,0,0,0,3,3,3,3,3,3,3,3,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0);
+        do setRow(12, 3,0,0,0,0,0,3,3,3,3,3,3,3,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,151);
+        do setRow(13, 2,2,0,0,0,0,0,0,3,3,3,0,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0);
+        do setRow(14, 2,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,3,3,1,1,1,1,1);
+        do setRow(15, 2,2,2,2,2,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3);
+        return;
+        
+    }
+
+
+    method void initMap4() { //centre pokemon
+        do setRow(0, 16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16);
+        do setRow(1, 16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16);
+        do setRow(2, 16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16);
+        do setRow(3, 16,16,16,16,16,16,16,16,16,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,16,16,16,16,16,16,16,16);
+        do setRow(4, 16,16,16,16,16,16,16,16,16,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,16,16,16,16,16,16,16,16);
+        do setRow(5, 16,16,16,16,16,16,16,16,16,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,16,16,16,16,16,16,16,16);
+        do setRow(6, 16,16,16,16,16,16,16,16,16,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,16,16,16,16,16,16,16,16);
+        do setRow(7, 16,16,16,16,16,16,16,16,16,19,19,19,19,19,18,19,19,19,19,19,18,19,19,19,16,16,16,16,16,16,16,16);
+        do setRow(8, 16,16,16,16,16,16,16,16,16,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,16,16,16,16,16,16,16,16);
+        do setRow(9, 16,16,16,16,16,16,16,16,16,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,16,16,16,16,16,16,16,16);
+        do setRow(10, 16,16,16,16,16,16,16,16,16,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,16,16,16,16,16,16,16,16);
+        do setRow(11, 16,16,16,16,16,16,16,16,16,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,16,16,16,16,16,16,16,16);
+        do setRow(12, 16,16,16,16,16,16,16,16,16,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,16,16,16,16,16,16,16,16);
+        do setRow(13, 16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,154,155,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16);
+        do setRow(14, 16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16);
+        do setRow(15, 16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16);
+        return;
+    }
+
+    method void initMap5() { //maison maman
+        do setRow(0, 16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16);
+        do setRow(1, 16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16);
+        do setRow(2, 16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16);
+        do setRow(3, 16,16,16,16,16,16,16,16,16,16,16,16,16,9,9,9,9,9,9,9,9,16,16,16,16,16,16,16,16,16,16,16);
+        do setRow(4, 16,16,16,16,16,16,16,16,16,16,16,16,16,43,43,8,8,8,8,8,8,16,16,16,16,16,16,16,16,16,16,16);
+        do setRow(5, 16,16,16,16,16,16,16,16,16,16,16,16,16,42,42,27,28,27,27,27,27,16,16,16,16,16,16,16,16,16,16,16);
+        do setRow(6, 16,16,16,16,16,16,16,16,16,16,16,16,16,27,27,27,27,27,27,27,27,16,16,16,16,16,16,16,16,16,16,16);
+        do setRow(7, 16,16,16,16,16,16,16,16,16,16,16,16,16,27,27,27,27,27,27,27,27,16,16,16,16,16,16,16,16,16,16,16);
+        do setRow(8, 16,16,16,16,16,16,16,16,16,16,16,16,16,27,27,27,27,27,27,27,27,16,16,16,16,16,16,16,16,16,16,16);
+        do setRow(9, 16,16,16,16,16,16,16,16,16,16,16,16,16,27,27,26,31,32,26,27,27,16,16,16,16,16,16,16,16,16,16,16);
+        do setRow(10, 16,16,16,16,16,16,16,16,16,16,16,16,16,27,27,26,29,30,26,27,27,16,16,16,16,16,16,16,16,16,16,16);
+        do setRow(11, 16,16,16,16,16,16,16,16,16,16,16,16,16,27,27,27,27,27,27,27,27,16,16,16,16,16,16,16,16,16,16,16);
+        do setRow(12, 16,16,16,16,16,16,16,16,16,16,16,16,16,27,27,27,27,27,27,27,27,16,16,16,16,16,16,16,16,16,16,16);
+        do setRow(13, 16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,156,16,16,16,16,16,16,16,16,16,16,16,16,16,16);
+        do setRow(14, 16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16);
+        do setRow(15, 16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16);
+        return;
+    }
+
+        method void initMap6() { //quatrième map ville arène
+            do setRow(0, 3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3);
+            do setRow(1, 3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3);
+            do setRow(2, 3,0,6,0,0,6,0,0,6,0,0,0,0,0,0,0,0,0,0,0,0,6,0,0,0,6,0,0,6,0,0,3);
+            do setRow(3, 3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3);
+            do setRow(4, 3,0,0,0,0,0,0,0,0,0,0,0,0,39,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3);
+            do setRow(5, 3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3);
+            do setRow(6, 3,0,6,0,0,6,0,0,6,0,0,0,0,0,0,170,0,0,0,0,0,6,0,0,0,6,0,0,6,0,0,3);
+            do setRow(7, 3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3);
+            do setRow(8, 3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3);
+            do setRow(9, 180,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3);
+            do setRow(10, 3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3);
+            do setRow(11, 3,0,6,0,0,6,0,0,6,0,0,6,0,0,0,0,0,0,0,6,0,0,6,0,0,6,0,0,6,0,0,3);
+            do setRow(12, 3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3);
+            do setRow(13, 3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3);
+            do setRow(14, 3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3);
+            do setRow(15, 3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,160,0,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3);
+        return;
+    }
+
+    method void initMap7() { //intérieur arène
+        do setRow(0, 16,16,16,16,41,41,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16);
+        do setRow(1, 16,41,41,41,41,41,16,16,16,16,16,41,41,41,41,41,41,41,41,41,16,16,16,16,41,41,41,41,41,41,41,41);
+        do setRow(2, 16,41,16,16,16,41,41,41,41,16,16,41,41,41,41,41,41,41,41,41,16,16,16,16,41,16,16,41,3,16,16,41);
+        do setRow(3, 16,41,16,3,41,41,16,16,41,16,16,41,41,41,41,41,41,41,41,41,16,16,16,3,41,16,16,41,16,16,16,41);
+        do setRow(4, 16,41,16,16,16,16,16,16,41,16,16,16,16,0,0,0,16,16,16,16,16,16,16,41,41,16,16,41,16,16,16,41);
+        do setRow(5, 16,41,16,16,16,16,16,16,41,41,16,16,40,40,0,40,40,16,16,16,16,16,41,41,16,16,16,41,16,16,16,41);
+        do setRow(6, 16,41,41,41,41,16,16,16,41,41,16,16,0,40,40,40,0,16,16,16,16,16,41,16,16,16,16,41,16,16,16,41);
+        do setRow(7, 16,41,16,16,41,16,16,41,41,41,41,16,40,0,0,0,40,16,16,16,16,16,41,16,16,16,41,41,41,41,41,41);
+        do setRow(8, 16,41,16,3,41,16,16,41,16,16,41,16,0,40,40,40,0,16,16,16,16,16,41,41,16,16,41,16,16,16,16,41);
+        do setRow(9, 16,41,16,16,41,16,16,41,16,16,41,16,41,41,41,41,41,16,16,3,16,16,16,41,16,16,41,16,16,16,16,41);
+        do setRow(10, 16,41,16,16,41,16,3,41,16,16,41,16,16,16,16,16,41,41,41,41,16,16,16,41,16,16,41,16,16,16,41,41);
+        do setRow(11, 16,41,16,16,41,16,16,41,16,16,41,16,16,16,16,16,16,16,41,41,41,41,41,41,16,16,41,3,16,16,41,16);
+        do setRow(12, 16,41,16,16,41,16,41,41,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,41,16,16,16,41,41);
+        do setRow(13, 16,41,0,16,41,16,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,16,16,16,41,16);
+        do setRow(14, 16,41,41,41,41,41,41,16,16,16,16,16,41,41,41,41,41,41,41,16,16,41,16,16,16,16,16,16,16,0,41,16);
+        do setRow(15, 16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,170,16,16,16,16,16,41,41,41,41,41,41,41,41,41,41,16);
+        return;
+    }
+        method void initMap8() { //test_oasis quack
+            do setRow(0, 52,52,52,52,52,52,52,52,52,52,52,52,52,53,54,53,52,52,52,52,52,52,52,52,52,52,52,52,52,52,52,52);
+            do setRow(1, 52,51,51,50,51,51,51,51,50,50,50,51,51,53,54,53,50,50,52,50,50,50,50,50,52,50,50,50,50,50,50,52);
+            do setRow(2, 52,50,50,50,51,51,50,51,51,51,51,51,50,53,54,53,50,50,52,50,50,50,49,50,52,50,50,50,50,52,50,52);
+            do setRow(3, 52,50,51,51,51,51,49,51,50,50,51,50,51,53,54,53,50,50,50,50,50,50,49,50,52,50,49,50,50,50,50,52);
+            do setRow(4, 52,51,50,51,51,50,49,51,50,51,50,51,51,53,54,53,50,50,50,50,50,0,49,0,0,0,49,50,50,50,50,52);
+            do setRow(5, 52,50,51,51,50,51,49,50,51,51,51,50,50,53,54,53,50,50,50,50,0,0,2,2,2,2,49,50,49,50,50,52);
+            do setRow(6, 52,51,51,51,51,50,51,51,51,51,51,51,51,53,54,53,50,50,50,49,2,2,2,2,2,2,2,0,49,50,50,52);
+            do setRow(7, 52,50,50,50,51,50,51,51,50,51,51,50,51,53,54,53,50,50,50,49,2,2,2,2,2,2,2,2,49,50,50,52);
+            do setRow(8, 52,50,51,52,52,52,52,52,52,50,51,50,52,53,54,53,50,50,50,49,2,2,2,2,2,2,2,2,0,50,50,52);
+            do setRow(9, 52,51,52,51,50,50,50,51,51,50,51,52,51,23,24,25,50,50,50,0,0,2,2,2,2,2,2,0,0,50,50,180);
+            do setRow(10, 52,52,50,51,51,51,50,51,51,51,52,50,51,53,54,53,50,50,50,50,49,2,2,2,2,2,49,0,50,50,50,52);
+            do setRow(11, 52,50,51,50,50,52,52,52,52,52,50,51,51,53,54,53,50,50,50,50,49,0,49,0,0,0,49,50,50,50,50,52);
+            do setRow(12, 52,52,51,51,50,50,51,50,51,52,51,51,51,53,54,53,50,50,50,50,49,50,49,50,52,50,49,50,50,50,50,52);
+            do setRow(13, 52,52,50,51,50,50,51,51,51,50,50,50,51,53,54,53,50,50,50,50,50,50,49,50,52,50,50,50,50,52,50,52);
+            do setRow(14, 52,51,50,52,51,50,50,50,51,50,51,50,51,53,54,53,50,50,50,50,52,50,50,50,52,50,50,50,50,50,50,52);
+            do setRow(15, 52,52,52,52,52,52,52,52,52,52,52,52,52,53,54,53,52,52,52,52,52,52,52,52,52,52,52,52,52,52,52,52);
+        return;
+    }
+    
+    
+    method void setRow(int row, int t0, int t1, int t2, int t3, int t4, int t5, int t6, int t7,
+                       int t8, int t9, int t10, int t11, int t12, int t13, int t14, int t15,
+                       int t16, int t17, int t18, int t19, int t20, int t21, int t22, int t23,
+                       int t24, int t25, int t26, int t27, int t28, int t29, int t30, int t31) {
+        var int offset;
+        let offset = row * width;
+        
+        let tiles[offset + 0] = t0;
+        let tiles[offset + 1] = t1;
+        let tiles[offset + 2] = t2;
+        let tiles[offset + 3] = t3;
+        let tiles[offset + 4] = t4;
+        let tiles[offset + 5] = t5;
+        let tiles[offset + 6] = t6;
+        let tiles[offset + 7] = t7;
+        let tiles[offset + 8] = t8;
+        let tiles[offset + 9] = t9;
+        let tiles[offset + 10] = t10;
+        let tiles[offset + 11] = t11;
+        let tiles[offset + 12] = t12;
+        let tiles[offset + 13] = t13;
+        let tiles[offset + 14] = t14;
+        let tiles[offset + 15] = t15;
+        let tiles[offset + 16] = t16;
+        let tiles[offset + 17] = t17;
+        let tiles[offset + 18] = t18;
+        let tiles[offset + 19] = t19;
+        let tiles[offset + 20] = t20;
+        let tiles[offset + 21] = t21;
+        let tiles[offset + 22] = t22;
+        let tiles[offset + 23] = t23;
+        let tiles[offset + 24] = t24;
+        let tiles[offset + 25] = t25;
+        let tiles[offset + 26] = t26;
+        let tiles[offset + 27] = t27;
+        let tiles[offset + 28] = t28;
+        let tiles[offset + 29] = t29;
+        let tiles[offset + 30] = t30;
+        let tiles[offset + 31] = t31;
+        
+        return;
+    }
+    
+    method int getTile(int x, int y) {
+        if ((x < 0) | (x > (width - 1)) | (y < 0) | (y > (height - 1))) {
+            return 3;
+        }
+        return tiles[(y * width) + x];
+    }
+    
+    method Array findPortal(int portalId) {
+        var int i, j, tile;
+        var Array result;
+        
+        let result = Array.new(2);
+        
+        let j = 0;
+        while (j < height) {
+            let i = 0;
+            while (i < width) {
+                let tile = tiles[(j * width) + i];
+                if (tile = portalId) {
+                    let result[0] = i;
+                    let result[1] = j;
+                    return result;
+                }
+                let i = i + 1;
+            }
+            let j = j + 1;
+        }
+        
+        // Position par défaut si portail non trouvé
+        let result[0] = 10;
+        let result[1] = 10;
+        return result;
+    }
+    
+    method void draw() {
+        var int i, j, tile, x, y;
+        
+        // PREMIÈRE PASSE : Dessiner le sol (types de base)
+        let j = 0;
+        while (j < height) {
+            let i = 0;
+            while (i < width) {
+                let tile = tiles[(j * width) + i];
+                // Dessiner seulement les tuiles de sol
+                if ((tile = 0) | (tile = 1) | (tile = 2) | (tile = 3) | 
+                    (tile = 7) | (tile = 18) | (tile = 27) | (tile > 149)) {
+                    let x = i * tileSize;
+                    let y = j * tileSize;
+                    do drawTile(x, y, tile, i, j);
+                }
+                let i = i + 1;
+            }
+            let j = j + 1;
+        }
+        
+        // DEUXIÈME PASSE : Dessiner les bâtiments et objets par-dessus
+        let j = 0;
+        while (j < height) {
+            let i = 0;
+            while (i < width) {
+                let tile = tiles[(j * width) + i];
+                // Dessiner seulement les bâtiments et objets
+                if (~((tile = 0) | (tile = 1) | (tile = 2) | (tile = 3) | 
+                    (tile = 7) | (tile = 18) | (tile = 27) | (tile > 149))) {
+                    let x = i * tileSize;
+                    let y = j * tileSize;
+                    do drawTile(x, y, tile, i, j);
+                }
+                let i = i + 1;
+            }
+            let j = j + 1;
+        }
+        
+        return;
+    }
+// Dans la méthode drawTile de Map.jack, remplacez la section des bâtiments par :
+
+    method void drawTile(int x, int y, int type, int tileX, int tileY) {
+        var int location;
+        let location = (y * 32) + (x / 16);
+        
+        // Types de base
+        if (type = 1) { do Sprites.drawGrass(location); return; }
+        if (type = 0) { do Sprites.drawChemin(location); return; }
+        if (type = 2) { do Sprites.drawWater(location); return; }
+        if (type = 3) { do Sprites.drawTree(location); return; }
+        if (type = 7) { do Sprites.drawParquet(location); return; }
+        if (type = 8) { do Sprites.drawWall1(location); return; }
+        if (type = 9) { do Sprites.drawWall2(location); return; }
+        if (type = 10) { do Sprites.drawtable_pokeball_droite(location); return; }
+        if (type = 11) { do Sprites.drawtable_pokeball_gauche(location); return; }
+        if (type = 12) { do Sprites.drawtable_pokeball_milieu(location); return; }
+        if (type = 13) { do Sprites.drawWall3(location); return; }
+        if (type = 14) { do Sprites.drawWall4(location); return; }
+        if (type = 15) { do Sprites.drawWall5(location); return; }
+        if (type = 16) { do Sprites.drawvoid(location); return; }
+        if (type = 17) { do Sprites.drawpokeballsauvage(location); return; }
+        if (type = 18) { do Sprites.drawCarrelage(location); return; }
+        if (type = 19) { do Sprites.drawlongburreaux(location); return; }
+        if (type = 20) { do Sprites.drawSapin(location); return;}
+        if (type = 21) { do Sprites.drawetagere(location); return;}
+        if (type = 22) { do Sprites.drawincubateur(location); return;}
+        if (type = 23) {do Sprites.drawBridge1(location); return;}
+        if (type = 24) {do Sprites.drawBridge2(location); return;}
+        if (type = 25) {do Sprites.drawBridge3(location); return;}
+        if (type = 26) {do Sprites.drawTabouret(location); return;}
+        if (type = 27) {do Sprites.drawParquet2(location);return;}
+        if (type = 28) { do Sprites.drawTV(location); return;}
+        if (type = 29) {do Sprites.drawtablebasgauche(location); return;}
+        if (type = 30) {do Sprites.drawtablebasdroit(location); return;}
+        if (type = 31) {do Sprites.drawtablehautgauche(location); return;}
+        if (type = 32) {do Sprites.drawtablehautdroit(location); return;}
+        if (type =33) {do Sprites.drawcheminlateral(location); return;}
+        if (type =34) {do Sprites.drawcheminhorizontale(location); return;}
+        if (type =35) {do Sprites.drawchemintounrebasgauche(location); return;}  
+        if (type =36) {do Sprites.drawchemintournedroitebas(location); return;}
+        if (type =37) {do Sprites.drawchemintournegauchehaut(location); return;}  
+        if (type =38) {do Sprites.drawchemintournedroitehaut(location); return;}
+        if (type = 42) {do Sprites.drawbasetagere(location); return;}
+        if (type = 43) {do Sprites.drawhautetagere(location); return;}
+        if (type = 44) {do Sprites.drawTableaux(location); return ;}
+        if (type = 45) {do Sprites.drawtablelabo1(location); return;}
+        if (type = 46) {do Sprites.drawtablelabo2(location); return;}
+        if (type = 47) {do Sprites.drawtablelabo3(location); return;}
+        if (type = 48) {do Sprites.drawtablelabo4(location); return;}
+        if (type = 39) {do Sprites.drawArena(location); return;}
+        if (type = 40) {do Sprites.drawrock(location); return;}
+        if (type = 41) {do Sprites.drawcarelageareene(location); return;}
+        if (type = 52) {do Sprites.drawCactoos(location); return;}
+        if (type = 50) {do Sprites.drawSable1(location); return;}
+        if (type = 51) {do Sprites.drawSable2(location); return;}
+        if (type = 53) {do Sprites.drawFlote1(location); return;}
+        if (type = 54) {do Sprites.drawFlotte2(location); return;}
+
+        
+        if (type =49){
+            if ((tileY = 3) & (tileX = 6)) {do Sprites.drawquackingtree(location);}
+            if ((tileY = 2) & (tileX = 22)) {do Sprites.drawquackingtree(location);}
+            if ((tileY = 3) & (tileX = 26)) {do Sprites.drawquackingtree(location);}
+            if ((tileY = 5) & (tileX = 28)) {do Sprites.drawquackingtree(location);}
+            if ((tileY = 6) & (tileX = 19)) {do Sprites.drawquackingtree(location);}
+            if ((tileY = 10) & (tileX = 20)) {do Sprites.drawquackingtree(location);}
+            if ((tileY = 10) & (tileX = 26)) {do Sprites.drawquackingtree(location);}
+            if ((tileY = 11) & (tileX = 22)) {do Sprites.drawquackingtree(location);}
+            return;
+        }
+        // Maisons type 1 (2x3) - MAP 0
+        if (type = 5) {
+            if ((tileX = 2) & (tileY = 6)) { do Sprites.drawMaison1(location); }
+            if ((tileX = 7) & (tileY = 3)) { do Sprites.drawMaison1(location); }
+            return;
+        }
+        if (type = 6) {
+             do Sprites.drawMaisons2(location); 
+            return;
+        }
+        // Maisons type 1 (2x3)
+
+        // Centre Pokémon (type 4)
+        if (type = 4) {
+            // Dessiner le Centre Pokémon seulement à la position principale
+            do Sprites.drawPokeCenter(location); 
+            return;
+        }
+        
+        // Maisons type 2 (2x2) - MAP 0
+
+        if (type = 39) {
+            if ((tileX = 14) & (tileY = 7)) {
+                do Sprites.drawArena(location);
+            }
+            return;
+        }
+        
+        // Portails (50+) - afficher comme du chemin
+        if (type > 149) {
+            if (~(type = 155)){
+                do Sprites.drawChemin(location);
+            }
+            if (~(type= 153)){
+                do Sprites.drawChemin(location);
+            } 
+            return;
+
+        }
+        
+        return;
+    }
+    
+    method void redrawTile(int tileX, int tileY) {
+            var int tile, x, y;
+            let tile = getTile(tileX, tileY);
+            let x = tileX * tileSize;
+            let y = tileY * tileSize;
+            do drawTile(x, y, tile, tileX, tileY);
+            return;
+        }
+
+    
+    method void setTile(int x, int y, int newTile) {
+        if ((x < 0) | (x > (width - 1)) | (y < 0) | (y > (height - 1))) {
+            return;
+        }
+        let tiles[(y * width) + x] = newTile;
+        return;
+    }
+
+    
+    method void dispose() {
+        do tiles.dispose();
+        do Memory.deAlloc(this);
+        return;
+    }
+}

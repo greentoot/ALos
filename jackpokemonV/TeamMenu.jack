@@ -1,0 +1,363 @@
+class TeamMenu {
+    field Team team;
+    field int selectedIndex;
+    field boolean inSwapMode;
+    field int swapIndex;
+    field boolean inDetailsMode;
+    
+    constructor TeamMenu new(Team playerTeam) {
+        let team = playerTeam;
+        let selectedIndex = 0;
+        let inSwapMode = false;
+        let swapIndex = -1;
+        let inDetailsMode = false;
+        return this;
+    }
+    
+    method void display() {
+        if (inDetailsMode) {
+            do displayDetails();
+        } else {
+            do displayTeamList();
+        }
+        return;
+    }
+    
+    method void displayTeamList() {
+        do Screen.clearScreen();
+        
+        // Titre
+        do Output.moveCursor(1, 20);
+        do Strings.printEquipe();
+        
+        do Output.moveCursor(2, 15);
+        do Strings.drawseparation();
+        
+        // Instructions
+        do Output.moveCursor(3, 2);
+        if (inSwapMode) {
+            do Strings.printSelectionnerDestination();
+        } else {
+            do Strings.printInstructions();
+        }
+        
+        do drawAllSlots();
+        return;
+    }
+    
+    
+    
+    method void drawAllSlots() {
+        var int i;
+        var int startRow;
+        
+        let startRow = 5;
+        let i = 0;
+        
+        // Afficher tous les 6 slots (même vides)
+        while (i < 6) {
+            do drawSlot(i, startRow + (i * 3));
+            let i = i + 1;
+        }
+        
+        return;
+    }
+    
+    method void drawSlot(int index, int row) {
+    var Pokemon poke;
+    var int count;
+    
+    let count = team.getCount();
+    
+    // Indicateur de sélection
+    do Output.moveCursor(row, 2);
+    if (index = selectedIndex) {
+        do Output.printChar(62);  // '>'
+    } else {
+        do Output.printChar(32);  // espace
+    }
+    
+    // Indicateur de swap
+    if ((inSwapMode) & (index = swapIndex)) {
+        do Output.printChar(60);  // '<'
+        do Output.printChar(83);  // S
+        do Output.printChar(87);  // W
+        do Output.printChar(65);  // A
+        do Output.printChar(80);  // P
+        do Output.printChar(62);  // '>'
+    }
+    
+    // Si le slot est vide
+    if (index > (count - 1)) {
+        do Output.moveCursor(row, 15);
+        do Strings.printVide();
+        return;
+    }
+    
+    // Sinon afficher les infos du Pokémon
+    let poke = team.getPokemon(index);
+    if (poke = null) {
+        do Output.moveCursor(row, 15);
+        do Strings.printVide();
+        return;
+    }
+    
+    // Indicateur actif
+    if (index = team.getActiveIndex()) {
+        do Output.printChar(32);  // espace
+        do Output.printChar(91);  // [
+        do Output.printChar(65);  // A
+        do Output.printChar(67);  // C
+        do Output.printChar(84);  // T
+        do Output.printChar(73);  // I
+        do Output.printChar(70);  // F
+        do Output.printChar(93);  // ]
+        do Output.printChar(32);  // espace
+    }
+    
+    // Nom du Pokémon
+    do Output.moveCursor(row, 15);
+    do Strings.printPokemonName(poke.getType());
+    
+    // Niveau
+    do Output.printChar(32);  // espace
+    do Strings.printNv();
+    do Output.printInt(poke.getLevel());
+    
+    // HP
+    do Output.moveCursor(row + 1, 15);
+    do Strings.printHP();
+    do Output.printInt(poke.getHp());
+    do Output.printChar(47);  // /
+    do Output.printInt(poke.getMaxHp());
+    
+    // Barre de vie visuelle
+    do drawMiniHpBar(row + 1, 25, poke.getHp(), poke.getMaxHp());
+    
+
+    
+    return;
+}
+
+// Modifiez aussi displayDetails pour ajouter l'XP
+method void displayDetails() {
+    var Pokemon poke;
+    var int count;
+    
+    do Screen.clearScreen();
+    
+    let count = team.getCount();
+    
+    // Titre
+    do Output.moveCursor(1, 15);
+    do Strings.printDetailsTitle();
+    
+    do Output.moveCursor(2, 12);
+    do Strings.drawseparation();
+    
+    // Vérifier si le slot est vide
+    if (selectedIndex > (count - 1)) {
+        do Output.moveCursor(5, 15);
+        do Strings.printSlotVide();
+        do Output.moveCursor(20, 10);
+        do Strings.printPressQToReturn();
+        return;
+    }
+    
+    let poke = team.getPokemon(selectedIndex);
+    if (poke = null) {
+        do Output.moveCursor(5, 15);
+        do Strings.printSlotVide();
+        do Output.moveCursor(20, 10);
+        do Strings.printPressQToReturn();
+        return;
+    }
+    
+    // Nom
+    do Output.moveCursor(5, 10);
+    do Strings.printNom();
+    do Strings.printPokemonName(poke.getType());
+    
+    // Niveau
+    do Output.moveCursor(7, 10);
+    do Strings.printNiveau();
+    do Output.printInt(poke.getLevel());
+    
+    
+    // HP
+    do Output.moveCursor(10, 10);
+    do Strings.printPV();
+    do Output.printInt(poke.getHp());
+    do Output.printChar(32);  // espace
+    do Output.printChar(47);  // /
+    do Output.printChar(32);  // espace
+    do Output.printInt(poke.getMaxHp());
+    
+    // Attaque
+    do Output.moveCursor(12, 10);
+    do Strings.printAttaque();
+    do Output.printInt(poke.getAttack());
+    
+    // Défense
+    do Output.moveCursor(14, 10);
+    do Strings.printDefense();
+    do Output.printInt(poke.getDefense());
+    
+    // Statut
+    do Output.moveCursor(16, 10);
+    do Strings.printStatut();
+    if (poke.isFainted()) {
+        do Strings.printKO();
+    } else {
+        do Strings.printEnForme();
+    }
+    
+    // Instructions
+    do Output.moveCursor(20, 10);
+    do Strings.printPressENTREToReturn();
+    
+    return;
+}
+method void drawMiniExpBar(int row, int col, int currentExp, int maxExp) {
+    var int barWidth, expWidth, i;
+    let barWidth = 15;
+    
+    if (maxExp > 0) {
+        let expWidth = (currentExp * barWidth) / maxExp;
+    } else {
+        let expWidth = 0;
+    }
+    
+    do Output.moveCursor(row, col);
+    do Output.printChar(91);  // [
+    
+    let i = 0;
+    while (i < barWidth) {
+        if (i < expWidth) {
+            do Output.printChar(35);  // # pour XP
+        } else {
+            do Output.printChar(32);  // espace
+        }
+        let i = i + 1;
+    }
+    do Output.printChar(93);  // ]
+    return;
+}
+    
+
+    method void drawMiniHpBar(int row, int col, int currentHp, int maxHp) {
+        var int barWidth, hpWidth, i;
+        let barWidth = 20;
+        let hpWidth = (currentHp * barWidth) / maxHp;
+        
+        do Output.moveCursor(row, col);
+        do Output.printChar(91);  // [
+        
+        let i = 0;
+        while (i < barWidth) {
+            if (i < hpWidth) {
+                do Output.printChar(61);  // =
+            } else {
+                do Output.printChar(32);  // espace
+            }
+            let i = i + 1;
+        }
+        do Output.printChar(93);  // ]
+        return;
+    }
+  
+    
+    method void moveSelection(int direction) {
+        var int maxIndex;
+        let maxIndex = 5; // Toujours 6 slots (0-5)
+        
+        let selectedIndex = selectedIndex + direction;
+        
+        // Navigation circulaire
+        if (selectedIndex < 0) {
+            let selectedIndex = maxIndex;
+        }
+        if (selectedIndex > maxIndex) {
+            let selectedIndex = 0;
+        }
+        
+        return;
+    }
+    
+    method void handleInput(char key) {
+        var Pokemon poke;
+        
+        // Si on est dans les détails
+        if (inDetailsMode) {
+            if (key = 128) { // ENTREE - Quitter les détails
+                let inDetailsMode = false;
+            }
+            return;
+        }
+        
+        // Navigation
+        if (key = 131) { do moveSelection(-1); } // Haut
+        if (key = 133) { do moveSelection(1); }  // Bas
+        
+        // Entrée - Afficher détails
+        if (key = 128) {
+            if (inSwapMode) {
+                // Effectuer le swap
+                do team.swapPokemon(swapIndex, selectedIndex);
+                let inSwapMode = false;
+                let swapIndex = -1;
+            } else {
+                let inDetailsMode = true;
+            }
+        }
+        
+        // a (97) - Définir comme actif
+        if (key = 97) {
+            if (selectedIndex < team.getCount()) {
+                let poke = team.getPokemon(selectedIndex);
+                if (~(poke = null)) {
+                    do team.setActive(selectedIndex);
+                    
+                    // Message de confirmation
+                    do Output.moveCursor(22, 2);
+                    do Strings.printPokemonDefiniActif();
+                    do Sys.wait(1500);
+                    do Output.moveCursor(22, 2);
+                    do Strings.printespace();
+                }
+            } else {
+                // Slot vide
+                do Output.moveCursor(22, 2);
+                do Strings.printImpossibleSlotVide();
+                do Sys.wait(1500);
+                do Output.moveCursor(22, 2);
+                do Strings.printespace();
+            }
+        }
+        
+        // s (115) - Mode swap
+        if (key = 115) {
+            if (~inSwapMode) {
+                if (selectedIndex < team.getCount()) {
+                    let poke = team.getPokemon(selectedIndex);
+                    if (~(poke = null)) {
+                        let inSwapMode = true;
+                        let swapIndex = selectedIndex;
+                    }
+                }
+            }
+        }
+        
+        return;
+    }
+    
+    method int getSelectedIndex() {
+        return selectedIndex;
+    }
+    
+    method void dispose() {
+        do Memory.deAlloc(this);
+        return;
+    }
+
+}

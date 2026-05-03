@@ -1,0 +1,7000 @@
+function Map.new 0
+    push constant 5
+    call Memory.alloc 1
+    pop pointer 0
+    push argument 0
+    pop this 4
+    push constant 32
+    pop this 1
+    push constant 16
+    pop this 2
+    push constant 16
+    pop this 3
+    push this 1
+    push this 2
+    call Math.multiply 2
+    call Array.new 1
+    pop this 0
+    push this 4
+    push constant 0
+    eq
+    not
+    if-goto Map_1
+    push pointer 0
+    call Map.initMap0 1
+    pop temp 0
+    goto Map_0
+label Map_1
+label Map_0
+    push this 4
+    push constant 1
+    eq
+    not
+    if-goto Map_3
+    push pointer 0
+    call Map.initMap1 1
+    pop temp 0
+    goto Map_2
+label Map_3
+label Map_2
+    push this 4
+    push constant 2
+    eq
+    not
+    if-goto Map_5
+    push pointer 0
+    call Map.initMap2 1
+    pop temp 0
+    goto Map_4
+label Map_5
+label Map_4
+    push this 4
+    push constant 4
+    eq
+    not
+    if-goto Map_7
+    push pointer 0
+    call Map.initMap4 1
+    pop temp 0
+    goto Map_6
+label Map_7
+label Map_6
+    push this 4
+    push constant 3
+    eq
+    not
+    if-goto Map_9
+    push pointer 0
+    call Map.initMap3 1
+    pop temp 0
+    goto Map_8
+label Map_9
+label Map_8
+    push this 4
+    push constant 5
+    eq
+    not
+    if-goto Map_11
+    push pointer 0
+    call Map.initMap5 1
+    pop temp 0
+    goto Map_10
+label Map_11
+label Map_10
+    push this 4
+    push constant 6
+    eq
+    not
+    if-goto Map_13
+    push pointer 0
+    call Map.initMap6 1
+    pop temp 0
+    goto Map_12
+label Map_13
+label Map_12
+    push this 4
+    push constant 7
+    eq
+    not
+    if-goto Map_15
+    push pointer 0
+    call Map.initMap7 1
+    pop temp 0
+    goto Map_14
+label Map_15
+label Map_14
+    push this 4
+    push constant 8
+    eq
+    not
+    if-goto Map_17
+    push pointer 0
+    call Map.initMap8 1
+    pop temp 0
+    goto Map_16
+label Map_17
+label Map_16
+    push pointer 0
+    return
+function Map.initMap0 0
+    push argument 0
+    pop pointer 0
+    push pointer 0
+    push constant 0
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 150
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 1
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 3
+    push constant 3
+    push constant 3
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 2
+    push constant 3
+    push constant 0
+    push constant 3
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 3
+    push constant 3
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 3
+    push constant 3
+    push constant 3
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 3
+    push constant 3
+    push constant 0
+    push constant 3
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 5
+    push constant 5
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 3
+    push constant 3
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 3
+    push constant 3
+    push constant 0
+    push constant 0
+    push constant 6
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 3
+    push constant 3
+    push constant 3
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 4
+    push constant 3
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 5
+    push constant 153
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 3
+    push constant 3
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 3
+    push constant 3
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 5
+    push constant 3
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 33
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 3
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 6
+    push constant 3
+    push constant 0
+    push constant 5
+    push constant 5
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 33
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 3
+    push constant 3
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 3
+    push constant 3
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 3
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 7
+    push constant 3
+    push constant 0
+    push constant 5
+    push constant 156
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 33
+    push constant 3
+    push constant 3
+    push constant 0
+    push constant 0
+    push constant 3
+    push constant 3
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 3
+    push constant 3
+    push constant 0
+    push constant 0
+    push constant 3
+    push constant 3
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 3
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 8
+    push constant 3
+    push constant 0
+    push constant 0
+    push constant 33
+    push constant 0
+    push constant 38
+    push constant 34
+    push constant 34
+    push constant 35
+    push constant 3
+    push constant 3
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 3
+    push constant 3
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 3
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 9
+    push constant 3
+    push constant 0
+    push constant 0
+    push constant 36
+    push constant 34
+    push constant 35
+    push constant 3
+    push constant 3
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 3
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 10
+    push constant 3
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 3
+    push constant 3
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 1
+    push constant 1
+    push constant 2
+    push constant 2
+    push constant 2
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 3
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 11
+    push constant 3
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 1
+    push constant 2
+    push constant 2
+    push constant 2
+    push constant 2
+    push constant 2
+    push constant 2
+    push constant 1
+    push constant 1
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 4
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 3
+    push constant 3
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 12
+    push constant 3
+    push constant 3
+    push constant 0
+    push constant 0
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 3
+    push constant 3
+    push constant 1
+    push constant 2
+    push constant 2
+    push constant 2
+    push constant 2
+    push constant 2
+    push constant 2
+    push constant 2
+    push constant 1
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 155
+    push constant 0
+    push constant 0
+    push constant 3
+    push constant 3
+    push constant 3
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 13
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 0
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 3
+    push constant 3
+    push constant 1
+    push constant 1
+    push constant 2
+    push constant 2
+    push constant 2
+    push constant 2
+    push constant 2
+    push constant 2
+    push constant 1
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 154
+    push constant 0
+    push constant 0
+    push constant 3
+    push constant 3
+    push constant 3
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 14
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 0
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 3
+    push constant 3
+    push constant 3
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 15
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    call Map.setRow 34
+    pop temp 0
+    push constant 0
+    return
+function Map.initMap1 0
+    push argument 0
+    pop pointer 0
+    push pointer 0
+    push constant 0
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 1
+    push constant 3
+    push constant 3
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 3
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 2
+    push constant 151
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 1
+    push constant 1
+    push constant 3
+    push constant 1
+    push constant 3
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 2
+    push constant 2
+    push constant 3
+    push constant 3
+    push constant 4
+    push constant 0
+    push constant 0
+    push constant 3
+    push constant 3
+    push constant 2
+    push constant 2
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 2
+    push constant 2
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 155
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 2
+    push constant 2
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 3
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 4
+    push constant 3
+    push constant 3
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 154
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 3
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 5
+    push constant 3
+    push constant 3
+    push constant 1
+    push constant 3
+    push constant 1
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 3
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 6
+    push constant 3
+    push constant 3
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 3
+    push constant 1
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 3
+    push constant 0
+    push constant 0
+    push constant 3
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 7
+    push constant 3
+    push constant 3
+    push constant 1
+    push constant 3
+    push constant 1
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 3
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 8
+    push constant 3
+    push constant 3
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 1
+    push constant 3
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 3
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 9
+    push constant 3
+    push constant 3
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 1
+    push constant 2
+    push constant 2
+    push constant 2
+    push constant 1
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 3
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 10
+    push constant 3
+    push constant 3
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 3
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 1
+    push constant 2
+    push constant 2
+    push constant 2
+    push constant 1
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 1
+    push constant 1
+    push constant 3
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 11
+    push constant 3
+    push constant 3
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 3
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 1
+    push constant 2
+    push constant 2
+    push constant 2
+    push constant 1
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 1
+    push constant 1
+    push constant 3
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 12
+    push constant 3
+    push constant 3
+    push constant 0
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 1
+    push constant 1
+    push constant 3
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 13
+    push constant 3
+    push constant 3
+    push constant 0
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 3
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 1
+    push constant 1
+    push constant 3
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 14
+    push constant 3
+    push constant 3
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 1
+    push constant 1
+    push constant 3
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 15
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 150
+    push constant 0
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    call Map.setRow 34
+    pop temp 0
+    push constant 0
+    return
+function Map.initMap3 0
+    push argument 0
+    pop pointer 0
+    push pointer 0
+    push constant 0
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 9
+    push constant 9
+    push constant 9
+    push constant 9
+    push constant 9
+    push constant 44
+    push constant 44
+    push constant 9
+    push constant 9
+    push constant 9
+    push constant 9
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 1
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 8
+    push constant 8
+    push constant 8
+    push constant 8
+    push constant 8
+    push constant 8
+    push constant 8
+    push constant 43
+    push constant 43
+    push constant 43
+    push constant 43
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 2
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 47
+    push constant 48
+    push constant 47
+    push constant 48
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 42
+    push constant 42
+    push constant 42
+    push constant 42
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 3
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 46
+    push constant 45
+    push constant 46
+    push constant 45
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 4
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 11
+    push constant 12
+    push constant 10
+    push constant 7
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 5
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 6
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 7
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 8
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 9
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 43
+    push constant 43
+    push constant 43
+    push constant 43
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 43
+    push constant 43
+    push constant 43
+    push constant 43
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 10
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 42
+    push constant 42
+    push constant 42
+    push constant 42
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 42
+    push constant 42
+    push constant 42
+    push constant 42
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 11
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 12
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 13
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 7
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 14
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 153
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 15
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    call Map.setRow 34
+    pop temp 0
+    push constant 0
+    return
+function Map.initMap2 0
+    push argument 0
+    pop pointer 0
+    push pointer 0
+    push constant 0
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 2
+    push constant 2
+    push constant 2
+    push constant 2
+    push constant 2
+    push constant 2
+    push constant 2
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 160
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 1
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 0
+    push constant 0
+    push constant 3
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 2
+    push constant 2
+    push constant 2
+    push constant 2
+    push constant 2
+    push constant 2
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 3
+    push constant 3
+    push constant 3
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 2
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 3
+    push constant 3
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 2
+    push constant 2
+    push constant 2
+    push constant 2
+    push constant 0
+    push constant 2
+    push constant 2
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 3
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 1
+    push constant 0
+    push constant 1
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 2
+    push constant 2
+    push constant 2
+    push constant 0
+    push constant 2
+    push constant 2
+    push constant 2
+    push constant 2
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 3
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 4
+    push constant 3
+    push constant 3
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 1
+    push constant 1
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 2
+    push constant 2
+    push constant 2
+    push constant 2
+    push constant 2
+    push constant 2
+    push constant 2
+    push constant 0
+    push constant 3
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 5
+    push constant 3
+    push constant 3
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 0
+    push constant 0
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 1
+    push constant 2
+    push constant 2
+    push constant 2
+    push constant 2
+    push constant 2
+    push constant 2
+    push constant 2
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 6
+    push constant 3
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 1
+    push constant 1
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 0
+    push constant 0
+    push constant 1
+    push constant 1
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 2
+    push constant 2
+    push constant 2
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 7
+    push constant 3
+    push constant 0
+    push constant 0
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 3
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 3
+    push constant 1
+    push constant 0
+    push constant 1
+    push constant 1
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 1
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 2
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 8
+    push constant 3
+    push constant 0
+    push constant 0
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 9
+    push constant 3
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 1
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 10
+    push constant 3
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 1
+    push constant 1
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 3
+    push constant 3
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 0
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 11
+    push constant 3
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 0
+    push constant 0
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 12
+    push constant 3
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 1
+    push constant 1
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 0
+    push constant 0
+    push constant 151
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 13
+    push constant 2
+    push constant 2
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 0
+    push constant 1
+    push constant 1
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 0
+    push constant 0
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 14
+    push constant 2
+    push constant 2
+    push constant 2
+    push constant 2
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 1
+    push constant 1
+    push constant 3
+    push constant 3
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    push constant 1
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 15
+    push constant 2
+    push constant 2
+    push constant 2
+    push constant 2
+    push constant 2
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    call Map.setRow 34
+    pop temp 0
+    push constant 0
+    return
+function Map.initMap4 0
+    push argument 0
+    pop pointer 0
+    push pointer 0
+    push constant 0
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 1
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 2
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 3
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 9
+    push constant 9
+    push constant 9
+    push constant 9
+    push constant 9
+    push constant 9
+    push constant 9
+    push constant 9
+    push constant 9
+    push constant 9
+    push constant 9
+    push constant 9
+    push constant 9
+    push constant 9
+    push constant 9
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 4
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 8
+    push constant 8
+    push constant 8
+    push constant 8
+    push constant 8
+    push constant 8
+    push constant 8
+    push constant 8
+    push constant 8
+    push constant 8
+    push constant 8
+    push constant 8
+    push constant 8
+    push constant 8
+    push constant 8
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 5
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 6
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 7
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 19
+    push constant 19
+    push constant 19
+    push constant 19
+    push constant 19
+    push constant 18
+    push constant 19
+    push constant 19
+    push constant 19
+    push constant 19
+    push constant 19
+    push constant 18
+    push constant 19
+    push constant 19
+    push constant 19
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 8
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 9
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 10
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 11
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 12
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 18
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 13
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 154
+    push constant 155
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 14
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 15
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    call Map.setRow 34
+    pop temp 0
+    push constant 0
+    return
+function Map.initMap5 0
+    push argument 0
+    pop pointer 0
+    push pointer 0
+    push constant 0
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 1
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 2
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 3
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 9
+    push constant 9
+    push constant 9
+    push constant 9
+    push constant 9
+    push constant 9
+    push constant 9
+    push constant 9
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 4
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 43
+    push constant 43
+    push constant 8
+    push constant 8
+    push constant 8
+    push constant 8
+    push constant 8
+    push constant 8
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 5
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 42
+    push constant 42
+    push constant 27
+    push constant 28
+    push constant 27
+    push constant 27
+    push constant 27
+    push constant 27
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 6
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 27
+    push constant 27
+    push constant 27
+    push constant 27
+    push constant 27
+    push constant 27
+    push constant 27
+    push constant 27
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 7
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 27
+    push constant 27
+    push constant 27
+    push constant 27
+    push constant 27
+    push constant 27
+    push constant 27
+    push constant 27
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 8
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 27
+    push constant 27
+    push constant 27
+    push constant 27
+    push constant 27
+    push constant 27
+    push constant 27
+    push constant 27
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 9
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 27
+    push constant 27
+    push constant 26
+    push constant 31
+    push constant 32
+    push constant 26
+    push constant 27
+    push constant 27
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 10
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 27
+    push constant 27
+    push constant 26
+    push constant 29
+    push constant 30
+    push constant 26
+    push constant 27
+    push constant 27
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 11
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 27
+    push constant 27
+    push constant 27
+    push constant 27
+    push constant 27
+    push constant 27
+    push constant 27
+    push constant 27
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 12
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 27
+    push constant 27
+    push constant 27
+    push constant 27
+    push constant 27
+    push constant 27
+    push constant 27
+    push constant 27
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 13
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 156
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 14
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 15
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    call Map.setRow 34
+    pop temp 0
+    push constant 0
+    return
+function Map.initMap6 0
+    push argument 0
+    pop pointer 0
+    push pointer 0
+    push constant 0
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 1
+    push constant 3
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 3
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 2
+    push constant 3
+    push constant 0
+    push constant 6
+    push constant 0
+    push constant 0
+    push constant 6
+    push constant 0
+    push constant 0
+    push constant 6
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 6
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 6
+    push constant 0
+    push constant 0
+    push constant 6
+    push constant 0
+    push constant 0
+    push constant 3
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 3
+    push constant 3
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 3
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 4
+    push constant 3
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 39
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 3
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 5
+    push constant 3
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 3
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 6
+    push constant 3
+    push constant 0
+    push constant 6
+    push constant 0
+    push constant 0
+    push constant 6
+    push constant 0
+    push constant 0
+    push constant 6
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 170
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 6
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 6
+    push constant 0
+    push constant 0
+    push constant 6
+    push constant 0
+    push constant 0
+    push constant 3
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 7
+    push constant 3
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 3
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 8
+    push constant 3
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 3
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 9
+    push constant 180
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 3
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 10
+    push constant 3
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 3
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 11
+    push constant 3
+    push constant 0
+    push constant 6
+    push constant 0
+    push constant 0
+    push constant 6
+    push constant 0
+    push constant 0
+    push constant 6
+    push constant 0
+    push constant 0
+    push constant 6
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 6
+    push constant 0
+    push constant 0
+    push constant 6
+    push constant 0
+    push constant 0
+    push constant 6
+    push constant 0
+    push constant 0
+    push constant 6
+    push constant 0
+    push constant 0
+    push constant 3
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 12
+    push constant 3
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 3
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 13
+    push constant 3
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 3
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 14
+    push constant 3
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 3
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 15
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 160
+    push constant 0
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    push constant 3
+    call Map.setRow 34
+    pop temp 0
+    push constant 0
+    return
+function Map.initMap7 0
+    push argument 0
+    pop pointer 0
+    push pointer 0
+    push constant 0
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 41
+    push constant 41
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 1
+    push constant 16
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 41
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 2
+    push constant 16
+    push constant 41
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 16
+    push constant 16
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 41
+    push constant 16
+    push constant 16
+    push constant 41
+    push constant 3
+    push constant 16
+    push constant 16
+    push constant 41
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 3
+    push constant 16
+    push constant 41
+    push constant 16
+    push constant 3
+    push constant 41
+    push constant 41
+    push constant 16
+    push constant 16
+    push constant 41
+    push constant 16
+    push constant 16
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 3
+    push constant 41
+    push constant 16
+    push constant 16
+    push constant 41
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 41
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 4
+    push constant 16
+    push constant 41
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 41
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 41
+    push constant 41
+    push constant 16
+    push constant 16
+    push constant 41
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 41
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 5
+    push constant 16
+    push constant 41
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 41
+    push constant 41
+    push constant 16
+    push constant 16
+    push constant 40
+    push constant 40
+    push constant 0
+    push constant 40
+    push constant 40
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 41
+    push constant 41
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 41
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 41
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 6
+    push constant 16
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 41
+    push constant 41
+    push constant 16
+    push constant 16
+    push constant 0
+    push constant 40
+    push constant 40
+    push constant 40
+    push constant 0
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 41
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 41
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 41
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 7
+    push constant 16
+    push constant 41
+    push constant 16
+    push constant 16
+    push constant 41
+    push constant 16
+    push constant 16
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 16
+    push constant 40
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 40
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 41
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 41
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 8
+    push constant 16
+    push constant 41
+    push constant 16
+    push constant 3
+    push constant 41
+    push constant 16
+    push constant 16
+    push constant 41
+    push constant 16
+    push constant 16
+    push constant 41
+    push constant 16
+    push constant 0
+    push constant 40
+    push constant 40
+    push constant 40
+    push constant 0
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 41
+    push constant 41
+    push constant 16
+    push constant 16
+    push constant 41
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 41
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 9
+    push constant 16
+    push constant 41
+    push constant 16
+    push constant 16
+    push constant 41
+    push constant 16
+    push constant 16
+    push constant 41
+    push constant 16
+    push constant 16
+    push constant 41
+    push constant 16
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 16
+    push constant 16
+    push constant 3
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 41
+    push constant 16
+    push constant 16
+    push constant 41
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 41
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 10
+    push constant 16
+    push constant 41
+    push constant 16
+    push constant 16
+    push constant 41
+    push constant 16
+    push constant 3
+    push constant 41
+    push constant 16
+    push constant 16
+    push constant 41
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 41
+    push constant 16
+    push constant 16
+    push constant 41
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 41
+    push constant 41
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 11
+    push constant 16
+    push constant 41
+    push constant 16
+    push constant 16
+    push constant 41
+    push constant 16
+    push constant 16
+    push constant 41
+    push constant 16
+    push constant 16
+    push constant 41
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 16
+    push constant 16
+    push constant 41
+    push constant 3
+    push constant 16
+    push constant 16
+    push constant 41
+    push constant 16
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 12
+    push constant 16
+    push constant 41
+    push constant 16
+    push constant 16
+    push constant 41
+    push constant 16
+    push constant 41
+    push constant 41
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 41
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 41
+    push constant 41
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 13
+    push constant 16
+    push constant 41
+    push constant 0
+    push constant 16
+    push constant 41
+    push constant 16
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 41
+    push constant 16
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 14
+    push constant 16
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 16
+    push constant 16
+    push constant 41
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 0
+    push constant 41
+    push constant 16
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 15
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 170
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 16
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 41
+    push constant 16
+    call Map.setRow 34
+    pop temp 0
+    push constant 0
+    return
+function Map.initMap8 0
+    push argument 0
+    pop pointer 0
+    push pointer 0
+    push constant 0
+    push constant 52
+    push constant 52
+    push constant 52
+    push constant 52
+    push constant 52
+    push constant 52
+    push constant 52
+    push constant 52
+    push constant 52
+    push constant 52
+    push constant 52
+    push constant 52
+    push constant 52
+    push constant 53
+    push constant 54
+    push constant 53
+    push constant 52
+    push constant 52
+    push constant 52
+    push constant 52
+    push constant 52
+    push constant 52
+    push constant 52
+    push constant 52
+    push constant 52
+    push constant 52
+    push constant 52
+    push constant 52
+    push constant 52
+    push constant 52
+    push constant 52
+    push constant 52
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 1
+    push constant 52
+    push constant 51
+    push constant 51
+    push constant 50
+    push constant 51
+    push constant 51
+    push constant 51
+    push constant 51
+    push constant 50
+    push constant 50
+    push constant 50
+    push constant 51
+    push constant 51
+    push constant 53
+    push constant 54
+    push constant 53
+    push constant 50
+    push constant 50
+    push constant 52
+    push constant 50
+    push constant 50
+    push constant 50
+    push constant 50
+    push constant 50
+    push constant 52
+    push constant 50
+    push constant 50
+    push constant 50
+    push constant 50
+    push constant 50
+    push constant 50
+    push constant 52
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 2
+    push constant 52
+    push constant 50
+    push constant 50
+    push constant 50
+    push constant 51
+    push constant 51
+    push constant 50
+    push constant 51
+    push constant 51
+    push constant 51
+    push constant 51
+    push constant 51
+    push constant 50
+    push constant 53
+    push constant 54
+    push constant 53
+    push constant 50
+    push constant 50
+    push constant 52
+    push constant 50
+    push constant 50
+    push constant 50
+    push constant 49
+    push constant 50
+    push constant 52
+    push constant 50
+    push constant 50
+    push constant 50
+    push constant 50
+    push constant 52
+    push constant 50
+    push constant 52
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 3
+    push constant 52
+    push constant 50
+    push constant 51
+    push constant 51
+    push constant 51
+    push constant 51
+    push constant 49
+    push constant 51
+    push constant 50
+    push constant 50
+    push constant 51
+    push constant 50
+    push constant 51
+    push constant 53
+    push constant 54
+    push constant 53
+    push constant 50
+    push constant 50
+    push constant 50
+    push constant 50
+    push constant 50
+    push constant 50
+    push constant 49
+    push constant 50
+    push constant 52
+    push constant 50
+    push constant 49
+    push constant 50
+    push constant 50
+    push constant 50
+    push constant 50
+    push constant 52
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 4
+    push constant 52
+    push constant 51
+    push constant 50
+    push constant 51
+    push constant 51
+    push constant 50
+    push constant 49
+    push constant 51
+    push constant 50
+    push constant 51
+    push constant 50
+    push constant 51
+    push constant 51
+    push constant 53
+    push constant 54
+    push constant 53
+    push constant 50
+    push constant 50
+    push constant 50
+    push constant 50
+    push constant 50
+    push constant 0
+    push constant 49
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 49
+    push constant 50
+    push constant 50
+    push constant 50
+    push constant 50
+    push constant 52
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 5
+    push constant 52
+    push constant 50
+    push constant 51
+    push constant 51
+    push constant 50
+    push constant 51
+    push constant 49
+    push constant 50
+    push constant 51
+    push constant 51
+    push constant 51
+    push constant 50
+    push constant 50
+    push constant 53
+    push constant 54
+    push constant 53
+    push constant 50
+    push constant 50
+    push constant 50
+    push constant 50
+    push constant 0
+    push constant 0
+    push constant 2
+    push constant 2
+    push constant 2
+    push constant 2
+    push constant 49
+    push constant 50
+    push constant 49
+    push constant 50
+    push constant 50
+    push constant 52
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 6
+    push constant 52
+    push constant 51
+    push constant 51
+    push constant 51
+    push constant 51
+    push constant 50
+    push constant 51
+    push constant 51
+    push constant 51
+    push constant 51
+    push constant 51
+    push constant 51
+    push constant 51
+    push constant 53
+    push constant 54
+    push constant 53
+    push constant 50
+    push constant 50
+    push constant 50
+    push constant 49
+    push constant 2
+    push constant 2
+    push constant 2
+    push constant 2
+    push constant 2
+    push constant 2
+    push constant 2
+    push constant 0
+    push constant 49
+    push constant 50
+    push constant 50
+    push constant 52
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 7
+    push constant 52
+    push constant 50
+    push constant 50
+    push constant 50
+    push constant 51
+    push constant 50
+    push constant 51
+    push constant 51
+    push constant 50
+    push constant 51
+    push constant 51
+    push constant 50
+    push constant 51
+    push constant 53
+    push constant 54
+    push constant 53
+    push constant 50
+    push constant 50
+    push constant 50
+    push constant 49
+    push constant 2
+    push constant 2
+    push constant 2
+    push constant 2
+    push constant 2
+    push constant 2
+    push constant 2
+    push constant 2
+    push constant 49
+    push constant 50
+    push constant 50
+    push constant 52
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 8
+    push constant 52
+    push constant 50
+    push constant 51
+    push constant 52
+    push constant 52
+    push constant 52
+    push constant 52
+    push constant 52
+    push constant 52
+    push constant 50
+    push constant 51
+    push constant 50
+    push constant 52
+    push constant 53
+    push constant 54
+    push constant 53
+    push constant 50
+    push constant 50
+    push constant 50
+    push constant 49
+    push constant 2
+    push constant 2
+    push constant 2
+    push constant 2
+    push constant 2
+    push constant 2
+    push constant 2
+    push constant 2
+    push constant 0
+    push constant 50
+    push constant 50
+    push constant 52
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 9
+    push constant 52
+    push constant 51
+    push constant 52
+    push constant 51
+    push constant 50
+    push constant 50
+    push constant 50
+    push constant 51
+    push constant 51
+    push constant 50
+    push constant 51
+    push constant 52
+    push constant 51
+    push constant 23
+    push constant 24
+    push constant 25
+    push constant 50
+    push constant 50
+    push constant 50
+    push constant 0
+    push constant 0
+    push constant 2
+    push constant 2
+    push constant 2
+    push constant 2
+    push constant 2
+    push constant 2
+    push constant 0
+    push constant 0
+    push constant 50
+    push constant 50
+    push constant 180
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 10
+    push constant 52
+    push constant 52
+    push constant 50
+    push constant 51
+    push constant 51
+    push constant 51
+    push constant 50
+    push constant 51
+    push constant 51
+    push constant 51
+    push constant 52
+    push constant 50
+    push constant 51
+    push constant 53
+    push constant 54
+    push constant 53
+    push constant 50
+    push constant 50
+    push constant 50
+    push constant 50
+    push constant 49
+    push constant 2
+    push constant 2
+    push constant 2
+    push constant 2
+    push constant 2
+    push constant 49
+    push constant 0
+    push constant 50
+    push constant 50
+    push constant 50
+    push constant 52
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 11
+    push constant 52
+    push constant 50
+    push constant 51
+    push constant 50
+    push constant 50
+    push constant 52
+    push constant 52
+    push constant 52
+    push constant 52
+    push constant 52
+    push constant 50
+    push constant 51
+    push constant 51
+    push constant 53
+    push constant 54
+    push constant 53
+    push constant 50
+    push constant 50
+    push constant 50
+    push constant 50
+    push constant 49
+    push constant 0
+    push constant 49
+    push constant 0
+    push constant 0
+    push constant 0
+    push constant 49
+    push constant 50
+    push constant 50
+    push constant 50
+    push constant 50
+    push constant 52
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 12
+    push constant 52
+    push constant 52
+    push constant 51
+    push constant 51
+    push constant 50
+    push constant 50
+    push constant 51
+    push constant 50
+    push constant 51
+    push constant 52
+    push constant 51
+    push constant 51
+    push constant 51
+    push constant 53
+    push constant 54
+    push constant 53
+    push constant 50
+    push constant 50
+    push constant 50
+    push constant 50
+    push constant 49
+    push constant 50
+    push constant 49
+    push constant 50
+    push constant 52
+    push constant 50
+    push constant 49
+    push constant 50
+    push constant 50
+    push constant 50
+    push constant 50
+    push constant 52
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 13
+    push constant 52
+    push constant 52
+    push constant 50
+    push constant 51
+    push constant 50
+    push constant 50
+    push constant 51
+    push constant 51
+    push constant 51
+    push constant 50
+    push constant 50
+    push constant 50
+    push constant 51
+    push constant 53
+    push constant 54
+    push constant 53
+    push constant 50
+    push constant 50
+    push constant 50
+    push constant 50
+    push constant 50
+    push constant 50
+    push constant 49
+    push constant 50
+    push constant 52
+    push constant 50
+    push constant 50
+    push constant 50
+    push constant 50
+    push constant 52
+    push constant 50
+    push constant 52
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 14
+    push constant 52
+    push constant 51
+    push constant 50
+    push constant 52
+    push constant 51
+    push constant 50
+    push constant 50
+    push constant 50
+    push constant 51
+    push constant 50
+    push constant 51
+    push constant 50
+    push constant 51
+    push constant 53
+    push constant 54
+    push constant 53
+    push constant 50
+    push constant 50
+    push constant 50
+    push constant 50
+    push constant 52
+    push constant 50
+    push constant 50
+    push constant 50
+    push constant 52
+    push constant 50
+    push constant 50
+    push constant 50
+    push constant 50
+    push constant 50
+    push constant 50
+    push constant 52
+    call Map.setRow 34
+    pop temp 0
+    push pointer 0
+    push constant 15
+    push constant 52
+    push constant 52
+    push constant 52
+    push constant 52
+    push constant 52
+    push constant 52
+    push constant 52
+    push constant 52
+    push constant 52
+    push constant 52
+    push constant 52
+    push constant 52
+    push constant 52
+    push constant 53
+    push constant 54
+    push constant 53
+    push constant 52
+    push constant 52
+    push constant 52
+    push constant 52
+    push constant 52
+    push constant 52
+    push constant 52
+    push constant 52
+    push constant 52
+    push constant 52
+    push constant 52
+    push constant 52
+    push constant 52
+    push constant 52
+    push constant 52
+    push constant 52
+    call Map.setRow 34
+    pop temp 0
+    push constant 0
+    return
+function Map.setRow 1
+    push argument 0
+    pop pointer 0
+    push argument 1
+    push this 1
+    call Math.multiply 2
+    pop local 0
+    push local 0
+    push constant 0
+    add
+    push this 0
+    add
+    push argument 2
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push local 0
+    push constant 1
+    add
+    push this 0
+    add
+    push argument 3
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push local 0
+    push constant 2
+    add
+    push this 0
+    add
+    push argument 4
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push local 0
+    push constant 3
+    add
+    push this 0
+    add
+    push argument 5
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push local 0
+    push constant 4
+    add
+    push this 0
+    add
+    push argument 6
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push local 0
+    push constant 5
+    add
+    push this 0
+    add
+    push argument 7
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push local 0
+    push constant 6
+    add
+    push this 0
+    add
+    push argument 8
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push local 0
+    push constant 7
+    add
+    push this 0
+    add
+    push argument 9
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push local 0
+    push constant 8
+    add
+    push this 0
+    add
+    push argument 10
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push local 0
+    push constant 9
+    add
+    push this 0
+    add
+    push argument 11
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push local 0
+    push constant 10
+    add
+    push this 0
+    add
+    push argument 12
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push local 0
+    push constant 11
+    add
+    push this 0
+    add
+    push argument 13
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push local 0
+    push constant 12
+    add
+    push this 0
+    add
+    push argument 14
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push local 0
+    push constant 13
+    add
+    push this 0
+    add
+    push argument 15
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push local 0
+    push constant 14
+    add
+    push this 0
+    add
+    push argument 16
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push local 0
+    push constant 15
+    add
+    push this 0
+    add
+    push argument 17
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push local 0
+    push constant 16
+    add
+    push this 0
+    add
+    push argument 18
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push local 0
+    push constant 17
+    add
+    push this 0
+    add
+    push argument 19
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push local 0
+    push constant 18
+    add
+    push this 0
+    add
+    push argument 20
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push local 0
+    push constant 19
+    add
+    push this 0
+    add
+    push argument 21
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push local 0
+    push constant 20
+    add
+    push this 0
+    add
+    push argument 22
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push local 0
+    push constant 21
+    add
+    push this 0
+    add
+    push argument 23
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push local 0
+    push constant 22
+    add
+    push this 0
+    add
+    push argument 24
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push local 0
+    push constant 23
+    add
+    push this 0
+    add
+    push argument 25
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push local 0
+    push constant 24
+    add
+    push this 0
+    add
+    push argument 26
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push local 0
+    push constant 25
+    add
+    push this 0
+    add
+    push argument 27
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push local 0
+    push constant 26
+    add
+    push this 0
+    add
+    push argument 28
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push local 0
+    push constant 27
+    add
+    push this 0
+    add
+    push argument 29
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push local 0
+    push constant 28
+    add
+    push this 0
+    add
+    push argument 30
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push local 0
+    push constant 29
+    add
+    push this 0
+    add
+    push argument 31
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push local 0
+    push constant 30
+    add
+    push this 0
+    add
+    push argument 32
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push local 0
+    push constant 31
+    add
+    push this 0
+    add
+    push argument 33
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 0
+    return
+function Map.getTile 0
+    push argument 0
+    pop pointer 0
+    push argument 1
+    push constant 0
+    lt
+    push argument 1
+    push this 1
+    push constant 1
+    sub
+    gt
+    or
+    push argument 2
+    push constant 0
+    lt
+    or
+    push argument 2
+    push this 2
+    push constant 1
+    sub
+    gt
+    or
+    not
+    if-goto Map_19
+    push constant 3
+    return
+    goto Map_18
+label Map_19
+label Map_18
+    push argument 2
+    push this 1
+    call Math.multiply 2
+    push argument 1
+    add
+    push this 0
+    add
+    pop pointer 1
+    push that 0
+    return
+function Map.findPortal 4
+    push argument 0
+    pop pointer 0
+    push constant 2
+    call Array.new 1
+    pop local 3
+    push constant 0
+    pop local 1
+label Map_20
+    push local 1
+    push this 2
+    lt
+    not
+    if-goto Map_21
+    push constant 0
+    pop local 0
+label Map_22
+    push local 0
+    push this 1
+    lt
+    not
+    if-goto Map_23
+    push local 1
+    push this 1
+    call Math.multiply 2
+    push local 0
+    add
+    push this 0
+    add
+    pop pointer 1
+    push that 0
+    pop local 2
+    push local 2
+    push argument 1
+    eq
+    not
+    if-goto Map_25
+    push constant 0
+    push local 3
+    add
+    push local 0
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 1
+    push local 3
+    add
+    push local 1
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push local 3
+    return
+    goto Map_24
+label Map_25
+label Map_24
+    push local 0
+    push constant 1
+    add
+    pop local 0
+    goto Map_22
+label Map_23
+    push local 1
+    push constant 1
+    add
+    pop local 1
+    goto Map_20
+label Map_21
+    push constant 0
+    push local 3
+    add
+    push constant 10
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 1
+    push local 3
+    add
+    push constant 10
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push local 3
+    return
+function Map.draw 5
+    push argument 0
+    pop pointer 0
+    push constant 0
+    pop local 1
+label Map_26
+    push local 1
+    push this 2
+    lt
+    not
+    if-goto Map_27
+    push constant 0
+    pop local 0
+label Map_28
+    push local 0
+    push this 1
+    lt
+    not
+    if-goto Map_29
+    push local 1
+    push this 1
+    call Math.multiply 2
+    push local 0
+    add
+    push this 0
+    add
+    pop pointer 1
+    push that 0
+    pop local 2
+    push local 2
+    push constant 0
+    eq
+    push local 2
+    push constant 1
+    eq
+    or
+    push local 2
+    push constant 2
+    eq
+    or
+    push local 2
+    push constant 3
+    eq
+    or
+    push local 2
+    push constant 7
+    eq
+    or
+    push local 2
+    push constant 18
+    eq
+    or
+    push local 2
+    push constant 27
+    eq
+    or
+    push local 2
+    push constant 149
+    gt
+    or
+    not
+    if-goto Map_31
+    push local 0
+    push this 3
+    call Math.multiply 2
+    pop local 3
+    push local 1
+    push this 3
+    call Math.multiply 2
+    pop local 4
+    push pointer 0
+    push local 3
+    push local 4
+    push local 2
+    push local 0
+    push local 1
+    call Map.drawTile 6
+    pop temp 0
+    goto Map_30
+label Map_31
+label Map_30
+    push local 0
+    push constant 1
+    add
+    pop local 0
+    goto Map_28
+label Map_29
+    push local 1
+    push constant 1
+    add
+    pop local 1
+    goto Map_26
+label Map_27
+    push constant 0
+    pop local 1
+label Map_32
+    push local 1
+    push this 2
+    lt
+    not
+    if-goto Map_33
+    push constant 0
+    pop local 0
+label Map_34
+    push local 0
+    push this 1
+    lt
+    not
+    if-goto Map_35
+    push local 1
+    push this 1
+    call Math.multiply 2
+    push local 0
+    add
+    push this 0
+    add
+    pop pointer 1
+    push that 0
+    pop local 2
+    push local 2
+    push constant 0
+    eq
+    push local 2
+    push constant 1
+    eq
+    or
+    push local 2
+    push constant 2
+    eq
+    or
+    push local 2
+    push constant 3
+    eq
+    or
+    push local 2
+    push constant 7
+    eq
+    or
+    push local 2
+    push constant 18
+    eq
+    or
+    push local 2
+    push constant 27
+    eq
+    or
+    push local 2
+    push constant 149
+    gt
+    or
+    not
+    not
+    if-goto Map_37
+    push local 0
+    push this 3
+    call Math.multiply 2
+    pop local 3
+    push local 1
+    push this 3
+    call Math.multiply 2
+    pop local 4
+    push pointer 0
+    push local 3
+    push local 4
+    push local 2
+    push local 0
+    push local 1
+    call Map.drawTile 6
+    pop temp 0
+    goto Map_36
+label Map_37
+label Map_36
+    push local 0
+    push constant 1
+    add
+    pop local 0
+    goto Map_34
+label Map_35
+    push local 1
+    push constant 1
+    add
+    pop local 1
+    goto Map_32
+label Map_33
+    push constant 0
+    return
+function Map.drawTile 1
+    push argument 0
+    pop pointer 0
+    push argument 2
+    push constant 32
+    call Math.multiply 2
+    push argument 1
+    push constant 16
+    call Math.divide 2
+    add
+    pop local 0
+    push argument 3
+    push constant 1
+    eq
+    not
+    if-goto Map_39
+    push local 0
+    call Sprites.drawGrass 1
+    pop temp 0
+    push constant 0
+    return
+    goto Map_38
+label Map_39
+label Map_38
+    push argument 3
+    push constant 0
+    eq
+    not
+    if-goto Map_41
+    push local 0
+    call Sprites.drawChemin 1
+    pop temp 0
+    push constant 0
+    return
+    goto Map_40
+label Map_41
+label Map_40
+    push argument 3
+    push constant 2
+    eq
+    not
+    if-goto Map_43
+    push local 0
+    call Sprites.drawWater 1
+    pop temp 0
+    push constant 0
+    return
+    goto Map_42
+label Map_43
+label Map_42
+    push argument 3
+    push constant 3
+    eq
+    not
+    if-goto Map_45
+    push local 0
+    call Sprites.drawTree 1
+    pop temp 0
+    push constant 0
+    return
+    goto Map_44
+label Map_45
+label Map_44
+    push argument 3
+    push constant 7
+    eq
+    not
+    if-goto Map_47
+    push local 0
+    call Sprites.drawParquet 1
+    pop temp 0
+    push constant 0
+    return
+    goto Map_46
+label Map_47
+label Map_46
+    push argument 3
+    push constant 8
+    eq
+    not
+    if-goto Map_49
+    push local 0
+    call Sprites.drawWall1 1
+    pop temp 0
+    push constant 0
+    return
+    goto Map_48
+label Map_49
+label Map_48
+    push argument 3
+    push constant 9
+    eq
+    not
+    if-goto Map_51
+    push local 0
+    call Sprites.drawWall2 1
+    pop temp 0
+    push constant 0
+    return
+    goto Map_50
+label Map_51
+label Map_50
+    push argument 3
+    push constant 10
+    eq
+    not
+    if-goto Map_53
+    push local 0
+    call Sprites.drawtable_pokeball_droite 1
+    pop temp 0
+    push constant 0
+    return
+    goto Map_52
+label Map_53
+label Map_52
+    push argument 3
+    push constant 11
+    eq
+    not
+    if-goto Map_55
+    push local 0
+    call Sprites.drawtable_pokeball_gauche 1
+    pop temp 0
+    push constant 0
+    return
+    goto Map_54
+label Map_55
+label Map_54
+    push argument 3
+    push constant 12
+    eq
+    not
+    if-goto Map_57
+    push local 0
+    call Sprites.drawtable_pokeball_milieu 1
+    pop temp 0
+    push constant 0
+    return
+    goto Map_56
+label Map_57
+label Map_56
+    push argument 3
+    push constant 13
+    eq
+    not
+    if-goto Map_59
+    push local 0
+    call Sprites.drawWall3 1
+    pop temp 0
+    push constant 0
+    return
+    goto Map_58
+label Map_59
+label Map_58
+    push argument 3
+    push constant 14
+    eq
+    not
+    if-goto Map_61
+    push local 0
+    call Sprites.drawWall4 1
+    pop temp 0
+    push constant 0
+    return
+    goto Map_60
+label Map_61
+label Map_60
+    push argument 3
+    push constant 15
+    eq
+    not
+    if-goto Map_63
+    push local 0
+    call Sprites.drawWall5 1
+    pop temp 0
+    push constant 0
+    return
+    goto Map_62
+label Map_63
+label Map_62
+    push argument 3
+    push constant 16
+    eq
+    not
+    if-goto Map_65
+    push local 0
+    call Sprites.drawvoid 1
+    pop temp 0
+    push constant 0
+    return
+    goto Map_64
+label Map_65
+label Map_64
+    push argument 3
+    push constant 17
+    eq
+    not
+    if-goto Map_67
+    push local 0
+    call Sprites.drawpokeballsauvage 1
+    pop temp 0
+    push constant 0
+    return
+    goto Map_66
+label Map_67
+label Map_66
+    push argument 3
+    push constant 18
+    eq
+    not
+    if-goto Map_69
+    push local 0
+    call Sprites.drawCarrelage 1
+    pop temp 0
+    push constant 0
+    return
+    goto Map_68
+label Map_69
+label Map_68
+    push argument 3
+    push constant 19
+    eq
+    not
+    if-goto Map_71
+    push local 0
+    call Sprites.drawlongburreaux 1
+    pop temp 0
+    push constant 0
+    return
+    goto Map_70
+label Map_71
+label Map_70
+    push argument 3
+    push constant 20
+    eq
+    not
+    if-goto Map_73
+    push local 0
+    call Sprites.drawSapin 1
+    pop temp 0
+    push constant 0
+    return
+    goto Map_72
+label Map_73
+label Map_72
+    push argument 3
+    push constant 21
+    eq
+    not
+    if-goto Map_75
+    push local 0
+    call Sprites.drawetagere 1
+    pop temp 0
+    push constant 0
+    return
+    goto Map_74
+label Map_75
+label Map_74
+    push argument 3
+    push constant 22
+    eq
+    not
+    if-goto Map_77
+    push local 0
+    call Sprites.drawincubateur 1
+    pop temp 0
+    push constant 0
+    return
+    goto Map_76
+label Map_77
+label Map_76
+    push argument 3
+    push constant 23
+    eq
+    not
+    if-goto Map_79
+    push local 0
+    call Sprites.drawBridge1 1
+    pop temp 0
+    push constant 0
+    return
+    goto Map_78
+label Map_79
+label Map_78
+    push argument 3
+    push constant 24
+    eq
+    not
+    if-goto Map_81
+    push local 0
+    call Sprites.drawBridge2 1
+    pop temp 0
+    push constant 0
+    return
+    goto Map_80
+label Map_81
+label Map_80
+    push argument 3
+    push constant 25
+    eq
+    not
+    if-goto Map_83
+    push local 0
+    call Sprites.drawBridge3 1
+    pop temp 0
+    push constant 0
+    return
+    goto Map_82
+label Map_83
+label Map_82
+    push argument 3
+    push constant 26
+    eq
+    not
+    if-goto Map_85
+    push local 0
+    call Sprites.drawTabouret 1
+    pop temp 0
+    push constant 0
+    return
+    goto Map_84
+label Map_85
+label Map_84
+    push argument 3
+    push constant 27
+    eq
+    not
+    if-goto Map_87
+    push local 0
+    call Sprites.drawParquet2 1
+    pop temp 0
+    push constant 0
+    return
+    goto Map_86
+label Map_87
+label Map_86
+    push argument 3
+    push constant 28
+    eq
+    not
+    if-goto Map_89
+    push local 0
+    call Sprites.drawTV 1
+    pop temp 0
+    push constant 0
+    return
+    goto Map_88
+label Map_89
+label Map_88
+    push argument 3
+    push constant 29
+    eq
+    not
+    if-goto Map_91
+    push local 0
+    call Sprites.drawtablebasgauche 1
+    pop temp 0
+    push constant 0
+    return
+    goto Map_90
+label Map_91
+label Map_90
+    push argument 3
+    push constant 30
+    eq
+    not
+    if-goto Map_93
+    push local 0
+    call Sprites.drawtablebasdroit 1
+    pop temp 0
+    push constant 0
+    return
+    goto Map_92
+label Map_93
+label Map_92
+    push argument 3
+    push constant 31
+    eq
+    not
+    if-goto Map_95
+    push local 0
+    call Sprites.drawtablehautgauche 1
+    pop temp 0
+    push constant 0
+    return
+    goto Map_94
+label Map_95
+label Map_94
+    push argument 3
+    push constant 32
+    eq
+    not
+    if-goto Map_97
+    push local 0
+    call Sprites.drawtablehautdroit 1
+    pop temp 0
+    push constant 0
+    return
+    goto Map_96
+label Map_97
+label Map_96
+    push argument 3
+    push constant 33
+    eq
+    not
+    if-goto Map_99
+    push local 0
+    call Sprites.drawcheminlateral 1
+    pop temp 0
+    push constant 0
+    return
+    goto Map_98
+label Map_99
+label Map_98
+    push argument 3
+    push constant 34
+    eq
+    not
+    if-goto Map_101
+    push local 0
+    call Sprites.drawcheminhorizontale 1
+    pop temp 0
+    push constant 0
+    return
+    goto Map_100
+label Map_101
+label Map_100
+    push argument 3
+    push constant 35
+    eq
+    not
+    if-goto Map_103
+    push local 0
+    call Sprites.drawchemintounrebasgauche 1
+    pop temp 0
+    push constant 0
+    return
+    goto Map_102
+label Map_103
+label Map_102
+    push argument 3
+    push constant 36
+    eq
+    not
+    if-goto Map_105
+    push local 0
+    call Sprites.drawchemintournedroitebas 1
+    pop temp 0
+    push constant 0
+    return
+    goto Map_104
+label Map_105
+label Map_104
+    push argument 3
+    push constant 37
+    eq
+    not
+    if-goto Map_107
+    push local 0
+    call Sprites.drawchemintournegauchehaut 1
+    pop temp 0
+    push constant 0
+    return
+    goto Map_106
+label Map_107
+label Map_106
+    push argument 3
+    push constant 38
+    eq
+    not
+    if-goto Map_109
+    push local 0
+    call Sprites.drawchemintournedroitehaut 1
+    pop temp 0
+    push constant 0
+    return
+    goto Map_108
+label Map_109
+label Map_108
+    push argument 3
+    push constant 42
+    eq
+    not
+    if-goto Map_111
+    push local 0
+    call Sprites.drawbasetagere 1
+    pop temp 0
+    push constant 0
+    return
+    goto Map_110
+label Map_111
+label Map_110
+    push argument 3
+    push constant 43
+    eq
+    not
+    if-goto Map_113
+    push local 0
+    call Sprites.drawhautetagere 1
+    pop temp 0
+    push constant 0
+    return
+    goto Map_112
+label Map_113
+label Map_112
+    push argument 3
+    push constant 44
+    eq
+    not
+    if-goto Map_115
+    push local 0
+    call Sprites.drawTableaux 1
+    pop temp 0
+    push constant 0
+    return
+    goto Map_114
+label Map_115
+label Map_114
+    push argument 3
+    push constant 45
+    eq
+    not
+    if-goto Map_117
+    push local 0
+    call Sprites.drawtablelabo1 1
+    pop temp 0
+    push constant 0
+    return
+    goto Map_116
+label Map_117
+label Map_116
+    push argument 3
+    push constant 46
+    eq
+    not
+    if-goto Map_119
+    push local 0
+    call Sprites.drawtablelabo2 1
+    pop temp 0
+    push constant 0
+    return
+    goto Map_118
+label Map_119
+label Map_118
+    push argument 3
+    push constant 47
+    eq
+    not
+    if-goto Map_121
+    push local 0
+    call Sprites.drawtablelabo3 1
+    pop temp 0
+    push constant 0
+    return
+    goto Map_120
+label Map_121
+label Map_120
+    push argument 3
+    push constant 48
+    eq
+    not
+    if-goto Map_123
+    push local 0
+    call Sprites.drawtablelabo4 1
+    pop temp 0
+    push constant 0
+    return
+    goto Map_122
+label Map_123
+label Map_122
+    push argument 3
+    push constant 39
+    eq
+    not
+    if-goto Map_125
+    push local 0
+    call Sprites.drawArena 1
+    pop temp 0
+    push constant 0
+    return
+    goto Map_124
+label Map_125
+label Map_124
+    push argument 3
+    push constant 40
+    eq
+    not
+    if-goto Map_127
+    push local 0
+    call Sprites.drawrock 1
+    pop temp 0
+    push constant 0
+    return
+    goto Map_126
+label Map_127
+label Map_126
+    push argument 3
+    push constant 41
+    eq
+    not
+    if-goto Map_129
+    push local 0
+    call Sprites.drawcarelageareene 1
+    pop temp 0
+    push constant 0
+    return
+    goto Map_128
+label Map_129
+label Map_128
+    push argument 3
+    push constant 52
+    eq
+    not
+    if-goto Map_131
+    push local 0
+    call Sprites.drawCactoos 1
+    pop temp 0
+    push constant 0
+    return
+    goto Map_130
+label Map_131
+label Map_130
+    push argument 3
+    push constant 50
+    eq
+    not
+    if-goto Map_133
+    push local 0
+    call Sprites.drawSable1 1
+    pop temp 0
+    push constant 0
+    return
+    goto Map_132
+label Map_133
+label Map_132
+    push argument 3
+    push constant 51
+    eq
+    not
+    if-goto Map_135
+    push local 0
+    call Sprites.drawSable2 1
+    pop temp 0
+    push constant 0
+    return
+    goto Map_134
+label Map_135
+label Map_134
+    push argument 3
+    push constant 53
+    eq
+    not
+    if-goto Map_137
+    push local 0
+    call Sprites.drawFlote1 1
+    pop temp 0
+    push constant 0
+    return
+    goto Map_136
+label Map_137
+label Map_136
+    push argument 3
+    push constant 54
+    eq
+    not
+    if-goto Map_139
+    push local 0
+    call Sprites.drawFlotte2 1
+    pop temp 0
+    push constant 0
+    return
+    goto Map_138
+label Map_139
+label Map_138
+    push argument 3
+    push constant 49
+    eq
+    not
+    if-goto Map_141
+    push argument 5
+    push constant 3
+    eq
+    push argument 4
+    push constant 6
+    eq
+    and
+    not
+    if-goto Map_143
+    push local 0
+    call Sprites.drawquackingtree 1
+    pop temp 0
+    goto Map_142
+label Map_143
+label Map_142
+    push argument 5
+    push constant 2
+    eq
+    push argument 4
+    push constant 22
+    eq
+    and
+    not
+    if-goto Map_145
+    push local 0
+    call Sprites.drawquackingtree 1
+    pop temp 0
+    goto Map_144
+label Map_145
+label Map_144
+    push argument 5
+    push constant 3
+    eq
+    push argument 4
+    push constant 26
+    eq
+    and
+    not
+    if-goto Map_147
+    push local 0
+    call Sprites.drawquackingtree 1
+    pop temp 0
+    goto Map_146
+label Map_147
+label Map_146
+    push argument 5
+    push constant 5
+    eq
+    push argument 4
+    push constant 28
+    eq
+    and
+    not
+    if-goto Map_149
+    push local 0
+    call Sprites.drawquackingtree 1
+    pop temp 0
+    goto Map_148
+label Map_149
+label Map_148
+    push argument 5
+    push constant 6
+    eq
+    push argument 4
+    push constant 19
+    eq
+    and
+    not
+    if-goto Map_151
+    push local 0
+    call Sprites.drawquackingtree 1
+    pop temp 0
+    goto Map_150
+label Map_151
+label Map_150
+    push argument 5
+    push constant 10
+    eq
+    push argument 4
+    push constant 20
+    eq
+    and
+    not
+    if-goto Map_153
+    push local 0
+    call Sprites.drawquackingtree 1
+    pop temp 0
+    goto Map_152
+label Map_153
+label Map_152
+    push argument 5
+    push constant 10
+    eq
+    push argument 4
+    push constant 26
+    eq
+    and
+    not
+    if-goto Map_155
+    push local 0
+    call Sprites.drawquackingtree 1
+    pop temp 0
+    goto Map_154
+label Map_155
+label Map_154
+    push argument 5
+    push constant 11
+    eq
+    push argument 4
+    push constant 22
+    eq
+    and
+    not
+    if-goto Map_157
+    push local 0
+    call Sprites.drawquackingtree 1
+    pop temp 0
+    goto Map_156
+label Map_157
+label Map_156
+    push constant 0
+    return
+    goto Map_140
+label Map_141
+label Map_140
+    push argument 3
+    push constant 5
+    eq
+    not
+    if-goto Map_159
+    push argument 4
+    push constant 2
+    eq
+    push argument 5
+    push constant 6
+    eq
+    and
+    not
+    if-goto Map_161
+    push local 0
+    call Sprites.drawMaison1 1
+    pop temp 0
+    goto Map_160
+label Map_161
+label Map_160
+    push argument 4
+    push constant 7
+    eq
+    push argument 5
+    push constant 3
+    eq
+    and
+    not
+    if-goto Map_163
+    push local 0
+    call Sprites.drawMaison1 1
+    pop temp 0
+    goto Map_162
+label Map_163
+label Map_162
+    push constant 0
+    return
+    goto Map_158
+label Map_159
+label Map_158
+    push argument 3
+    push constant 6
+    eq
+    not
+    if-goto Map_165
+    push local 0
+    call Sprites.drawMaisons2 1
+    pop temp 0
+    push constant 0
+    return
+    goto Map_164
+label Map_165
+label Map_164
+    push argument 3
+    push constant 4
+    eq
+    not
+    if-goto Map_167
+    push local 0
+    call Sprites.drawPokeCenter 1
+    pop temp 0
+    push constant 0
+    return
+    goto Map_166
+label Map_167
+label Map_166
+    push argument 3
+    push constant 39
+    eq
+    not
+    if-goto Map_169
+    push argument 4
+    push constant 14
+    eq
+    push argument 5
+    push constant 7
+    eq
+    and
+    not
+    if-goto Map_171
+    push local 0
+    call Sprites.drawArena 1
+    pop temp 0
+    goto Map_170
+label Map_171
+label Map_170
+    push constant 0
+    return
+    goto Map_168
+label Map_169
+label Map_168
+    push argument 3
+    push constant 149
+    gt
+    not
+    if-goto Map_173
+    push argument 3
+    push constant 155
+    eq
+    not
+    not
+    if-goto Map_175
+    push local 0
+    call Sprites.drawChemin 1
+    pop temp 0
+    goto Map_174
+label Map_175
+label Map_174
+    push argument 3
+    push constant 153
+    eq
+    not
+    not
+    if-goto Map_177
+    push local 0
+    call Sprites.drawChemin 1
+    pop temp 0
+    goto Map_176
+label Map_177
+label Map_176
+    push constant 0
+    return
+    goto Map_172
+label Map_173
+label Map_172
+    push constant 0
+    return
+function Map.redrawTile 3
+    push argument 0
+    pop pointer 0
+    push pointer 0
+    push argument 1
+    push argument 2
+    call Map.getTile 3
+    pop local 0
+    push argument 1
+    push this 3
+    call Math.multiply 2
+    pop local 1
+    push argument 2
+    push this 3
+    call Math.multiply 2
+    pop local 2
+    push pointer 0
+    push local 1
+    push local 2
+    push local 0
+    push argument 1
+    push argument 2
+    call Map.drawTile 6
+    pop temp 0
+    push constant 0
+    return
+function Map.setTile 0
+    push argument 0
+    pop pointer 0
+    push argument 1
+    push constant 0
+    lt
+    push argument 1
+    push this 1
+    push constant 1
+    sub
+    gt
+    or
+    push argument 2
+    push constant 0
+    lt
+    or
+    push argument 2
+    push this 2
+    push constant 1
+    sub
+    gt
+    or
+    not
+    if-goto Map_179
+    push constant 0
+    return
+    goto Map_178
+label Map_179
+label Map_178
+    push argument 2
+    push this 1
+    call Math.multiply 2
+    push argument 1
+    add
+    push this 0
+    add
+    push argument 3
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 0
+    return
+function Map.dispose 0
+    push argument 0
+    pop pointer 0
+    push this 0
+    call Array.dispose 1
+    pop temp 0
+    push pointer 0
+    call Memory.deAlloc 1
+    pop temp 0
+    push constant 0
+    return

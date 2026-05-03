@@ -1,0 +1,168 @@
+class PnjManager {
+    field Array pnjList;
+    field int pnjCount;
+    field int maxPnj;
+    
+    constructor PnjManager new() {
+        let maxPnj = 20;
+        let pnjCount = 0;
+        let pnjList = Array.new(maxPnj);
+        
+        do initPnj();
+        
+        return this;
+    }
+    
+    method void initPnj() {
+        // Map 0 - Village de départ
+        let pnjList[0] = Pnj.new(12, 8, 35, 0, false);  // Enfant
+        let pnjCount = 1;
+        
+        // Map 1 - Route 1
+        let pnjList[1] = Pnj.new(10, 10, 33, 1, true);  // Dresseur
+        let pnjList[2] = Pnj.new(15, 6, 33, 1, true);   // Dresseur
+        let pnjCount = 3;
+        
+        // Map 2 - Forêt
+        let pnjList[3] = Pnj.new(8, 7, 34, 2, true);    // Scientifique
+        let pnjList[4] = Pnj.new(20, 10, 33, 2, true);  // Dresseur
+        let pnjCount = 5;
+        
+        // Map 4 - Centre Pokémon
+        let pnjList[5] = Pnj.new(14, 7, 32, 4, false);  // Infirmière
+        let pnjList[6] = Pnj.new(20, 7, 36, 4, false);  // Vendeur
+        let pnjCount = 7;
+        
+        // Map 5 - Maison familiale
+        let pnjList[7] = Pnj.new(19, 6, 37, 5, false);   // Mère
+        let pnjCount = 8;
+        
+        // Map 3 - Ligue Pokémon / Laboratoire
+        let pnjList[8] = Pnj.new(15, 7, 31, 3, false);  // Professeur Chen
+        let pnjList[9] = Pnj.new(22, 11, 34, 3, false); // Assistant scientifique
+        let pnjCount = 10;
+
+        //arene
+        let pnjList[10] = Pnj.new(16, 1, 31, 7, true);  // Professeur Chen
+        let pnjList[11] = Pnj.new(2, 13, 34, 7, true);    // Scientifique
+        let pnjList[12] = Pnj.new(29, 14, 34, 7, true);    // Scientifique
+        let pnjCount = 13;
+
+        return;
+    }
+    
+    method void drawForMap(int mapId) {
+        var int i;
+        var Pnj pnj;
+        
+        let i = 0;
+        while (i < pnjCount) {
+            let pnj = pnjList[i];
+            if (pnj.getMapId() = mapId) {
+                do pnj.draw();
+            }
+            let i = i + 1;
+        }
+        
+        return;
+    }
+    
+    method Pnj checkInteraction(int playerX, int playerY, int mapId) {
+        var int i;
+        var Pnj pnj;
+        var int dx, dy;
+        
+        let i = 0;
+        while (i < pnjCount) {
+            let pnj = pnjList[i];
+            
+            if (pnj.getMapId() = mapId) {
+                let dx = Math.abs(playerX - pnj.getX());
+                let dy = Math.abs(playerY - pnj.getY());
+                
+                if (((dx = 1) & (dy = 0)) | ((dx = 0) & (dy = 1))) {
+                    do pnj.facePlayer(playerX, playerY);
+                    return pnj;
+                }
+            }
+            
+            let i = i + 1;
+        }
+        
+        return null;
+    }
+    
+    method boolean isPnjAtPosition(int x, int y, int mapId) {
+        var int i;
+        var Pnj pnj;
+        
+        let i = 0;
+        while (i < pnjCount) {
+            let pnj = pnjList[i];
+            if ((pnj.getMapId() = mapId) & pnj.isAtPosition(x, y)) {
+                return true;
+            }
+            let i = i + 1;
+        }
+        
+        return false;
+    }
+    
+    method Pnj getPnjAt(int x, int y, int mapId) {
+        var int i;
+        var Pnj pnj;
+        
+        let i = 0;
+        while (i < pnjCount) {
+            let pnj = pnjList[i];
+            if ((pnj.getMapId() = mapId) & pnj.isAtPosition(x, y)) {
+                return pnj;
+            }
+            let i = i + 1;
+        }
+        
+        return null;
+    }
+    
+    method void dispose() {
+        var int i;
+        var Pnj pnj;
+        
+        let i = 0;
+        while (i < pnjCount) {
+            let pnj = pnjList[i];
+            do pnj.dispose();
+            let i = i + 1;
+        }
+        
+        do pnjList.dispose();
+        do Memory.deAlloc(this);
+        return;
+    }
+    method Pnj checkTrainerSight(int playerX, int playerY, int currentMapId, Map map) {
+        var int i, count;
+        var Pnj pnj;
+        var int viewRange;
+        
+        let i = 0;
+        
+        // Portée de vue des dresseurs (en cases)
+        let viewRange = 4;
+        
+        while (i < pnjCount) {
+            let pnj = pnjList[i];
+            
+            // Vérifier que c'est un dresseur non vaincu sur la bonne map
+            if ((pnj.getMapId() = currentMapId) & pnj.getIsTrainer() & (~pnj.isDefeated())) {
+                // Vérifier si le dresseur peut voir le joueur
+                if (pnj.canSeePlayer(playerX, playerY, viewRange, map)) {
+                    return pnj;
+                }
+            }
+            
+            let i = i + 1;
+        }
+        
+        return null;
+}
+}

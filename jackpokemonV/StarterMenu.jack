@@ -1,0 +1,118 @@
+class StarterMenu {
+    field int selectedIndex;
+    
+    constructor StarterMenu new() {
+        let selectedIndex = 0;  // Salamèche par défaut
+        return this;
+    }
+    
+    method int getSelection() {
+        return selectedIndex;
+    }
+    
+    method void moveSelection(int direction) {
+        let selectedIndex = selectedIndex + direction;
+        
+        if (selectedIndex < 0) {
+            let selectedIndex = 2;
+        }
+        if (selectedIndex > 2) {
+            let selectedIndex = 0;
+        }
+        
+        return;
+    }
+    
+    method void display() {
+        do Screen.clearScreen();
+        
+        // Titre
+        do Output.moveCursor(2, 12);
+        do Strings.printChoisirTonStarter();
+        
+        // Dessiner les 3 starters
+        do drawStarter(0, 100, 80);   // Salamèche
+        do drawStarter(1, 230, 80);   // Carapuce
+        do drawStarter(2, 360, 80);   // Bulbizarre
+        
+        // Noms et infos
+        do Output.moveCursor(13, 5);
+        do Strings.printSALAMECHE();
+        do Output.moveCursor(14, 6);
+        do Strings.printTypeFeu();
+        
+        do Output.moveCursor(13, 20);
+        do Strings.printCARAPUCE();
+        do Output.moveCursor(14, 21);
+        do Strings.printTypeEau();
+        
+        do Output.moveCursor(13, 36);
+        do Strings.printBULBIZARRE();
+        do Output.moveCursor(14, 37);
+        do Strings.printTypePlante();
+        
+        // Indicateur de sélection
+        do drawSelector();
+        
+        // Instructions
+        do Output.moveCursor(20, 8);
+        do Strings.printFlechesChangerEntreeValider();
+        
+        return;
+    }
+    
+    method void drawStarter(int type, int x, int y) {
+        var int location;
+        let location = (y * 32) + (x / 16);
+        
+        if (type = 0) {
+            // Salamèche (type 0 dans drawPokemon)
+            do Sprites.drawPokemon(x, y, 0);
+        }
+        if (type = 1) {
+            // Carapuce (type 1)
+            do Sprites.drawPokemon(x, y, 1);
+        }
+        if (type = 2) {
+            // Bulbizarre (type 2)
+            do Sprites.drawPokemon(x, y, 2);
+        }
+        
+        return;
+    }
+    
+    method void drawSelector() {
+        var int x;
+        
+        // Effacer les anciennes sélections
+        do Screen.setColor(false);
+        do Screen.drawRectangle(80, 130, 140, 140);
+        do Screen.drawRectangle(210, 130, 270, 140);
+        do Screen.drawRectangle(340, 130, 400, 140);
+        
+        // Dessiner la nouvelle sélection
+        do Screen.setColor(true);
+        
+        if (selectedIndex = 0) {
+            let x = 100;
+        }
+        if (selectedIndex = 1) {
+            let x = 230;
+        }
+        if (selectedIndex = 2) {
+            let x = 360;
+        }
+        
+        // Flèche de sélection
+        do Screen.drawRectangle(x, 130, x + 20, 132);
+        do Screen.drawRectangle(x + 8, 128, x + 12, 135);
+        do Screen.drawRectangle(x + 4, 132, x + 16, 136);
+        
+        return;
+    }
+    
+    method void dispose() {
+        do Memory.deAlloc(this);
+        return;
+    }
+}

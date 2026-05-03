@@ -1,0 +1,287 @@
+function Player.new 0
+    push constant 8
+    call Memory.alloc 1
+    pop pointer 0
+    push argument 0
+    pop this 0
+    push argument 1
+    pop this 1
+    push constant 0
+    pop this 2
+    push constant 0
+    pop this 3
+    call Team.new 0
+    pop this 4
+    call Money.new 0
+    pop this 6
+    push constant 0
+    pop this 7
+    push pointer 0
+    return
+function Player.getX 0
+    push argument 0
+    pop pointer 0
+    push this 0
+    return
+function Player.getY 0
+    push argument 0
+    pop pointer 0
+    push this 1
+    return
+function Player.getDirection 0
+    push argument 0
+    pop pointer 0
+    push this 2
+    return
+function Player.getPokemon 0
+    push argument 0
+    pop pointer 0
+    push this 4
+    call Team.getActive 1
+    return
+function Player.getTeam 0
+    push argument 0
+    pop pointer 0
+    push this 4
+    return
+function Player.getMoney 0
+    push argument 0
+    pop pointer 0
+    push this 6
+    return
+function Player.getStoryProgress 0
+    push argument 0
+    pop pointer 0
+    push this 7
+    return
+function Player.setStoryProgress 0
+    push argument 0
+    pop pointer 0
+    push argument 1
+    pop this 7
+    push constant 0
+    return
+function Player.hasStarter 0
+    push argument 0
+    pop pointer 0
+    push this 7
+    push constant 1
+    gt
+    return
+function Player.setPosition 0
+    push argument 0
+    pop pointer 0
+    push argument 1
+    pop this 0
+    push argument 2
+    pop this 1
+    push constant 0
+    return
+function Player.setMapManager 0
+    push argument 0
+    pop pointer 0
+    push argument 1
+    pop this 5
+    push constant 0
+    return
+function Player.move 0
+    push argument 0
+    pop pointer 0
+    push this 0
+    push argument 1
+    add
+    pop this 0
+    push this 1
+    push argument 2
+    add
+    pop this 1
+    push argument 1
+    push constant 0
+    lt
+    not
+    if-goto Player_1
+    push constant 2
+    pop this 2
+    goto Player_0
+label Player_1
+label Player_0
+    push argument 1
+    push constant 0
+    gt
+    not
+    if-goto Player_3
+    push constant 3
+    pop this 2
+    goto Player_2
+label Player_3
+label Player_2
+    push argument 2
+    push constant 0
+    lt
+    not
+    if-goto Player_5
+    push constant 1
+    pop this 2
+    goto Player_4
+label Player_5
+label Player_4
+    push argument 2
+    push constant 0
+    gt
+    not
+    if-goto Player_7
+    push constant 0
+    pop this 2
+    goto Player_6
+label Player_7
+label Player_6
+    push constant 0
+    return
+function Player.setDirection 0
+    push argument 0
+    pop pointer 0
+    push argument 2
+    push constant 1
+    neg
+    eq
+    not
+    if-goto Player_9
+    push constant 1
+    pop this 2
+    goto Player_8
+label Player_9
+label Player_8
+    push argument 2
+    push constant 1
+    eq
+    not
+    if-goto Player_11
+    push constant 0
+    pop this 2
+    goto Player_10
+label Player_11
+label Player_10
+    push argument 1
+    push constant 1
+    neg
+    eq
+    not
+    if-goto Player_13
+    push constant 2
+    pop this 2
+    goto Player_12
+label Player_13
+label Player_12
+    push argument 1
+    push constant 1
+    eq
+    not
+    if-goto Player_15
+    push constant 3
+    pop this 2
+    goto Player_14
+label Player_15
+label Player_14
+    push constant 0
+    return
+function Player.draw 1
+    push argument 0
+    pop pointer 0
+    push this 1
+    push constant 16
+    call Math.multiply 2
+    push constant 32
+    call Math.multiply 2
+    push this 0
+    push constant 16
+    call Math.multiply 2
+    push constant 16
+    call Math.divide 2
+    add
+    pop local 0
+    push this 2
+    push constant 0
+    eq
+    not
+    if-goto Player_17
+    push local 0
+    call Sprites.drawPlayerDown 1
+    pop temp 0
+    goto Player_16
+label Player_17
+label Player_16
+    push this 2
+    push constant 1
+    eq
+    not
+    if-goto Player_19
+    push local 0
+    call Sprites.drawPlayerUp 1
+    pop temp 0
+    goto Player_18
+label Player_19
+label Player_18
+    push this 2
+    push constant 2
+    eq
+    not
+    if-goto Player_21
+    push local 0
+    call Sprites.drawPlayerLeft 1
+    pop temp 0
+    goto Player_20
+label Player_21
+label Player_20
+    push this 2
+    push constant 3
+    eq
+    not
+    if-goto Player_23
+    push local 0
+    call Sprites.drawPlayerRight 1
+    pop temp 0
+    goto Player_22
+label Player_23
+label Player_22
+    push constant 0
+    return
+function Player.erase 2
+    push argument 0
+    pop pointer 0
+    push this 0
+    push constant 16
+    call Math.multiply 2
+    pop local 0
+    push this 1
+    push constant 16
+    call Math.multiply 2
+    pop local 1
+    push constant 0
+    call Screen.setColor 1
+    pop temp 0
+    push local 0
+    push local 1
+    push local 0
+    push constant 15
+    add
+    push local 1
+    push constant 15
+    add
+    call Screen.drawRectangle 4
+    pop temp 0
+    push constant 0
+    return
+function Player.dispose 0
+    push argument 0
+    pop pointer 0
+    push this 4
+    call Team.dispose 1
+    pop temp 0
+    push this 6
+    call Money.dispose 1
+    pop temp 0
+    push pointer 0
+    call Memory.deAlloc 1
+    pop temp 0
+    push constant 0
+    return

@@ -1,0 +1,440 @@
+
+class Pnj {
+    field int x, y;
+    field int type;
+    field int direction;
+    field Array dialogues;
+    field int dialogueCount;
+    field boolean isTrainer;
+    field boolean defeated;
+    field int mapId;
+    field Team team;
+    
+    constructor Pnj new(int posX, int posY, int pnjType, int map, boolean trainer) {
+        let x = posX;
+        let y = posY;
+        let type = pnjType;
+        let direction = 0;
+        let mapId = map;
+        let isTrainer = trainer;
+        let defeated = false;
+        let dialogues = Array.new(5);
+        let dialogueCount = 0;
+        let team = null;
+        
+        if (isTrainer) {
+            do initTrainerTeam();
+        }
+        
+        return this;
+    }
+    
+    method void initTrainerTeam() {
+        let team = Team.new();
+        
+        if (type = 33) {
+            if (x = 10) {
+                do team.addPokemon(Pokemon.new(5, 5));
+                do team.addPokemon(Pokemon.new(4, 5));
+            }
+            if (x = 15) {
+                do team.addPokemon(Pokemon.new(3, 5));
+                do team.addPokemon(Pokemon.new(7, 6));
+            }
+            if (x = 20) {
+                do team.addPokemon(Pokemon.new(2, 7));
+                do team.addPokemon(Pokemon.new(8, 7));
+            }
+        }
+        
+        if (type = 34) {
+            do team.addPokemon(Pokemon.new(4, 4));
+            do team.addPokemon(Pokemon.new(5, 8));
+        }
+       
+
+        if (type = 31){
+            do team.addPokemon(Pokemon.new(9, 8));
+            do team.addPokemon(Pokemon.new(0, 7));
+            do team.addPokemon(Pokemon.new(3, 9));
+
+        }
+        
+        return;
+    }
+    
+    method int getMoneyReward() {
+        var int reward;
+        let reward = 100;
+        
+        if (type = 33) { let reward = 300; }
+        if (type = 34) { let reward = 500; }
+        if (type = 41) { let reward = 2000; }
+        if (type = 31) { let reward = 5000; }
+        
+        return reward;
+    }
+
+    method int getX() { return x; }
+    method int getY() { return y; }
+    method int getType() { return type; }
+    method int getMapId() { return mapId; }
+    method boolean getIsTrainer() { return isTrainer; }
+    method boolean isDefeated() { return defeated; }
+    method Team getTeam() { return team; }
+    
+    method void setDefeated(boolean value) {
+        let defeated = value;
+        return;
+    }
+    
+    method boolean isAtPosition(int checkX, int checkY) {
+        return (x = checkX) & (y = checkY);
+    }
+    
+    method boolean isFacingPlayer(int playerX, int playerY) {
+        if (direction = 0) { return (playerX = x) & (playerY = (y + 1)); }
+        if (direction = 1) { return (playerX = x) & (playerY = (y - 1)); }
+        if (direction = 2) { return (playerX = (x - 1)) & (playerY = y); }
+        if (direction = 3) { return (playerX = (x + 1)) & (playerY = y); }
+        return false;
+    }
+    
+    method void facePlayer(int playerX, int playerY) {
+        var int dx, dy;
+        let dx = playerX - x;
+        let dy = playerY - y;
+        
+        if (dy > 0) { let direction = 0; }
+        if (dy < 0) { let direction = 1; }
+        if (dx < 0) { let direction = 2; }
+        if (dx > 0) { let direction = 3; }
+        
+        return;
+    }
+    
+    method void interact(Player player, Pokedex pokedex, Shop shop) {
+        do Screen.setColor(false);
+        do Screen.drawRectangle(0, 176, 511, 255);
+        
+        if (type = 31) { do dialogueProfesseur(player, pokedex); }
+        if (type = 32) { do dialogueInfirmiere(player.getTeam()); }
+        if (type = 33) { do dialogueDresseur(player); }
+        if (type = 34) { do dialogueScientifique(player); }
+        if (type = 35) { do dialogueEnfant(); }
+        if (type = 36) { do dialogueBoutique(shop); }
+        if (type = 37) { do dialogueMere(player); }
+        
+        while (Keyboard.keyPressed() = 0) {
+            do Sys.wait(50);
+        }
+        while (~(Keyboard.keyPressed() = 0)) {
+            do Sys.wait(50);
+        }
+        
+        return;
+    }
+    
+    method void dialogueProfesseur(Player player, Pokedex pokedex) {
+        var int progress;
+        let progress = player.getStoryProgress();
+        
+        do Output.moveCursor(22, 2);
+        
+        if (progress = 1) {
+            // Première visite - donner le starter
+            do Strings.printProfPrevenu();
+            do Sys.wait(2000);
+            do Screen.setColor(false);
+            do Screen.drawRectangle(0, 176, 511, 255);
+            do Output.moveCursor(22, 2);
+            do Strings.printProfChoisirStarter();
+        } else {
+            if (defeated) {
+                do Strings.printTutrouveralepokemonquimanqueatonpokedexdansledesert();
+            } else {
+                if (progress > 1) {
+                    do Strings.printPROFCHENMontremoitaforce();
+                } else {
+                    do Strings.printPROFCHENVavoirtameredabord();
+                }
+            }
+        }
+        
+        return;
+    }
+
+    method void dialogueMere(Player player) {
+        var int progress;
+        let progress = player.getStoryProgress();
+        
+        do Screen.setColor(false);
+        do Screen.drawRectangle(0, 176, 511, 255);
+        do Output.moveCursor(22, 2);
+        
+        if (progress = 0) {
+            do Strings.printMereBonjour();
+            do Sys.wait(2000);
+            do Screen.setColor(false);
+            do Screen.drawRectangle(0, 176, 511, 255);
+            do Output.moveCursor(22, 2);
+            do Strings.printMereVoirProf();
+            do Sys.wait(2000);
+            do player.setStoryProgress(1);
+        } else {
+            if (progress = 1) {
+                do Strings.printMereVoirProf();
+            } else {
+                do Strings.printMEREPrendssoindetesPokemon();
+            }
+        }
+        
+        return;
+    }
+
+    method void dialogueBoutique(Shop shop) {
+        var char key;
+        var boolean shopping;
+        
+        do Output.moveCursor(22, 2);
+        do Strings.printVENDEURBienvenuealaboutique();
+        do Sys.wait(1500);
+        
+        do Output.moveCursor(22, 2);
+        do Strings.printvoidabs();
+        do Output.moveCursor(22, 2);
+        do Strings.printAppuyezsurENTREEpourvoirlesobjets();
+        
+        while (Keyboard.keyPressed() = 0) {
+            do Sys.wait(50);
+        }
+        while (~(Keyboard.keyPressed() = 0)) {
+            do Sys.wait(50);
+        }
+        
+        let shopping = true;
+        do shop.display();
+        
+        while (shopping) {
+            let key = Keyboard.keyPressed();
+            
+            if (~(key = 0)) {
+                do shop.handleInput(key);
+                do shop.display();
+                
+                if (key = 81) {
+                    let shopping = false;
+                }
+                
+                while (~(Keyboard.keyPressed() = 0)) {
+                    do Sys.wait(50);
+                }
+                do Sys.wait(100);
+            }
+            
+            do Sys.wait(50);
+        }
+        
+        return;
+    }
+    
+    method void dialogueInfirmiere(Team playerTeam) {
+        do Output.moveCursor(22, 2);
+        do Strings.printINFIRMIERE1();
+        do Sys.wait(1500);
+        
+        do Output.moveCursor(22, 2);
+        do Strings.printvoidabs();
+        do Output.moveCursor(22, 2);
+        do Strings.printVosPokemonontetesoignes();
+        do playerTeam.healAll();
+        return;
+    }
+    
+    method void dialogueDresseur(Player player) {
+        do Output.moveCursor(22, 2);
+        
+        if (~player.hasStarter()) {
+            do Strings.printDRESSEUR10();
+            return;
+        }
+        
+        if (defeated) {
+            do Strings.printDRESSEURTuestropfortpourmoi();
+        } else {
+            do Strings.printDRESSEURJetedefieencombat();
+        }
+        return;
+    }
+    
+    method void dialogueScientifique(Player player) {
+        do Output.moveCursor(22, 2);
+        
+        if (~player.hasStarter()) {
+            do Strings.printSCIENTIFIQUETunaspasdePokemon();
+            return;
+        }
+        
+        if (defeated) {
+            do Strings.printSCIENTIFIQUEInteressant();
+
+        } else {
+            do Strings.printSCIENTIFIQUETestonstescapacites();
+        }
+        return;
+    }
+    
+    method void dialogueEnfant() {
+        do Output.moveCursor(22, 2);
+        do Strings.printENFANTJadorelesPokemonEttoi();
+        do Sys.wait(2000);
+        return;
+    }
+
+    method void draw() {
+        var int location;
+        let location = ((y * 16) * 32) + ((x * 16) / 16);
+        
+        if (type = 31) { do Sprites.drawProfesseur(location); }
+        if (type = 32) { do Sprites.drawInfirmiere(location); }
+        if (type = 33) { do Sprites.drawDresseur(location); }
+        if (type = 34) { do Sprites.drawScientifique(location); }
+        if (type = 35) { do Sprites.drawEnfant(location); }
+        if (type = 36) { do Sprites.drawvendeur(location); }
+        if (type = 37) { do Sprites.drawMaman(location); }
+        
+        return;
+    }
+    
+    method void erase() {
+        var int px, py;
+        let px = x * 16;
+        let py = y * 16;
+        
+        do Screen.setColor(false);
+        do Screen.drawRectangle(px, py, px + 15, py + 15);
+        
+        return;
+    }
+    
+    method void dispose() {
+        if (~(team = null)) {
+            do team.dispose();
+        }
+        do dialogues.dispose();
+        do Memory.deAlloc(this);
+        return;
+    }
+
+    method boolean canSeePlayer(int playerX, int playerY, int viewRange, Map map) {
+        var int dx, dy, distance, checkX, checkY, i, tile;
+        
+        let dx = playerX - x;
+        let dy = playerY - y;
+        
+        // Vérifier si aligné horizontalement
+        if (dy = 0) {
+            let distance = dx;
+            if (distance < 0) {
+                let distance = -distance;
+                let direction = 2; // Regarde à gauche
+            } else {
+                let direction = 3; // Regarde à droite
+            }
+            
+            // Vérifier la portée
+            if (distance > viewRange) {
+                return false;
+            }
+            
+            // Vérifier qu'il n'y a pas d'obstacle
+            let i = 1;
+            while (i < distance) {
+                if (dx < 0) {
+                    let checkX = x - i;
+                } else {
+                    let checkX = x + i;
+                }
+                let checkY = y;
+                
+                let tile = map.getTile(checkX, checkY);
+                // Si obstacle (mur, arbre, eau, etc.)
+                if (~((tile = 0) | (tile = 1) | (tile = 7) | (tile = 18) | (tile = 27) | (tile > 49))) {
+                    return false;
+                }
+                
+                let i = i + 1;
+            }
+            
+            return true;
+        }
+        
+        // Vérifier si aligné verticalement
+        if (dx = 0) {
+            let distance = dy;
+            if (distance < 0) {
+                let distance = -distance;
+                let direction = 1; // Regarde en haut
+            } else {
+                let direction = 0; // Regarde en bas
+            }
+            
+            // Vérifier la portée
+            if (distance > viewRange) {
+                return false;
+            }
+            
+            // Vérifier qu'il n'y a pas d'obstacle
+            let i = 1;
+            while (i < distance) {
+                let checkX = x;
+                if (dy < 0) {
+                    let checkY = y - i;
+                } else {
+                    let checkY = y + i;
+                }
+                
+                let tile = map.getTile(checkX, checkY);
+                // Si obstacle
+                if (~((tile = 0) | (tile = 1) | (tile = 7) | (tile = 18) | (tile = 27) | (tile > 49))) {
+                    return false;
+                }
+                
+                let i = i + 1;
+            }
+            
+            return true;
+        }
+        
+        // Pas aligné
+        return false;
+    }
+
+// Obtient la direction dans laquelle le dresseur doit regarder pour voir le joueur
+    method int getDirectionToPlayer(int playerX, int playerY) {
+        var int dx, dy;
+        
+        let dx = playerX - x;
+        let dy = playerY - y;
+        
+        // Aligné verticalement
+        if (dx = 0) {
+            if (dy < 0) {
+                return 1; // Haut
+            } else {
+                return 0; // Bas
+            }
+        }
+        
+        // Aligné horizontalement
+        if (dy = 0) {
+            if (dx < 0) {
+                return 2; // Gauche
+            } else {
+                return 3; // Droite
+            }
+        }
+        
+        return direction; // Par défaut, garder la direction actuelle
+    }
+}

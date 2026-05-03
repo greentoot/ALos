@@ -1,0 +1,770 @@
+function TeamMenu.new 0
+    push constant 5
+    call Memory.alloc 1
+    pop pointer 0
+    push argument 0
+    pop this 0
+    push constant 0
+    pop this 1
+    push constant 0
+    pop this 2
+    push constant 1
+    neg
+    pop this 3
+    push constant 0
+    pop this 4
+    push pointer 0
+    return
+function TeamMenu.display 0
+    push argument 0
+    pop pointer 0
+    push this 4
+    not
+    if-goto TeamMenu_1
+    push pointer 0
+    call TeamMenu.displayDetails 1
+    pop temp 0
+    goto TeamMenu_0
+label TeamMenu_1
+    push pointer 0
+    call TeamMenu.displayTeamList 1
+    pop temp 0
+label TeamMenu_0
+    push constant 0
+    return
+function TeamMenu.displayTeamList 0
+    push argument 0
+    pop pointer 0
+    call Screen.clearScreen 0
+    pop temp 0
+    push constant 1
+    push constant 20
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.printEquipe 0
+    pop temp 0
+    push constant 2
+    push constant 15
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.drawseparation 0
+    pop temp 0
+    push constant 3
+    push constant 2
+    call Output.moveCursor 2
+    pop temp 0
+    push this 2
+    not
+    if-goto TeamMenu_3
+    call Strings.printSelectionnerDestination 0
+    pop temp 0
+    goto TeamMenu_2
+label TeamMenu_3
+    call Strings.printInstructions 0
+    pop temp 0
+label TeamMenu_2
+    push pointer 0
+    call TeamMenu.drawAllSlots 1
+    pop temp 0
+    push constant 0
+    return
+function TeamMenu.drawAllSlots 2
+    push argument 0
+    pop pointer 0
+    push constant 5
+    pop local 1
+    push constant 0
+    pop local 0
+label TeamMenu_4
+    push local 0
+    push constant 6
+    lt
+    not
+    if-goto TeamMenu_5
+    push pointer 0
+    push local 0
+    push local 1
+    push local 0
+    push constant 3
+    call Math.multiply 2
+    add
+    call TeamMenu.drawSlot 3
+    pop temp 0
+    push local 0
+    push constant 1
+    add
+    pop local 0
+    goto TeamMenu_4
+label TeamMenu_5
+    push constant 0
+    return
+function TeamMenu.drawSlot 2
+    push argument 0
+    pop pointer 0
+    push this 0
+    call Team.getCount 1
+    pop local 1
+    push argument 2
+    push constant 2
+    call Output.moveCursor 2
+    pop temp 0
+    push argument 1
+    push this 1
+    eq
+    not
+    if-goto TeamMenu_7
+    push constant 62
+    call Output.printChar 1
+    pop temp 0
+    goto TeamMenu_6
+label TeamMenu_7
+    push constant 32
+    call Output.printChar 1
+    pop temp 0
+label TeamMenu_6
+    push this 2
+    push argument 1
+    push this 3
+    eq
+    and
+    not
+    if-goto TeamMenu_9
+    push constant 60
+    call Output.printChar 1
+    pop temp 0
+    push constant 83
+    call Output.printChar 1
+    pop temp 0
+    push constant 87
+    call Output.printChar 1
+    pop temp 0
+    push constant 65
+    call Output.printChar 1
+    pop temp 0
+    push constant 80
+    call Output.printChar 1
+    pop temp 0
+    push constant 62
+    call Output.printChar 1
+    pop temp 0
+    goto TeamMenu_8
+label TeamMenu_9
+label TeamMenu_8
+    push argument 1
+    push local 1
+    push constant 1
+    sub
+    gt
+    not
+    if-goto TeamMenu_11
+    push argument 2
+    push constant 15
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.printVide 0
+    pop temp 0
+    push constant 0
+    return
+    goto TeamMenu_10
+label TeamMenu_11
+label TeamMenu_10
+    push this 0
+    push argument 1
+    call Team.getPokemon 2
+    pop local 0
+    push local 0
+    push constant 0
+    eq
+    not
+    if-goto TeamMenu_13
+    push argument 2
+    push constant 15
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.printVide 0
+    pop temp 0
+    push constant 0
+    return
+    goto TeamMenu_12
+label TeamMenu_13
+label TeamMenu_12
+    push argument 1
+    push this 0
+    call Team.getActiveIndex 1
+    eq
+    not
+    if-goto TeamMenu_15
+    push constant 32
+    call Output.printChar 1
+    pop temp 0
+    push constant 91
+    call Output.printChar 1
+    pop temp 0
+    push constant 65
+    call Output.printChar 1
+    pop temp 0
+    push constant 67
+    call Output.printChar 1
+    pop temp 0
+    push constant 84
+    call Output.printChar 1
+    pop temp 0
+    push constant 73
+    call Output.printChar 1
+    pop temp 0
+    push constant 70
+    call Output.printChar 1
+    pop temp 0
+    push constant 93
+    call Output.printChar 1
+    pop temp 0
+    push constant 32
+    call Output.printChar 1
+    pop temp 0
+    goto TeamMenu_14
+label TeamMenu_15
+label TeamMenu_14
+    push argument 2
+    push constant 15
+    call Output.moveCursor 2
+    pop temp 0
+    push local 0
+    call Pokemon.getType 1
+    call Strings.printPokemonName 1
+    pop temp 0
+    push constant 32
+    call Output.printChar 1
+    pop temp 0
+    call Strings.printNv 0
+    pop temp 0
+    push local 0
+    call Pokemon.getLevel 1
+    call Output.printInt 1
+    pop temp 0
+    push argument 2
+    push constant 1
+    add
+    push constant 15
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.printHP 0
+    pop temp 0
+    push local 0
+    call Pokemon.getHp 1
+    call Output.printInt 1
+    pop temp 0
+    push constant 47
+    call Output.printChar 1
+    pop temp 0
+    push local 0
+    call Pokemon.getMaxHp 1
+    call Output.printInt 1
+    pop temp 0
+    push pointer 0
+    push argument 2
+    push constant 1
+    add
+    push constant 25
+    push local 0
+    call Pokemon.getHp 1
+    push local 0
+    call Pokemon.getMaxHp 1
+    call TeamMenu.drawMiniHpBar 5
+    pop temp 0
+    push constant 0
+    return
+function TeamMenu.displayDetails 2
+    push argument 0
+    pop pointer 0
+    call Screen.clearScreen 0
+    pop temp 0
+    push this 0
+    call Team.getCount 1
+    pop local 1
+    push constant 1
+    push constant 15
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.printDetailsTitle 0
+    pop temp 0
+    push constant 2
+    push constant 12
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.drawseparation 0
+    pop temp 0
+    push this 1
+    push local 1
+    push constant 1
+    sub
+    gt
+    not
+    if-goto TeamMenu_17
+    push constant 5
+    push constant 15
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.printSlotVide 0
+    pop temp 0
+    push constant 20
+    push constant 10
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.printPressQToReturn 0
+    pop temp 0
+    push constant 0
+    return
+    goto TeamMenu_16
+label TeamMenu_17
+label TeamMenu_16
+    push this 0
+    push this 1
+    call Team.getPokemon 2
+    pop local 0
+    push local 0
+    push constant 0
+    eq
+    not
+    if-goto TeamMenu_19
+    push constant 5
+    push constant 15
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.printSlotVide 0
+    pop temp 0
+    push constant 20
+    push constant 10
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.printPressQToReturn 0
+    pop temp 0
+    push constant 0
+    return
+    goto TeamMenu_18
+label TeamMenu_19
+label TeamMenu_18
+    push constant 5
+    push constant 10
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.printNom 0
+    pop temp 0
+    push local 0
+    call Pokemon.getType 1
+    call Strings.printPokemonName 1
+    pop temp 0
+    push constant 7
+    push constant 10
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.printNiveau 0
+    pop temp 0
+    push local 0
+    call Pokemon.getLevel 1
+    call Output.printInt 1
+    pop temp 0
+    push constant 10
+    push constant 10
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.printPV 0
+    pop temp 0
+    push local 0
+    call Pokemon.getHp 1
+    call Output.printInt 1
+    pop temp 0
+    push constant 32
+    call Output.printChar 1
+    pop temp 0
+    push constant 47
+    call Output.printChar 1
+    pop temp 0
+    push constant 32
+    call Output.printChar 1
+    pop temp 0
+    push local 0
+    call Pokemon.getMaxHp 1
+    call Output.printInt 1
+    pop temp 0
+    push constant 12
+    push constant 10
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.printAttaque 0
+    pop temp 0
+    push local 0
+    call Pokemon.getAttack 1
+    call Output.printInt 1
+    pop temp 0
+    push constant 14
+    push constant 10
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.printDefense 0
+    pop temp 0
+    push local 0
+    call Pokemon.getDefense 1
+    call Output.printInt 1
+    pop temp 0
+    push constant 16
+    push constant 10
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.printStatut 0
+    pop temp 0
+    push local 0
+    call Pokemon.isFainted 1
+    not
+    if-goto TeamMenu_21
+    call Strings.printKO 0
+    pop temp 0
+    goto TeamMenu_20
+label TeamMenu_21
+    call Strings.printEnForme 0
+    pop temp 0
+label TeamMenu_20
+    push constant 20
+    push constant 10
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.printPressENTREToReturn 0
+    pop temp 0
+    push constant 0
+    return
+function TeamMenu.drawMiniExpBar 3
+    push argument 0
+    pop pointer 0
+    push constant 15
+    pop local 0
+    push argument 4
+    push constant 0
+    gt
+    not
+    if-goto TeamMenu_23
+    push argument 3
+    push local 0
+    call Math.multiply 2
+    push argument 4
+    call Math.divide 2
+    pop local 1
+    goto TeamMenu_22
+label TeamMenu_23
+    push constant 0
+    pop local 1
+label TeamMenu_22
+    push argument 1
+    push argument 2
+    call Output.moveCursor 2
+    pop temp 0
+    push constant 91
+    call Output.printChar 1
+    pop temp 0
+    push constant 0
+    pop local 2
+label TeamMenu_24
+    push local 2
+    push local 0
+    lt
+    not
+    if-goto TeamMenu_25
+    push local 2
+    push local 1
+    lt
+    not
+    if-goto TeamMenu_27
+    push constant 35
+    call Output.printChar 1
+    pop temp 0
+    goto TeamMenu_26
+label TeamMenu_27
+    push constant 32
+    call Output.printChar 1
+    pop temp 0
+label TeamMenu_26
+    push local 2
+    push constant 1
+    add
+    pop local 2
+    goto TeamMenu_24
+label TeamMenu_25
+    push constant 93
+    call Output.printChar 1
+    pop temp 0
+    push constant 0
+    return
+function TeamMenu.drawMiniHpBar 3
+    push argument 0
+    pop pointer 0
+    push constant 20
+    pop local 0
+    push argument 3
+    push local 0
+    call Math.multiply 2
+    push argument 4
+    call Math.divide 2
+    pop local 1
+    push argument 1
+    push argument 2
+    call Output.moveCursor 2
+    pop temp 0
+    push constant 91
+    call Output.printChar 1
+    pop temp 0
+    push constant 0
+    pop local 2
+label TeamMenu_28
+    push local 2
+    push local 0
+    lt
+    not
+    if-goto TeamMenu_29
+    push local 2
+    push local 1
+    lt
+    not
+    if-goto TeamMenu_31
+    push constant 61
+    call Output.printChar 1
+    pop temp 0
+    goto TeamMenu_30
+label TeamMenu_31
+    push constant 32
+    call Output.printChar 1
+    pop temp 0
+label TeamMenu_30
+    push local 2
+    push constant 1
+    add
+    pop local 2
+    goto TeamMenu_28
+label TeamMenu_29
+    push constant 93
+    call Output.printChar 1
+    pop temp 0
+    push constant 0
+    return
+function TeamMenu.moveSelection 1
+    push argument 0
+    pop pointer 0
+    push constant 5
+    pop local 0
+    push this 1
+    push argument 1
+    add
+    pop this 1
+    push this 1
+    push constant 0
+    lt
+    not
+    if-goto TeamMenu_33
+    push local 0
+    pop this 1
+    goto TeamMenu_32
+label TeamMenu_33
+label TeamMenu_32
+    push this 1
+    push local 0
+    gt
+    not
+    if-goto TeamMenu_35
+    push constant 0
+    pop this 1
+    goto TeamMenu_34
+label TeamMenu_35
+label TeamMenu_34
+    push constant 0
+    return
+function TeamMenu.handleInput 1
+    push argument 0
+    pop pointer 0
+    push this 4
+    not
+    if-goto TeamMenu_37
+    push argument 1
+    push constant 128
+    eq
+    not
+    if-goto TeamMenu_39
+    push constant 0
+    pop this 4
+    goto TeamMenu_38
+label TeamMenu_39
+label TeamMenu_38
+    push constant 0
+    return
+    goto TeamMenu_36
+label TeamMenu_37
+label TeamMenu_36
+    push argument 1
+    push constant 131
+    eq
+    not
+    if-goto TeamMenu_41
+    push pointer 0
+    push constant 1
+    neg
+    call TeamMenu.moveSelection 2
+    pop temp 0
+    goto TeamMenu_40
+label TeamMenu_41
+label TeamMenu_40
+    push argument 1
+    push constant 133
+    eq
+    not
+    if-goto TeamMenu_43
+    push pointer 0
+    push constant 1
+    call TeamMenu.moveSelection 2
+    pop temp 0
+    goto TeamMenu_42
+label TeamMenu_43
+label TeamMenu_42
+    push argument 1
+    push constant 128
+    eq
+    not
+    if-goto TeamMenu_45
+    push this 2
+    not
+    if-goto TeamMenu_47
+    push this 0
+    push this 3
+    push this 1
+    call Team.swapPokemon 3
+    pop temp 0
+    push constant 0
+    pop this 2
+    push constant 1
+    neg
+    pop this 3
+    goto TeamMenu_46
+label TeamMenu_47
+    push constant 1
+    neg
+    pop this 4
+label TeamMenu_46
+    goto TeamMenu_44
+label TeamMenu_45
+label TeamMenu_44
+    push argument 1
+    push constant 97
+    eq
+    not
+    if-goto TeamMenu_49
+    push this 1
+    push this 0
+    call Team.getCount 1
+    lt
+    not
+    if-goto TeamMenu_51
+    push this 0
+    push this 1
+    call Team.getPokemon 2
+    pop local 0
+    push local 0
+    push constant 0
+    eq
+    not
+    not
+    if-goto TeamMenu_53
+    push this 0
+    push this 1
+    call Team.setActive 2
+    pop temp 0
+    push constant 22
+    push constant 2
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.printPokemonDefiniActif 0
+    pop temp 0
+    push constant 1500
+    call Sys.wait 1
+    pop temp 0
+    push constant 22
+    push constant 2
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.printespace 0
+    pop temp 0
+    goto TeamMenu_52
+label TeamMenu_53
+label TeamMenu_52
+    goto TeamMenu_50
+label TeamMenu_51
+    push constant 22
+    push constant 2
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.printImpossibleSlotVide 0
+    pop temp 0
+    push constant 1500
+    call Sys.wait 1
+    pop temp 0
+    push constant 22
+    push constant 2
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.printespace 0
+    pop temp 0
+label TeamMenu_50
+    goto TeamMenu_48
+label TeamMenu_49
+label TeamMenu_48
+    push argument 1
+    push constant 115
+    eq
+    not
+    if-goto TeamMenu_55
+    push this 2
+    not
+    not
+    if-goto TeamMenu_57
+    push this 1
+    push this 0
+    call Team.getCount 1
+    lt
+    not
+    if-goto TeamMenu_59
+    push this 0
+    push this 1
+    call Team.getPokemon 2
+    pop local 0
+    push local 0
+    push constant 0
+    eq
+    not
+    not
+    if-goto TeamMenu_61
+    push constant 1
+    neg
+    pop this 2
+    push this 1
+    pop this 3
+    goto TeamMenu_60
+label TeamMenu_61
+label TeamMenu_60
+    goto TeamMenu_58
+label TeamMenu_59
+label TeamMenu_58
+    goto TeamMenu_56
+label TeamMenu_57
+label TeamMenu_56
+    goto TeamMenu_54
+label TeamMenu_55
+label TeamMenu_54
+    push constant 0
+    return
+function TeamMenu.getSelectedIndex 0
+    push argument 0
+    pop pointer 0
+    push this 1
+    return
+function TeamMenu.dispose 0
+    push argument 0
+    pop pointer 0
+    push pointer 0
+    call Memory.deAlloc 1
+    pop temp 0
+    push constant 0
+    return

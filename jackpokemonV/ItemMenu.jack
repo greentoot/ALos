@@ -1,0 +1,353 @@
+// ItemMenu.jack - Menu pour utiliser les objets
+class ItemMenu {
+    field Inventory inventory;
+    field Team team;
+    field int selectedItem;
+    field int selectedPokemon;
+    field boolean inPokemonSelection;
+    
+    constructor ItemMenu new(Inventory inv, Team playerTeam) {
+        let inventory = inv;
+        let team = playerTeam;
+        let selectedItem = 0;
+        let selectedPokemon = 0;
+        let inPokemonSelection = false;
+        return this;
+    }
+    
+    method void display() {
+        if (inPokemonSelection) {
+            do displayPokemonSelection();
+        } else {
+            do displayItemList();
+        }
+        return;
+    }
+    
+    method void displayItemList() {
+        var Item item;
+        
+        do Screen.clearScreen();
+        
+        do Output.moveCursor(1, 20);
+        do Strings.printInventaire();
+        
+        do Output.moveCursor(2, 15);
+        do Strings.drawseparation();
+        
+        // Instructions
+        do Output.moveCursor(3, 2);
+        do Strings.Fleches_NavENTREE_SwapESC_Retour();
+        
+        // Pokeballs
+        do Output.moveCursor(5, 5);
+        if (selectedItem = 0) {
+            do Output.printChar(62); // >
+        } else {
+            do Output.printChar(32); // espace
+        }
+        do Output.printChar(49); // 1
+        do Output.printChar(46); // .
+        do Output.printChar(32); // espace
+        do Strings.printPokeball();
+        do Output.printChar(32); // espace
+        do Output.printChar(120); // x
+        let item = inventory.getItem(0);
+        do Output.printInt(item.getQuantity());
+        
+        // Potions
+        do Output.moveCursor(7, 5);
+        if (selectedItem = 1) {
+            do Output.printChar(62); // >
+        } else {
+            do Output.printChar(32); // espace
+        }
+        do Output.printChar(50); // 2
+        do Output.printChar(46); // .
+        do Output.printChar(32); // espace
+        do Strings.printPotion();
+        do Output.printChar(32); // espace
+        do Output.printChar(120); // x
+        let item = inventory.getItem(1);
+        do Output.printInt(item.getQuantity());
+        do Output.printChar(32); // espace
+        do Output.printChar(40); // (
+        do Output.printChar(43); // +
+        do Output.printChar(50); // 2
+        do Output.printChar(48); // 0
+        do Strings.printHP();
+        do Output.printChar(41); // )
+        
+        // Super Potions
+        do Output.moveCursor(9, 5);
+        if (selectedItem = 2) {
+            do Output.printChar(62); // >
+        } else {
+            do Output.printChar(32); // espace
+        }
+        do Output.printChar(51); // 3
+        do Output.printChar(46); // .
+        do Output.printChar(32); // espace
+        do Strings.printSuperPotion();
+        do Output.printChar(32); // espace
+        do Output.printChar(120); // x
+        let item = inventory.getItem(2);
+        do Output.printInt(item.getQuantity());
+        do Output.printChar(32); // espace
+        do Output.printChar(40); // (
+        do Output.printChar(43); // +
+        do Output.printChar(53); // 5
+        do Output.printChar(48); // 0
+        do Strings.printHP();
+        do Output.printChar(41); // )
+        
+        // Rappels
+        do Output.moveCursor(11, 5);
+        if (selectedItem = 3) {
+            do Output.printChar(62); // >
+        } else {
+            do Output.printChar(32); // espace
+        }
+        do Output.printChar(52); // 4
+        do Output.printChar(46); // .
+        do Output.printChar(32); // espace
+        do Strings.printRappel();
+        do Output.printChar(32); // espace
+        do Output.printChar(120); // x
+        let item = inventory.getItem(3);
+        do Output.printInt(item.getQuantity());
+        do Output.printChar(32); // espace
+        do Output.printChar(40); // (
+        do Strings.printRanime();
+        do Output.printChar(41); // )
+        
+        return;
+    }
+    
+    method void displayPokemonSelection() {
+        var int i, count;
+        var Pokemon poke;
+        
+        do Screen.clearScreen();
+        
+        do Output.moveCursor(1, 12);
+        do Strings.printSelectionnerPokemon();
+        
+        do Output.moveCursor(2, 10);
+        do Strings.drawseparation();
+        
+        let count = team.getCount();
+        let i = 0;
+        
+        while (i < count) {
+            let poke = team.getPokemon(i);
+            
+            do Output.moveCursor(4 + (i * 2), 5);
+            
+            if (i = selectedPokemon) {
+                do Output.printChar(62); // >
+            } else {
+                do Output.printChar(32); // espace
+            }
+            
+            do Output.printInt(i + 1);
+            do Output.printChar(46); // .
+            do Output.printChar(32); // espace
+            do Strings.printPokemonName(poke.getType());
+            do Output.printChar(32); // espace
+            do Strings.printHP();
+            do Output.printInt(poke.getHp());
+            do Output.printChar(47); // /
+            do Output.printInt(poke.getMaxHp());
+            
+            if (poke.isFainted()) {
+                do Output.printChar(32); // espace
+                do Output.printChar(91); // [
+                do Output.printChar(75); // K
+                do Output.printChar(79); // O
+                do Output.printChar(93); // ]
+            }
+            
+            let i = i + 1;
+        }
+        
+        return;
+    }
+    
+    method void moveSelection(int direction) {
+        if (inPokemonSelection) {
+            let selectedPokemon = selectedPokemon + direction;
+            if (selectedPokemon < 0) {
+                let selectedPokemon = 0;
+            }
+            if (selectedPokemon > (team.getCount() - 1)) {
+                let selectedPokemon = team.getCount() - 1;
+            }
+        } else {
+            let selectedItem = selectedItem + direction;
+            if (selectedItem < 0) {
+                let selectedItem = 0;
+            }
+            if (selectedItem > 3) {
+                let selectedItem = 3;
+            }
+        }
+        return;
+    }
+    
+    method void handleInput(char key) {
+        // Navigation
+        if (key = 131) { do moveSelection(-1); } // Haut
+        if (key = 133) { do moveSelection(1); }  // Bas
+        
+        // Entrée - Sélectionner/Utiliser
+        if (key = 128) {
+            if (inPokemonSelection) {
+                do useItemOnPokemon();
+            } else {
+                do selectItem();
+            }
+        }
+        
+        return;
+    }
+    
+    method void selectItem() {
+        // Pokeball ne peut pas être utilisée hors combat
+        if (selectedItem = 0) {
+            do Output.moveCursor(20, 5);
+            do Strings.printUniquementencombat();
+            do Sys.wait(1500);
+            return;
+        }
+        
+        // Vérifier si on a l'objet
+        if (~inventory.hasItem(selectedItem)) {
+            do Output.moveCursor(20, 5);
+            do Strings.printPasAssezObjets();
+            do Sys.wait(1500);
+            return;
+        }
+        
+        // Passer en mode sélection de Pokémon
+        let inPokemonSelection = true;
+        let selectedPokemon = 0;
+        return;
+    }
+    
+    method void useItemOnPokemon() {
+        var Pokemon poke;
+        var int healAmount, oldHp;
+        
+        let poke = team.getPokemon(selectedPokemon);
+        
+        // Potion (+20 HP)
+        if (selectedItem = 1) {
+            if (poke.isFainted()) {
+                do Output.moveCursor(20, 5);
+                do Strings.printPokemonKO2();
+                do Sys.wait(1500);
+                return;
+            }
+            
+            if (poke.getHp() = poke.getMaxHp()) {
+                do Output.moveCursor(20, 5);
+                do Strings.printPokemonPleineVie();
+                do Sys.wait(1500);
+                return;
+            }
+            
+            let oldHp = poke.getHp();
+            let healAmount = 20;
+            do healPokemon(poke, healAmount);
+            do inventory.useItem(1);
+            
+            let inPokemonSelection = false;
+            
+            do Output.moveCursor(20, 5);
+            do Strings.printPokemonSoigne();
+            do Sys.wait(1500);
+        }
+        
+        // Super Potion (+50 HP)
+        if (selectedItem = 2) {
+            if (poke.isFainted()) {
+                do Output.moveCursor(20, 5);
+                do Strings.printPokemonKO2();
+                do Sys.wait(1500);
+                return;
+            }
+            
+            if (poke.getHp() = poke.getMaxHp()) {
+                do Output.moveCursor(20, 5);
+                do Strings.printPokemonPleineVie();
+                do Sys.wait(1500);
+                return;
+            }
+            
+            let oldHp = poke.getHp();
+            let healAmount = 50;
+            do healPokemon(poke, healAmount);
+            do inventory.useItem(2);
+            
+            let inPokemonSelection = false;
+            
+            do Output.moveCursor(20, 5);
+            do Strings.printPokemonSoigne();
+            do Sys.wait(1500);
+        }
+        
+        // Rappel (ranime)
+        if (selectedItem = 3) {
+            if (~poke.isFainted()) {
+                do Output.moveCursor(20, 5);
+                do Strings.printPokemonpasKO();
+                do Sys.wait(1500);
+                return;
+            }
+            
+            do healPokemon(poke, poke.getMaxHp() / 2);
+            do inventory.useItem(3);
+            
+            let inPokemonSelection = false;
+            
+            do Output.moveCursor(20, 5);
+            do Strings.printPokemonRanime();
+            do Sys.wait(1500);
+        }
+        
+        return;
+    }
+    
+    method void healPokemon(Pokemon poke, int amount) {
+        var int newHp, maxHp;
+        let maxHp = poke.getMaxHp();
+        let newHp = poke.getHp() + amount;
+        
+        if (newHp > maxHp) {
+            let newHp = maxHp;
+        }
+        
+        // Appliquer les soins directement
+        do poke.heal();
+        while (poke.getHp() > newHp) {
+            do poke.takeDamage(1);
+        }
+        
+        return;
+    }
+    
+    method boolean isInPokemonSelection() {
+        return inPokemonSelection;
+    }
+    
+    method void setInPokemonSelection(boolean value) {
+        let inPokemonSelection = value;
+        return;
+    }
+    
+    method void dispose() {
+        do Memory.deAlloc(this);
+        return;
+    }
+}

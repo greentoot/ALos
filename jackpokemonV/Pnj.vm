@@ -1,0 +1,1270 @@
+function Pnj.new 0
+    push constant 10
+    call Memory.alloc 1
+    pop pointer 0
+    push argument 0
+    pop this 0
+    push argument 1
+    pop this 1
+    push argument 2
+    pop this 2
+    push constant 0
+    pop this 3
+    push argument 3
+    pop this 8
+    push argument 4
+    pop this 6
+    push constant 0
+    pop this 7
+    push constant 5
+    call Array.new 1
+    pop this 4
+    push constant 0
+    pop this 5
+    push constant 0
+    pop this 9
+    push this 6
+    not
+    if-goto Pnj_1
+    push pointer 0
+    call Pnj.initTrainerTeam 1
+    pop temp 0
+    goto Pnj_0
+label Pnj_1
+label Pnj_0
+    push pointer 0
+    return
+function Pnj.initTrainerTeam 0
+    push argument 0
+    pop pointer 0
+    call Team.new 0
+    pop this 9
+    push this 2
+    push constant 33
+    eq
+    not
+    if-goto Pnj_3
+    push this 0
+    push constant 10
+    eq
+    not
+    if-goto Pnj_5
+    push this 9
+    push constant 5
+    push constant 5
+    call Pokemon.new 2
+    call Team.addPokemon 2
+    pop temp 0
+    push this 9
+    push constant 4
+    push constant 5
+    call Pokemon.new 2
+    call Team.addPokemon 2
+    pop temp 0
+    goto Pnj_4
+label Pnj_5
+label Pnj_4
+    push this 0
+    push constant 15
+    eq
+    not
+    if-goto Pnj_7
+    push this 9
+    push constant 3
+    push constant 5
+    call Pokemon.new 2
+    call Team.addPokemon 2
+    pop temp 0
+    push this 9
+    push constant 7
+    push constant 6
+    call Pokemon.new 2
+    call Team.addPokemon 2
+    pop temp 0
+    goto Pnj_6
+label Pnj_7
+label Pnj_6
+    push this 0
+    push constant 20
+    eq
+    not
+    if-goto Pnj_9
+    push this 9
+    push constant 2
+    push constant 7
+    call Pokemon.new 2
+    call Team.addPokemon 2
+    pop temp 0
+    push this 9
+    push constant 8
+    push constant 7
+    call Pokemon.new 2
+    call Team.addPokemon 2
+    pop temp 0
+    goto Pnj_8
+label Pnj_9
+label Pnj_8
+    goto Pnj_2
+label Pnj_3
+label Pnj_2
+    push this 2
+    push constant 34
+    eq
+    not
+    if-goto Pnj_11
+    push this 9
+    push constant 4
+    push constant 4
+    call Pokemon.new 2
+    call Team.addPokemon 2
+    pop temp 0
+    push this 9
+    push constant 5
+    push constant 8
+    call Pokemon.new 2
+    call Team.addPokemon 2
+    pop temp 0
+    goto Pnj_10
+label Pnj_11
+label Pnj_10
+    push this 2
+    push constant 31
+    eq
+    not
+    if-goto Pnj_13
+    push this 9
+    push constant 9
+    push constant 8
+    call Pokemon.new 2
+    call Team.addPokemon 2
+    pop temp 0
+    push this 9
+    push constant 0
+    push constant 7
+    call Pokemon.new 2
+    call Team.addPokemon 2
+    pop temp 0
+    push this 9
+    push constant 3
+    push constant 9
+    call Pokemon.new 2
+    call Team.addPokemon 2
+    pop temp 0
+    goto Pnj_12
+label Pnj_13
+label Pnj_12
+    push constant 0
+    return
+function Pnj.getMoneyReward 1
+    push argument 0
+    pop pointer 0
+    push constant 100
+    pop local 0
+    push this 2
+    push constant 33
+    eq
+    not
+    if-goto Pnj_15
+    push constant 300
+    pop local 0
+    goto Pnj_14
+label Pnj_15
+label Pnj_14
+    push this 2
+    push constant 34
+    eq
+    not
+    if-goto Pnj_17
+    push constant 500
+    pop local 0
+    goto Pnj_16
+label Pnj_17
+label Pnj_16
+    push this 2
+    push constant 41
+    eq
+    not
+    if-goto Pnj_19
+    push constant 2000
+    pop local 0
+    goto Pnj_18
+label Pnj_19
+label Pnj_18
+    push this 2
+    push constant 31
+    eq
+    not
+    if-goto Pnj_21
+    push constant 5000
+    pop local 0
+    goto Pnj_20
+label Pnj_21
+label Pnj_20
+    push local 0
+    return
+function Pnj.getX 0
+    push argument 0
+    pop pointer 0
+    push this 0
+    return
+function Pnj.getY 0
+    push argument 0
+    pop pointer 0
+    push this 1
+    return
+function Pnj.getType 0
+    push argument 0
+    pop pointer 0
+    push this 2
+    return
+function Pnj.getMapId 0
+    push argument 0
+    pop pointer 0
+    push this 8
+    return
+function Pnj.getIsTrainer 0
+    push argument 0
+    pop pointer 0
+    push this 6
+    return
+function Pnj.isDefeated 0
+    push argument 0
+    pop pointer 0
+    push this 7
+    return
+function Pnj.getTeam 0
+    push argument 0
+    pop pointer 0
+    push this 9
+    return
+function Pnj.setDefeated 0
+    push argument 0
+    pop pointer 0
+    push argument 1
+    pop this 7
+    push constant 0
+    return
+function Pnj.isAtPosition 0
+    push argument 0
+    pop pointer 0
+    push this 0
+    push argument 1
+    eq
+    push this 1
+    push argument 2
+    eq
+    and
+    return
+function Pnj.isFacingPlayer 0
+    push argument 0
+    pop pointer 0
+    push this 3
+    push constant 0
+    eq
+    not
+    if-goto Pnj_23
+    push argument 1
+    push this 0
+    eq
+    push argument 2
+    push this 1
+    push constant 1
+    add
+    eq
+    and
+    return
+    goto Pnj_22
+label Pnj_23
+label Pnj_22
+    push this 3
+    push constant 1
+    eq
+    not
+    if-goto Pnj_25
+    push argument 1
+    push this 0
+    eq
+    push argument 2
+    push this 1
+    push constant 1
+    sub
+    eq
+    and
+    return
+    goto Pnj_24
+label Pnj_25
+label Pnj_24
+    push this 3
+    push constant 2
+    eq
+    not
+    if-goto Pnj_27
+    push argument 1
+    push this 0
+    push constant 1
+    sub
+    eq
+    push argument 2
+    push this 1
+    eq
+    and
+    return
+    goto Pnj_26
+label Pnj_27
+label Pnj_26
+    push this 3
+    push constant 3
+    eq
+    not
+    if-goto Pnj_29
+    push argument 1
+    push this 0
+    push constant 1
+    add
+    eq
+    push argument 2
+    push this 1
+    eq
+    and
+    return
+    goto Pnj_28
+label Pnj_29
+label Pnj_28
+    push constant 0
+    return
+function Pnj.facePlayer 2
+    push argument 0
+    pop pointer 0
+    push argument 1
+    push this 0
+    sub
+    pop local 0
+    push argument 2
+    push this 1
+    sub
+    pop local 1
+    push local 1
+    push constant 0
+    gt
+    not
+    if-goto Pnj_31
+    push constant 0
+    pop this 3
+    goto Pnj_30
+label Pnj_31
+label Pnj_30
+    push local 1
+    push constant 0
+    lt
+    not
+    if-goto Pnj_33
+    push constant 1
+    pop this 3
+    goto Pnj_32
+label Pnj_33
+label Pnj_32
+    push local 0
+    push constant 0
+    lt
+    not
+    if-goto Pnj_35
+    push constant 2
+    pop this 3
+    goto Pnj_34
+label Pnj_35
+label Pnj_34
+    push local 0
+    push constant 0
+    gt
+    not
+    if-goto Pnj_37
+    push constant 3
+    pop this 3
+    goto Pnj_36
+label Pnj_37
+label Pnj_36
+    push constant 0
+    return
+function Pnj.interact 0
+    push argument 0
+    pop pointer 0
+    push constant 0
+    call Screen.setColor 1
+    pop temp 0
+    push constant 0
+    push constant 176
+    push constant 511
+    push constant 255
+    call Screen.drawRectangle 4
+    pop temp 0
+    push this 2
+    push constant 31
+    eq
+    not
+    if-goto Pnj_39
+    push pointer 0
+    push argument 1
+    push argument 2
+    call Pnj.dialogueProfesseur 3
+    pop temp 0
+    goto Pnj_38
+label Pnj_39
+label Pnj_38
+    push this 2
+    push constant 32
+    eq
+    not
+    if-goto Pnj_41
+    push pointer 0
+    push argument 1
+    call Player.getTeam 1
+    call Pnj.dialogueInfirmiere 2
+    pop temp 0
+    goto Pnj_40
+label Pnj_41
+label Pnj_40
+    push this 2
+    push constant 33
+    eq
+    not
+    if-goto Pnj_43
+    push pointer 0
+    push argument 1
+    call Pnj.dialogueDresseur 2
+    pop temp 0
+    goto Pnj_42
+label Pnj_43
+label Pnj_42
+    push this 2
+    push constant 34
+    eq
+    not
+    if-goto Pnj_45
+    push pointer 0
+    push argument 1
+    call Pnj.dialogueScientifique 2
+    pop temp 0
+    goto Pnj_44
+label Pnj_45
+label Pnj_44
+    push this 2
+    push constant 35
+    eq
+    not
+    if-goto Pnj_47
+    push pointer 0
+    call Pnj.dialogueEnfant 1
+    pop temp 0
+    goto Pnj_46
+label Pnj_47
+label Pnj_46
+    push this 2
+    push constant 36
+    eq
+    not
+    if-goto Pnj_49
+    push pointer 0
+    push argument 3
+    call Pnj.dialogueBoutique 2
+    pop temp 0
+    goto Pnj_48
+label Pnj_49
+label Pnj_48
+    push this 2
+    push constant 37
+    eq
+    not
+    if-goto Pnj_51
+    push pointer 0
+    push argument 1
+    call Pnj.dialogueMere 2
+    pop temp 0
+    goto Pnj_50
+label Pnj_51
+label Pnj_50
+label Pnj_52
+    call Keyboard.keyPressed 0
+    push constant 0
+    eq
+    not
+    if-goto Pnj_53
+    push constant 50
+    call Sys.wait 1
+    pop temp 0
+    goto Pnj_52
+label Pnj_53
+label Pnj_54
+    call Keyboard.keyPressed 0
+    push constant 0
+    eq
+    not
+    not
+    if-goto Pnj_55
+    push constant 50
+    call Sys.wait 1
+    pop temp 0
+    goto Pnj_54
+label Pnj_55
+    push constant 0
+    return
+function Pnj.dialogueProfesseur 1
+    push argument 0
+    pop pointer 0
+    push argument 1
+    call Player.getStoryProgress 1
+    pop local 0
+    push constant 22
+    push constant 2
+    call Output.moveCursor 2
+    pop temp 0
+    push local 0
+    push constant 1
+    eq
+    not
+    if-goto Pnj_57
+    call Strings.printProfPrevenu 0
+    pop temp 0
+    push constant 2000
+    call Sys.wait 1
+    pop temp 0
+    push constant 0
+    call Screen.setColor 1
+    pop temp 0
+    push constant 0
+    push constant 176
+    push constant 511
+    push constant 255
+    call Screen.drawRectangle 4
+    pop temp 0
+    push constant 22
+    push constant 2
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.printProfChoisirStarter 0
+    pop temp 0
+    goto Pnj_56
+label Pnj_57
+    push this 7
+    not
+    if-goto Pnj_59
+    call Strings.printTutrouveralepokemonquimanqueatonpokedexdansledesert 0
+    pop temp 0
+    goto Pnj_58
+label Pnj_59
+    push local 0
+    push constant 1
+    gt
+    not
+    if-goto Pnj_61
+    call Strings.printPROFCHENMontremoitaforce 0
+    pop temp 0
+    goto Pnj_60
+label Pnj_61
+    call Strings.printPROFCHENVavoirtameredabord 0
+    pop temp 0
+label Pnj_60
+label Pnj_58
+label Pnj_56
+    push constant 0
+    return
+function Pnj.dialogueMere 1
+    push argument 0
+    pop pointer 0
+    push argument 1
+    call Player.getStoryProgress 1
+    pop local 0
+    push constant 0
+    call Screen.setColor 1
+    pop temp 0
+    push constant 0
+    push constant 176
+    push constant 511
+    push constant 255
+    call Screen.drawRectangle 4
+    pop temp 0
+    push constant 22
+    push constant 2
+    call Output.moveCursor 2
+    pop temp 0
+    push local 0
+    push constant 0
+    eq
+    not
+    if-goto Pnj_63
+    call Strings.printMereBonjour 0
+    pop temp 0
+    push constant 2000
+    call Sys.wait 1
+    pop temp 0
+    push constant 0
+    call Screen.setColor 1
+    pop temp 0
+    push constant 0
+    push constant 176
+    push constant 511
+    push constant 255
+    call Screen.drawRectangle 4
+    pop temp 0
+    push constant 22
+    push constant 2
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.printMereVoirProf 0
+    pop temp 0
+    push constant 2000
+    call Sys.wait 1
+    pop temp 0
+    push argument 1
+    push constant 1
+    call Player.setStoryProgress 2
+    pop temp 0
+    goto Pnj_62
+label Pnj_63
+    push local 0
+    push constant 1
+    eq
+    not
+    if-goto Pnj_65
+    call Strings.printMereVoirProf 0
+    pop temp 0
+    goto Pnj_64
+label Pnj_65
+    call Strings.printMEREPrendssoindetesPokemon 0
+    pop temp 0
+label Pnj_64
+label Pnj_62
+    push constant 0
+    return
+function Pnj.dialogueBoutique 2
+    push argument 0
+    pop pointer 0
+    push constant 22
+    push constant 2
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.printVENDEURBienvenuealaboutique 0
+    pop temp 0
+    push constant 1500
+    call Sys.wait 1
+    pop temp 0
+    push constant 22
+    push constant 2
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.printvoidabs 0
+    pop temp 0
+    push constant 22
+    push constant 2
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.printAppuyezsurENTREEpourvoirlesobjets 0
+    pop temp 0
+label Pnj_66
+    call Keyboard.keyPressed 0
+    push constant 0
+    eq
+    not
+    if-goto Pnj_67
+    push constant 50
+    call Sys.wait 1
+    pop temp 0
+    goto Pnj_66
+label Pnj_67
+label Pnj_68
+    call Keyboard.keyPressed 0
+    push constant 0
+    eq
+    not
+    not
+    if-goto Pnj_69
+    push constant 50
+    call Sys.wait 1
+    pop temp 0
+    goto Pnj_68
+label Pnj_69
+    push constant 1
+    neg
+    pop local 1
+    push argument 1
+    call Shop.display 1
+    pop temp 0
+label Pnj_70
+    push local 1
+    not
+    if-goto Pnj_71
+    call Keyboard.keyPressed 0
+    pop local 0
+    push local 0
+    push constant 0
+    eq
+    not
+    not
+    if-goto Pnj_73
+    push argument 1
+    push local 0
+    call Shop.handleInput 2
+    pop temp 0
+    push argument 1
+    call Shop.display 1
+    pop temp 0
+    push local 0
+    push constant 81
+    eq
+    not
+    if-goto Pnj_75
+    push constant 0
+    pop local 1
+    goto Pnj_74
+label Pnj_75
+label Pnj_74
+label Pnj_76
+    call Keyboard.keyPressed 0
+    push constant 0
+    eq
+    not
+    not
+    if-goto Pnj_77
+    push constant 50
+    call Sys.wait 1
+    pop temp 0
+    goto Pnj_76
+label Pnj_77
+    push constant 100
+    call Sys.wait 1
+    pop temp 0
+    goto Pnj_72
+label Pnj_73
+label Pnj_72
+    push constant 50
+    call Sys.wait 1
+    pop temp 0
+    goto Pnj_70
+label Pnj_71
+    push constant 0
+    return
+function Pnj.dialogueInfirmiere 0
+    push argument 0
+    pop pointer 0
+    push constant 22
+    push constant 2
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.printINFIRMIERE1 0
+    pop temp 0
+    push constant 1500
+    call Sys.wait 1
+    pop temp 0
+    push constant 22
+    push constant 2
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.printvoidabs 0
+    pop temp 0
+    push constant 22
+    push constant 2
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.printVosPokemonontetesoignes 0
+    pop temp 0
+    push argument 1
+    call Team.healAll 1
+    pop temp 0
+    push constant 0
+    return
+function Pnj.dialogueDresseur 0
+    push argument 0
+    pop pointer 0
+    push constant 22
+    push constant 2
+    call Output.moveCursor 2
+    pop temp 0
+    push argument 1
+    call Player.hasStarter 1
+    not
+    not
+    if-goto Pnj_79
+    call Strings.printDRESSEUR10 0
+    pop temp 0
+    push constant 0
+    return
+    goto Pnj_78
+label Pnj_79
+label Pnj_78
+    push this 7
+    not
+    if-goto Pnj_81
+    call Strings.printDRESSEURTuestropfortpourmoi 0
+    pop temp 0
+    goto Pnj_80
+label Pnj_81
+    call Strings.printDRESSEURJetedefieencombat 0
+    pop temp 0
+label Pnj_80
+    push constant 0
+    return
+function Pnj.dialogueScientifique 0
+    push argument 0
+    pop pointer 0
+    push constant 22
+    push constant 2
+    call Output.moveCursor 2
+    pop temp 0
+    push argument 1
+    call Player.hasStarter 1
+    not
+    not
+    if-goto Pnj_83
+    call Strings.printSCIENTIFIQUETunaspasdePokemon 0
+    pop temp 0
+    push constant 0
+    return
+    goto Pnj_82
+label Pnj_83
+label Pnj_82
+    push this 7
+    not
+    if-goto Pnj_85
+    call Strings.printSCIENTIFIQUEInteressant 0
+    pop temp 0
+    goto Pnj_84
+label Pnj_85
+    call Strings.printSCIENTIFIQUETestonstescapacites 0
+    pop temp 0
+label Pnj_84
+    push constant 0
+    return
+function Pnj.dialogueEnfant 0
+    push argument 0
+    pop pointer 0
+    push constant 22
+    push constant 2
+    call Output.moveCursor 2
+    pop temp 0
+    call Strings.printENFANTJadorelesPokemonEttoi 0
+    pop temp 0
+    push constant 2000
+    call Sys.wait 1
+    pop temp 0
+    push constant 0
+    return
+function Pnj.draw 1
+    push argument 0
+    pop pointer 0
+    push this 1
+    push constant 16
+    call Math.multiply 2
+    push constant 32
+    call Math.multiply 2
+    push this 0
+    push constant 16
+    call Math.multiply 2
+    push constant 16
+    call Math.divide 2
+    add
+    pop local 0
+    push this 2
+    push constant 31
+    eq
+    not
+    if-goto Pnj_87
+    push local 0
+    call Sprites.drawProfesseur 1
+    pop temp 0
+    goto Pnj_86
+label Pnj_87
+label Pnj_86
+    push this 2
+    push constant 32
+    eq
+    not
+    if-goto Pnj_89
+    push local 0
+    call Sprites.drawInfirmiere 1
+    pop temp 0
+    goto Pnj_88
+label Pnj_89
+label Pnj_88
+    push this 2
+    push constant 33
+    eq
+    not
+    if-goto Pnj_91
+    push local 0
+    call Sprites.drawDresseur 1
+    pop temp 0
+    goto Pnj_90
+label Pnj_91
+label Pnj_90
+    push this 2
+    push constant 34
+    eq
+    not
+    if-goto Pnj_93
+    push local 0
+    call Sprites.drawScientifique 1
+    pop temp 0
+    goto Pnj_92
+label Pnj_93
+label Pnj_92
+    push this 2
+    push constant 35
+    eq
+    not
+    if-goto Pnj_95
+    push local 0
+    call Sprites.drawEnfant 1
+    pop temp 0
+    goto Pnj_94
+label Pnj_95
+label Pnj_94
+    push this 2
+    push constant 36
+    eq
+    not
+    if-goto Pnj_97
+    push local 0
+    call Sprites.drawvendeur 1
+    pop temp 0
+    goto Pnj_96
+label Pnj_97
+label Pnj_96
+    push this 2
+    push constant 37
+    eq
+    not
+    if-goto Pnj_99
+    push local 0
+    call Sprites.drawMaman 1
+    pop temp 0
+    goto Pnj_98
+label Pnj_99
+label Pnj_98
+    push constant 0
+    return
+function Pnj.erase 2
+    push argument 0
+    pop pointer 0
+    push this 0
+    push constant 16
+    call Math.multiply 2
+    pop local 0
+    push this 1
+    push constant 16
+    call Math.multiply 2
+    pop local 1
+    push constant 0
+    call Screen.setColor 1
+    pop temp 0
+    push local 0
+    push local 1
+    push local 0
+    push constant 15
+    add
+    push local 1
+    push constant 15
+    add
+    call Screen.drawRectangle 4
+    pop temp 0
+    push constant 0
+    return
+function Pnj.dispose 0
+    push argument 0
+    pop pointer 0
+    push this 9
+    push constant 0
+    eq
+    not
+    not
+    if-goto Pnj_101
+    push this 9
+    call Team.dispose 1
+    pop temp 0
+    goto Pnj_100
+label Pnj_101
+label Pnj_100
+    push this 4
+    call Array.dispose 1
+    pop temp 0
+    push pointer 0
+    call Memory.deAlloc 1
+    pop temp 0
+    push constant 0
+    return
+function Pnj.canSeePlayer 7
+    push argument 0
+    pop pointer 0
+    push argument 1
+    push this 0
+    sub
+    pop local 0
+    push argument 2
+    push this 1
+    sub
+    pop local 1
+    push local 1
+    push constant 0
+    eq
+    not
+    if-goto Pnj_103
+    push local 0
+    pop local 2
+    push local 2
+    push constant 0
+    lt
+    not
+    if-goto Pnj_105
+    push local 2
+    neg
+    pop local 2
+    push constant 2
+    pop this 3
+    goto Pnj_104
+label Pnj_105
+    push constant 3
+    pop this 3
+label Pnj_104
+    push local 2
+    push argument 3
+    gt
+    not
+    if-goto Pnj_107
+    push constant 0
+    return
+    goto Pnj_106
+label Pnj_107
+label Pnj_106
+    push constant 1
+    pop local 5
+label Pnj_108
+    push local 5
+    push local 2
+    lt
+    not
+    if-goto Pnj_109
+    push local 0
+    push constant 0
+    lt
+    not
+    if-goto Pnj_111
+    push this 0
+    push local 5
+    sub
+    pop local 3
+    goto Pnj_110
+label Pnj_111
+    push this 0
+    push local 5
+    add
+    pop local 3
+label Pnj_110
+    push this 1
+    pop local 4
+    push argument 4
+    push local 3
+    push local 4
+    call Map.getTile 3
+    pop local 6
+    push local 6
+    push constant 0
+    eq
+    push local 6
+    push constant 1
+    eq
+    or
+    push local 6
+    push constant 7
+    eq
+    or
+    push local 6
+    push constant 18
+    eq
+    or
+    push local 6
+    push constant 27
+    eq
+    or
+    push local 6
+    push constant 49
+    gt
+    or
+    not
+    not
+    if-goto Pnj_113
+    push constant 0
+    return
+    goto Pnj_112
+label Pnj_113
+label Pnj_112
+    push local 5
+    push constant 1
+    add
+    pop local 5
+    goto Pnj_108
+label Pnj_109
+    push constant 1
+    neg
+    return
+    goto Pnj_102
+label Pnj_103
+label Pnj_102
+    push local 0
+    push constant 0
+    eq
+    not
+    if-goto Pnj_115
+    push local 1
+    pop local 2
+    push local 2
+    push constant 0
+    lt
+    not
+    if-goto Pnj_117
+    push local 2
+    neg
+    pop local 2
+    push constant 1
+    pop this 3
+    goto Pnj_116
+label Pnj_117
+    push constant 0
+    pop this 3
+label Pnj_116
+    push local 2
+    push argument 3
+    gt
+    not
+    if-goto Pnj_119
+    push constant 0
+    return
+    goto Pnj_118
+label Pnj_119
+label Pnj_118
+    push constant 1
+    pop local 5
+label Pnj_120
+    push local 5
+    push local 2
+    lt
+    not
+    if-goto Pnj_121
+    push this 0
+    pop local 3
+    push local 1
+    push constant 0
+    lt
+    not
+    if-goto Pnj_123
+    push this 1
+    push local 5
+    sub
+    pop local 4
+    goto Pnj_122
+label Pnj_123
+    push this 1
+    push local 5
+    add
+    pop local 4
+label Pnj_122
+    push argument 4
+    push local 3
+    push local 4
+    call Map.getTile 3
+    pop local 6
+    push local 6
+    push constant 0
+    eq
+    push local 6
+    push constant 1
+    eq
+    or
+    push local 6
+    push constant 7
+    eq
+    or
+    push local 6
+    push constant 18
+    eq
+    or
+    push local 6
+    push constant 27
+    eq
+    or
+    push local 6
+    push constant 49
+    gt
+    or
+    not
+    not
+    if-goto Pnj_125
+    push constant 0
+    return
+    goto Pnj_124
+label Pnj_125
+label Pnj_124
+    push local 5
+    push constant 1
+    add
+    pop local 5
+    goto Pnj_120
+label Pnj_121
+    push constant 1
+    neg
+    return
+    goto Pnj_114
+label Pnj_115
+label Pnj_114
+    push constant 0
+    return
+function Pnj.getDirectionToPlayer 2
+    push argument 0
+    pop pointer 0
+    push argument 1
+    push this 0
+    sub
+    pop local 0
+    push argument 2
+    push this 1
+    sub
+    pop local 1
+    push local 0
+    push constant 0
+    eq
+    not
+    if-goto Pnj_127
+    push local 1
+    push constant 0
+    lt
+    not
+    if-goto Pnj_129
+    push constant 1
+    return
+    goto Pnj_128
+label Pnj_129
+    push constant 0
+    return
+label Pnj_128
+    goto Pnj_126
+label Pnj_127
+label Pnj_126
+    push local 1
+    push constant 0
+    eq
+    not
+    if-goto Pnj_131
+    push local 0
+    push constant 0
+    lt
+    not
+    if-goto Pnj_133
+    push constant 2
+    return
+    goto Pnj_132
+label Pnj_133
+    push constant 3
+    return
+label Pnj_132
+    goto Pnj_130
+label Pnj_131
+label Pnj_130
+    push this 3
+    return
