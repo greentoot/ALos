@@ -4,12 +4,10 @@
 #include "driver/vga.h"
 #include "driver/gfx.h"
 #include "driver/serial.h"
-#include "driver/audio.h"
 #include "driver/usb_probe.h"
 #include "driver/usb_xhci.h"
 #include "driver/timer.h"
 #include "driver/keyboard.h"
-#include "driver/mouse.h"
 #include "driver/usb_hid_kbd.h"
 #include "kernel/tty.h"
 #include "kernel/boot/bootinfo.h"
@@ -21,9 +19,6 @@
 #include "kernel/process/scheduler.h"
 #include "kernel/fs/ramfs.h"
 #include "kernel/fs/vfs.h"
-#include "kernel/fs/persist.h"
-#include "kernel/jack/jack_data.h"
-#include "kernel/jack/jack_assets.h"
 #include "kernel/lib/kprintf.h"
 #include "kernel/shell.h"
 #include <stdint.h>
@@ -34,9 +29,6 @@
 
 #ifndef ALOS_HW_SAFE
 #define ALOS_HW_SAFE 0
-#endif
-#ifndef ALOS_HW_SAFE_GAMES
-#define ALOS_HW_SAFE_GAMES 0
 #endif
 
 extern uint32_t kernel_end;
@@ -197,23 +189,6 @@ void kernel_main(uint32_t multiboot_magic, uint32_t multiboot_info_addr) {
     }
 #endif
     earlydiag_stage("interrupts ok");
-
-#if !ALOS_HW_SAFE
-    earlydiag_stage("persist init");
-    persist_init();
-    earlydiag_stage("jack data mount");
-    jack_data_mount();
-    earlydiag_stage("jack assets mount");
-    jack_assets_mount();
-    earlydiag_stage("mouse init");
-    mouse_init();
-    earlydiag_stage("audio init");
-    audio_init();
-    audio_play_boot_jingle();
-#elif ALOS_HW_SAFE_GAMES
-    earlydiag_stage("jack assets mount");
-    jack_assets_mount();
-#endif
 
     earlydiag_stage("shell run");
     shell_run();

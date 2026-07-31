@@ -55,7 +55,7 @@ int         ramfs_list_dir(const char *dir_path, char *buf, uint32_t bufsize);
 /* Compat: liste de / */
 int         ramfs_list(char *buf, uint32_t bufsize);
 
-/* Iteration / persistence helpers */
+/* Iteration helpers */
 int         ramfs_node_capacity(void);
 const RamFSNode *ramfs_node_at(int idx);
 void        ramfs_clear_mutable(void);

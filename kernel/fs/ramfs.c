@@ -1,11 +1,14 @@
 /* kernel/fs/ramfs.c - RamFS hierarchique style Linux */
 #include "ramfs.h"
 #include "../lib/string.h"
-#include "persist.h"
 
 static RamFSNode nodes[RAMFS_MAX_NODES];
 
 static int streq(const char *a, const char *b) { return kstrcmp(a, b) == 0; }
+
+static void ramfs_mark_dirty(void) {
+    /* Clean kernel: RamFS is volatile and has no game-save persistence layer. */
+}
 
 static uint32_t path_len(const char *p) { return kstrlen(p); }
 
@@ -154,7 +157,7 @@ RamFSNode *ramfs_create_bytes(const char *path, const void *content, uint32_t co
         nodes[i].size = len;
         nodes[i].ro_data = 0;
         nodes[i].type = RAMFS_NODE_FILE;
-        persist_mark_dirty();
+        ramfs_mark_dirty();
         return &nodes[i];
     }
 
@@ -173,7 +176,7 @@ RamFSNode *ramfs_create_bytes(const char *path, const void *content, uint32_t co
     nodes[i].data[len] = '\0';
     nodes[i].size = len;
     nodes[i].ro_data = 0;
-    persist_mark_dirty();
+    ramfs_mark_dirty();
 
     return &nodes[i];
 }
@@ -231,7 +234,7 @@ int ramfs_mkdir(const char *path) {
     nodes[i].used = 1;
     nodes[i].type = RAMFS_NODE_DIR;
     kstrncpy(nodes[i].name, abs_path, RAMFS_MAX_PATH - 1);
-    persist_mark_dirty();
+    ramfs_mark_dirty();
     return RAMFS_OK;
 }
 
@@ -260,7 +263,7 @@ int ramfs_remove(const char *path) {
     }
 
     kmemset(&nodes[i], 0, sizeof(nodes[i]));
-    persist_mark_dirty();
+    ramfs_mark_dirty();
     return RAMFS_OK;
 }
 
@@ -343,7 +346,6 @@ void ramfs_init(void) {
     ramfs_mkdir("/usr/bin");
     ramfs_mkdir("/var");
     ramfs_mkdir("/var/log");
-    ramfs_mkdir("/games");
 
     ramfs_create("/etc/os-release",
         "NAME=ALOS\n"
@@ -353,8 +355,9 @@ void ramfs_init(void) {
 
     ramfs_create("/home/root/readme.txt",
         "ALOS v0.5\n"
-        "  vmls             -- voir fichiers Jack (.vm)\n"
-        "  jack <jeu>       -- lancer le jeu\n"
+        "  ls               -- lister les fichiers\n"
+        "  cat <fichier>    -- lire un fichier\n"
+        "  mkdir <dossier>  -- creer un dossier\n"
         "  cd /home/root    -- changer de dossier\n"
         "  help             -- toutes les commandes\n");
 

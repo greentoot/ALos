@@ -6,13 +6,7 @@
 extern "C" {
 #endif
 
-#if defined(ALOS_FORCE_SMALL_HEAP) && ALOS_FORCE_SMALL_HEAP
-#define HEAP_SIZE  (8 * 1024 * 1024)   /* mode hardware-safe: heap minimal */
-#elif defined(ALOS_HAS_NDS_INTERNAL_CORE) && ALOS_HAS_NDS_INTERNAL_CORE
-#define HEAP_SIZE  (256 * 1024 * 1024) /* 256 MiB pour melonDS + ROMs DS */
-#else
-#define HEAP_SIZE  (8 * 1024 * 1024)   /* 8 MiB (mGBA + jeux VM) */
-#endif
+#define HEAP_SIZE  (8 * 1024 * 1024)
 
 void  heap_init(uint32_t heap_start);
 void *kmalloc(uint32_t size);

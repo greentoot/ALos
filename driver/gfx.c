@@ -1,5 +1,5 @@
 #include "gfx.h"
-#include "../kernel/jack/font5x8.h"
+#include "../kernel/ui/font5x8.h"
 
 /* VGA ports */
 #define VGA_MISC_WRITE   0x3C2

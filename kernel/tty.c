@@ -5,7 +5,7 @@
 #include "tty.h"
 #include "../driver/vga.h"
 #include "boot/bootinfo.h"
-#include "jack/font5x8.h"
+#include "ui/font5x8.h"
 #include "lib/string.h"
 
 #define SCROLL_TOP    0
@@ -368,17 +368,19 @@ void tty_clear_input(void) {
 }
 
 void tty_echo_char(char c, int cx) {
-    if ((unsigned)cx >= TTY_COLS) return;
-    g_chars[tty_idx(cx, INPUT_ROW)] = (uint8_t)c;
-    g_attrs[tty_idx(cx, INPUT_ROW)] = C_INPUT;
-    tty_draw_cell(cx, INPUT_ROW);
+    int x = PROMPT_LEN + cx;
+    if ((unsigned)x >= TTY_COLS) return;
+    g_chars[tty_idx(x, INPUT_ROW)] = (uint8_t)c;
+    g_attrs[tty_idx(x, INPUT_ROW)] = C_INPUT;
+    tty_draw_cell(x, INPUT_ROW);
 }
 
 void tty_backspace(int cx) {
-    if ((unsigned)cx >= TTY_COLS) return;
-    g_chars[tty_idx(cx, INPUT_ROW)] = ' ';
-    g_attrs[tty_idx(cx, INPUT_ROW)] = C_DEFAULT;
-    tty_draw_cell(cx, INPUT_ROW);
+    int x = PROMPT_LEN + cx;
+    if ((unsigned)x >= TTY_COLS) return;
+    g_chars[tty_idx(x, INPUT_ROW)] = ' ';
+    g_attrs[tty_idx(x, INPUT_ROW)] = C_DEFAULT;
+    tty_draw_cell(x, INPUT_ROW);
 }
 
 int tty_prompt_len(void) {

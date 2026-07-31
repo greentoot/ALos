@@ -331,8 +331,11 @@ typedef struct {
     uint8_t     max_slots;      /* Max Slots Enabled pour les essais     */
     uint8_t     ctx_size;       /* Taille d'un contexte xHCI (32 ou 64)  */
     uint8_t     ep1_addr;       /* Adresse USB de l'endpoint IN (0x81 typiquement) */
+    uint8_t     ep1_dci;        /* Device Context Index xHCI de l'endpoint IN */
     uint8_t     ep1_interval;   /* Interval bInterval du descripteur     */
+    uint8_t     hid_boot_exact; /* Interface HID boot keyboard stricte   */
     uint16_t    ep1_mps;        /* MaxPacketSize EP1 IN                  */
+    uint16_t    ep1_xfer_len;   /* Taille de rapport lue sur l'endpoint  */
     uint8_t     dev_addr;       /* Adresse USB assignÃ©e                  */
     uint8_t     interface_num;  /* NumÃ©ro d'interface HID                */
     uint32_t    op_base;        /* xHC Operational Base                  */
@@ -628,6 +631,32 @@ static int xhci_address_device(uint8_t slot_id, uint32_t input_ctx_phys, int bsr
     return (cc == CC_SUCCESS) ? 1 : 0;
 }
 
+static int xhci_disable_slot(uint8_t slot_id) {
+    if (!slot_id) return 1;
+
+    cmd_enqueue(0, 0, 0,
+                TRB_TYPE(TRBTYPE_DISABLE_SLOT) |
+                TRB_IOC |
+                ((uint32_t)slot_id << 24));
+    doorbell(0, 0);
+
+    Trb evt;
+    if (!evt_wait_type(DELAY_100MS, EVTYPE_CMD_COMPLETE, &evt)) {
+        kprintf("usb_hid: Disable Slot timeout slot=%u\n", (unsigned)slot_id);
+        return 0;
+    }
+
+    {
+        uint8_t cc = (uint8_t)((evt.status >> 24) & 0xFFu);
+        if (cc != CC_SUCCESS) {
+            kprintf("usb_hid: Disable Slot cc=%u slot=%u\n",
+                    (unsigned)cc,
+                    (unsigned)slot_id);
+        }
+        return (cc == CC_SUCCESS) ? 1 : 0;
+    }
+}
+
 /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
  * TRANSFERS DE CONTRÃ”LE EP0
  * SÃ©quence : SETUP TRB â†’ DATA TRB (optionnel) â†’ STATUS TRB
@@ -801,15 +830,41 @@ typedef struct __attribute__((packed)) {
 #define DESC_TYPE_ENDPOINT      0x05u
 #define DESC_TYPE_HID           0x21u
 
+static uint8_t ep_addr_to_xhci_dci(uint8_t ep_addr) {
+    uint8_t ep_num = (uint8_t)(ep_addr & 0x0Fu);
+    if (ep_num == 0u || ep_num > 15u) return 0;
+    return (uint8_t)((ep_num * 2u) + ((ep_addr & 0x80u) ? 1u : 0u));
+}
+
+static uint16_t hid_intr_mps(uint16_t raw_mps) {
+    uint16_t mps = (uint16_t)(raw_mps & 0x07FFu);
+    if (!mps) mps = 8u;
+    if (mps > 64u) mps = 64u;
+    return mps;
+}
+
+static uint16_t hid_intr_xfer_len(uint16_t raw_mps, uint8_t exact_boot) {
+    uint16_t len = hid_intr_mps(raw_mps);
+    if (exact_boot) return 8u;
+    if (len < 8u) len = 8u;
+    return len;
+}
+
 /*
- * Parcourt le tampon de configuration pour trouver une interface HID Boot Keyboard.
- * Remplit g_kbd.interface_num, g_kbd.ep1_addr, g_kbd.ep1_mps, g_kbd.ep1_interval.
- * Retourne 1 si trouvÃ©.
+ * Parcourt tout le tampon de configuration et garde la meilleure interface HID.
+ * Priorite: boot keyboard strict, HID keyboard, puis HID interrupt IN generique.
  */
 static int parse_config_descriptor(const uint8_t *buf, uint16_t len) {
     uint16_t off = 0;
-    int in_hid_boot_kbd = 0;
+    uint8_t iface_score = 0;
     uint8_t iface_num = 0;
+    uint8_t best_score = 0;
+    uint8_t best_exact = 0;
+    uint8_t best_iface = 0;
+    uint8_t best_addr = 0;
+    uint8_t best_dci = 0;
+    uint8_t best_interval = 0;
+    uint16_t best_mps = 0;
 
     while (off + 2u <= len) {
         uint8_t desc_len  = buf[off];
@@ -818,27 +873,51 @@ static int parse_config_descriptor(const uint8_t *buf, uint16_t len) {
 
         if (desc_type == DESC_TYPE_INTERFACE && desc_len >= 9u) {
             const UsbInterfaceDesc *id = (const UsbInterfaceDesc *)(const void *)(buf + off);
-            /* HID (3), Boot Interface Subclass (1), Keyboard (1) */
-            in_hid_boot_kbd = (id->bInterfaceClass    == 3u &&
-                               id->bInterfaceSubClass == 1u &&
-                               id->bInterfaceProtocol == 1u) ? 1 : 0;
-            if (in_hid_boot_kbd) iface_num = id->bInterfaceNumber;
+            iface_score = 0;
+            iface_num = id->bInterfaceNumber;
+            if (id->bInterfaceClass == 3u && id->bInterfaceProtocol != 2u) {
+                if (id->bInterfaceSubClass == 1u && id->bInterfaceProtocol == 1u) {
+                    iface_score = 4u;
+                } else if (id->bInterfaceProtocol == 1u) {
+                    iface_score = 3u;
+                } else if (id->bInterfaceSubClass == 1u) {
+                    iface_score = 2u;
+                } else {
+                    iface_score = 1u;
+                }
+            }
         }
 
-        if (in_hid_boot_kbd && desc_type == DESC_TYPE_ENDPOINT && desc_len >= 7u) {
+        if (iface_score && desc_type == DESC_TYPE_ENDPOINT && desc_len >= 7u) {
             const UsbEndpointDesc *ed = (const UsbEndpointDesc *)(const void *)(buf + off);
             /* Interrupt IN : bits[1:0]=3 (interrupt), bit7=1 (IN) */
             if ((ed->bmAttributes & 0x03u) == 0x03u &&
                 (ed->bEndpointAddress & 0x80u) != 0) {
-                g_kbd.interface_num = iface_num;
-                g_kbd.ep1_addr      = ed->bEndpointAddress;
-                g_kbd.ep1_mps       = ed->wMaxPacketSize & 0x07FFu;
-                g_kbd.ep1_interval  = ed->bInterval;
-                return 1;
+                uint8_t dci = ep_addr_to_xhci_dci(ed->bEndpointAddress);
+                if (dci && dci < 32u && iface_score > best_score) {
+                    best_score = iface_score;
+                    best_exact = (iface_score == 4u) ? 1u : 0u;
+                    best_iface = iface_num;
+                    best_addr = ed->bEndpointAddress;
+                    best_dci = dci;
+                    best_mps = (uint16_t)(ed->wMaxPacketSize & 0x07FFu);
+                    best_interval = ed->bInterval ? ed->bInterval : 1u;
+                }
             }
         }
 
         off += desc_len;
+    }
+
+    if (best_score) {
+        g_kbd.interface_num = best_iface;
+        g_kbd.ep1_addr = best_addr;
+        g_kbd.ep1_dci = best_dci;
+        g_kbd.ep1_mps = hid_intr_mps(best_mps);
+        g_kbd.ep1_interval = best_interval;
+        g_kbd.hid_boot_exact = best_exact;
+        g_kbd.ep1_xfer_len = hid_intr_xfer_len(g_kbd.ep1_mps, best_exact);
+        return 1;
     }
     return 0;
 }
@@ -894,6 +973,23 @@ static void setup_input_context_ep0(uint16_t mps_override) {
     ep0->dw4 = 8u;  /* Average TRB Length = 8 (SETUP size) */
 }
 
+static uint8_t xhci_interval_from_binterval(uint8_t b_interval) {
+    if (!b_interval) b_interval = 1u;
+
+    if (g_kbd.speed == SPEED_LOW || g_kbd.speed == SPEED_FULL) {
+        uint16_t microframes = (uint16_t)b_interval * 8u;
+        uint8_t interval = 0;
+        while (interval < 10u && ((uint16_t)1u << (interval + 1u)) <= microframes) {
+            interval++;
+        }
+        if (interval < 3u) interval = 3u;
+        return interval;
+    }
+
+    if (b_interval > 16u) b_interval = 16u;
+    return (uint8_t)(b_interval - 1u);
+}
+
 static uint16_t ep0_mps_from_device_desc(uint8_t speed, uint8_t desc_mps) {
     switch (speed) {
         case SPEED_LOW:
@@ -938,8 +1034,11 @@ static void reset_attempt_state(void) {
     g_kbd.dev_addr = 0;
     g_kbd.interface_num = 0;
     g_kbd.ep1_addr = 0;
+    g_kbd.ep1_dci = 0;
     g_kbd.ep1_interval = 0;
+    g_kbd.hid_boot_exact = 0;
     g_kbd.ep1_mps = 0;
+    g_kbd.ep1_xfer_len = 0;
     evt_drain(EVT_RING_TRBS * 2u);
 }
 
@@ -950,34 +1049,46 @@ static void dcbaap_set_slot_ctx(uint8_t slot_id, uint32_t ctx_phys) {
     dcbaap[idx + 1u] = 0;
 }
 
+static void dcbaap_clear_slot_ctx(uint8_t slot_id) {
+    uint32_t *dcbaap = (uint32_t *)(uintptr_t)g_kbd.dcbaap_page;
+    uint32_t idx = (uint32_t)slot_id * 2u;
+    dcbaap[idx] = 0;
+    dcbaap[idx + 1u] = 0;
+}
+
 /*
  * PrÃ©pare l'Input Context pour Configure Endpoint (ajouter EP1 IN).
  * AppelÃ© aprÃ¨s Address Device rÃ©ussi.
  */
 static void setup_input_context_ep1(void) {
     uint8_t *ic = (uint8_t *)(uintptr_t)g_kbd.input_ctx_page;
+    const uint8_t *dc = (const uint8_t *)(uintptr_t)g_kbd.dev_ctx_page;
     uint32_t csz = ctx_stride();
-    /* Garder le Slot Context, ajouter EP1 IN */
+    uint8_t dci = g_kbd.ep1_dci ? g_kbd.ep1_dci : 3u;
+    uint16_t mps = hid_intr_mps(g_kbd.ep1_mps);
+    uint16_t avg = g_kbd.ep1_xfer_len ? g_kbd.ep1_xfer_len : mps;
+    kmemset(ic, 0, PAGE_SIZE);
+    kmemcpy(ic + csz, dc, csz);
+    kmemcpy(ic + (2u * csz), dc + csz, csz);
 
-    /* Input Control Context : Add A0 (Slot) + A1 (EP0) + A3 (EP1 IN, DCI=3) */
+    /* Input Control Context : Add A0 (Slot), A1 (EP0), AX (endpoint IN choisi). */
     uint32_t *icc = (uint32_t *)(void *)ic;
-    icc[1] = (1u << 0) | (1u << 1) | (1u << 3);
+    icc[1] = (1u << 0) | (1u << 1) | (1u << dci);
 
-    /* Mettre Ã  jour ContextEntries dans Slot Context (maintenant = 3) */
+    /* Mettre a jour ContextEntries jusqu'au DCI reel de l'endpoint. */
     SlotCtx *sc = (SlotCtx *)(void *)(ic + csz);
-    sc->dw0 = (sc->dw0 & ~(0x1Fu << 27)) | (3u << 27);
+    sc->dw0 = (sc->dw0 & ~(0x1Fu << 27)) | ((uint32_t)dci << 27);
 
-    /* EP1 IN Context (DCI=3, offset = 1 contexte de controle + 3 contextes) */
-    EpCtx *ep1 = (EpCtx *)(void *)(ic + (4u * csz));
+    /* Endpoint IN Context: offset = input control context + DCI context. */
+    EpCtx *ep1 = (EpCtx *)(void *)(ic + (((uint32_t)dci + 1u) * csz));
     kmemset(ep1, 0, sizeof(EpCtx));
-    uint16_t mps = (g_kbd.ep1_mps > 0) ? g_kbd.ep1_mps : 8u;
-    ep1->dw0 = ((uint32_t)g_kbd.ep1_interval << 16);
+    ep1->dw0 = ((uint32_t)xhci_interval_from_binterval(g_kbd.ep1_interval) << 16);
     ep1->dw1 = (EP_TYPE_INT_IN << 3) |
                ((uint32_t)mps << 16) |
                (3u << 1);   /* CErr=3 */
     ep1->tr_deq_lo = g_kbd.ep1_ring_page | 1u;  /* DCS=1 */
     ep1->tr_deq_hi = 0;
-    ep1->dw4 = (uint32_t)mps;  /* Average TRB Length = MaxPacketSize */
+    ep1->dw4 = (uint32_t)avg;
 }
 
 /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
@@ -1102,17 +1213,16 @@ static void ep1_submit(uint32_t data_phys) {
         g_kbd.ep1_enq = 0;
     }
 
-    uint16_t mps = (g_kbd.ep1_mps > 0 && g_kbd.ep1_mps <= 8u) ? g_kbd.ep1_mps : 8u;
+    uint16_t xfer_len = g_kbd.ep1_xfer_len ? g_kbd.ep1_xfer_len : 8u;
     ring[idx].param_lo = data_phys;
     ring[idx].param_hi = 0;
-    ring[idx].status   = (uint32_t)mps;
+    ring[idx].status   = (uint32_t)xfer_len;
     ring[idx].control  = TRB_TYPE(TRBTYPE_NORMAL) | TRB_ISP | TRB_IOC |
                          (uint32_t)g_kbd.ep1_pcs;
     g_kbd.ep1_enq = idx + 1u;
     g_kbd.ep1_pending = 1;
 
-    /* DCI pour EP1 IN = (ep_num * 2) + direction = (1*2)+1 = 3 */
-    doorbell((uint8_t)g_kbd.slot_id, 3u);
+    doorbell((uint8_t)g_kbd.slot_id, g_kbd.ep1_dci ? g_kbd.ep1_dci : 3u);
 }
 
 /*
@@ -1348,6 +1458,31 @@ static void process_hid_report(const uint8_t *report) {
     kmemcpy(g_kbd.last_report, report, 8u);
 }
 
+static int hid_usage_byte_plausible(uint8_t usage) {
+    return (usage == 0u || usage == 1u || (usage >= 4u && usage <= 0xE7u)) ? 1 : 0;
+}
+
+static int hid_boot_report_plausible(const uint8_t *report) {
+    if (report[1] != 0u) return 0;
+    for (int i = 2; i < 8; ++i) {
+        if (!hid_usage_byte_plausible(report[i])) return 0;
+    }
+    return 1;
+}
+
+static void process_hid_input_report(const uint8_t *buf) {
+    const uint8_t *report = buf;
+
+    if (!g_kbd.hid_boot_exact && g_kbd.ep1_xfer_len >= 9u) {
+        if ((!hid_boot_report_plausible(buf) && hid_boot_report_plausible(buf + 1)) ||
+            (buf[0] != 0u && hid_boot_report_plausible(buf + 1))) {
+            report = buf + 1;
+        }
+    }
+
+    process_hid_report(report);
+}
+
 /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
  * INITIALISATION DU xHC (Command Ring + Event Ring + DCBAAP)
  * â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
@@ -1496,22 +1631,6 @@ static int port_connected(uint8_t port_idx, uint8_t *speed_out) {
         *speed_out = spd ? spd : SPEED_FULL;
     }
     return 1;
-}
-
-/*
- * Cherche le premier port xHCI connectÃ©.
- * Retourne l'index du port (0-based) ou -1 si aucun.
- * Remplit g_kbd.speed.
- */
-static int find_connected_port(uint8_t max_ports) {
-    for (uint8_t p = 0; p < max_ports && p < 16u; ++p) {
-        uint8_t spd = 0;
-        if (port_connected(p, &spd)) {
-            g_kbd.speed = spd;
-            return (int)p;
-        }
-    }
-    return -1;
 }
 
 static int port_try_priority(uint8_t speed) {
@@ -1828,14 +1947,14 @@ static void ohci_submit_intr_in(void) {
     OhciEd *ed = ohci_intr_ed();
     uint8_t td_idx = 8u;
     uint8_t tail_idx = 9u;
-    uint16_t mps = (g_kbd.ep1_mps > 0 && g_kbd.ep1_mps <= 8u) ? g_kbd.ep1_mps : 8u;
+    uint16_t xfer_len = g_kbd.ep1_xfer_len ? g_kbd.ep1_xfer_len : 8u;
     uint32_t toggle = g_kbd.ohci_intr_toggle ? OHCI_TD_T_DATA1 : OHCI_TD_T_DATA0;
 
     if (g_kbd.ohci_intr_pending) return;
 
     ed->control |= OHCI_ED_SKIP;
     ohci_td_setup(ohci_td(td_idx), OHCI_TD_DP_IN | toggle,
-                  g_kbd.data_buf_page, mps, ohci_td_phys(tail_idx));
+                  g_kbd.data_buf_page, xfer_len, ohci_td_phys(tail_idx));
     ohci_td(tail_idx)->control = 0;
     ohci_td(tail_idx)->cbp = 0;
     ohci_td(tail_idx)->nexttd = 0;
@@ -1851,7 +1970,7 @@ static void ohci_setup_interrupt_endpoint(void) {
     OhciHcca *hcca = (OhciHcca *)(uintptr_t)g_kbd.ohci_hcca_page;
     OhciEd *ed = ohci_intr_ed();
     uint8_t ep = (uint8_t)(g_kbd.ep1_addr & 0x0Fu);
-    uint16_t mps = (g_kbd.ep1_mps > 0 && g_kbd.ep1_mps <= 8u) ? g_kbd.ep1_mps : 8u;
+    uint16_t mps = hid_intr_mps(g_kbd.ep1_mps);
 
     ed->control = OHCI_ED_FA(g_kbd.ohci_addr) | OHCI_ED_EN(ep) | OHCI_ED_DIR_IN |
                   (g_kbd.ohci_low_speed ? OHCI_ED_LOW_SPEED : 0u) |
@@ -1885,7 +2004,7 @@ static void ohci_kbd_poll(void) {
         ohci_w32(OHCI_INT_STATUS, OHCI_INT_WDH);
         if (ohci_cc_ok(cc)) {
             const uint8_t *report = (const uint8_t *)(uintptr_t)g_kbd.data_buf_page;
-            process_hid_report(report);
+            process_hid_input_report(report);
             g_kbd.ohci_intr_toggle ^= 1u;
         }
         ohci_submit_intr_in();
@@ -1936,7 +2055,7 @@ static int ohci_try_port(const UsbHostControllerInfo *info, uint8_t port_idx) {
         uint16_t total = (uint16_t)(buf[2] | ((uint16_t)buf[3] << 8));
         if (total > 255u) total = 255u;
         if (!parse_config_descriptor(buf, total)) {
-            kprintf("usb_hid: OHCI no HID boot keyboard on port=%u\n",
+            kprintf("usb_hid: OHCI no HID keyboard endpoint on port=%u\n",
                     (unsigned)(port_idx + 1u));
             return 0;
         }
@@ -1950,9 +2069,11 @@ static int ohci_try_port(const UsbHostControllerInfo *info, uint8_t port_idx) {
         return 0;
     }
 
-    ohci_control_transfer(g_kbd.ohci_addr, g_kbd.ohci_low_speed, ep0_mps,
-                          RT_HOST_TO_DEV_CLS_IF, HID_REQ_SET_PROTOCOL,
-                          HID_BOOT_PROTOCOL, g_kbd.interface_num, 0, 0);
+    if (g_kbd.hid_boot_exact) {
+        ohci_control_transfer(g_kbd.ohci_addr, g_kbd.ohci_low_speed, ep0_mps,
+                              RT_HOST_TO_DEV_CLS_IF, HID_REQ_SET_PROTOCOL,
+                              HID_BOOT_PROTOCOL, g_kbd.interface_num, 0, 0);
+    }
     ohci_control_transfer(g_kbd.ohci_addr, g_kbd.ohci_low_speed, ep0_mps,
                           RT_HOST_TO_DEV_CLS_IF, HID_REQ_SET_IDLE,
                           0, g_kbd.interface_num, 0, 0);
@@ -2034,9 +2155,206 @@ static int ohci_keyboard_init(void) {
  * POINT D'ENTRÃ‰E : usb_hid_kbd_init()
  * â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
+static void xhci_release_current_slot(void) {
+    if (!g_kbd.slot_id) return;
+    (void)xhci_disable_slot(g_kbd.slot_id);
+    dcbaap_clear_slot_ctx(g_kbd.slot_id);
+    g_kbd.slot_id = 0;
+    g_kbd.dev_addr = 0;
+}
+
+static int xhci_try_keyboard_port(uint8_t port, uint8_t spd) {
+    uint16_t learned_mps;
+
+    g_kbd.port_idx = port;
+    g_kbd.speed = spd;
+    reset_attempt_state();
+
+    kprintf("usb_hid: essai port=%u speed=%u\n",
+            (unsigned)(port + 1u),
+            (unsigned)spd);
+
+    if (!port_reset(g_kbd.port_idx)) {
+        uint32_t ps = xhci_portsc_read(g_kbd.port_idx);
+        xhci_log_portsc("reset timeout", g_kbd.port_idx, ps);
+        if (!xhci_port_ready(g_kbd.port_idx)) {
+            return 0;
+        }
+    } else {
+        xhci_delay(DELAY_10MS);
+    }
+
+    g_kbd.slot_id = xhci_enable_slot();
+    if (!g_kbd.slot_id) {
+        return 0;
+    }
+
+    dcbaap_set_slot_ctx(g_kbd.slot_id, g_kbd.dev_ctx_page);
+
+    learned_mps = ep0_max_packet_size(g_kbd.speed);
+    setup_input_context_ep0(learned_mps);
+    if (!xhci_address_device(g_kbd.slot_id, g_kbd.input_ctx_page, 0)) {
+        kprintf("usb_hid: Address Device BSR=0 failed\n");
+        xhci_release_current_slot();
+        return 0;
+    }
+    kprintf("usb_hid: Address Device OK port=%u mps=%u\n",
+            (unsigned)(g_kbd.port_idx + 1u),
+            (unsigned)learned_mps);
+
+    {
+        const SlotCtx *sc = (const SlotCtx *)(uintptr_t)g_kbd.dev_ctx_page;
+        g_kbd.dev_addr = (uint8_t)(sc->dw3 & 0xFFu);
+    }
+
+    {
+        uint8_t *buf = (uint8_t *)(uintptr_t)g_kbd.data_buf_page;
+        if (!control_transfer(RT_DEV_TO_HOST_STD_DEV, USB_REQ_GET_DESCRIPTOR,
+                              USB_DESC_DEVICE, 0, 18u,
+                              g_kbd.data_buf_page)) {
+            kprintf("usb_hid: GET_DESCRIPTOR Device failed port=%u\n",
+                    (unsigned)(g_kbd.port_idx + 1u));
+            xhci_release_current_slot();
+            return 0;
+        }
+        (void)buf;
+    }
+
+    {
+        if (!control_transfer(RT_DEV_TO_HOST_STD_DEV, USB_REQ_GET_DESCRIPTOR,
+                              USB_DESC_CONFIG, 0, 255u,
+                              g_kbd.data_buf_page)) {
+            kprintf("usb_hid: GET_DESCRIPTOR Config failed port=%u\n",
+                    (unsigned)(g_kbd.port_idx + 1u));
+            xhci_release_current_slot();
+            return 0;
+        }
+
+        {
+            const uint8_t *buf = (const uint8_t *)(uintptr_t)g_kbd.data_buf_page;
+            uint16_t total = (uint16_t)(buf[2] | ((uint16_t)buf[3] << 8));
+            if (total > 255u) total = 255u;
+
+            if (!parse_config_descriptor(buf, total)) {
+                kprintf("usb_hid: port=%u pas de clavier HID compatible\n",
+                        (unsigned)(g_kbd.port_idx + 1u));
+                xhci_release_current_slot();
+                return 0;
+            }
+        }
+    }
+
+    {
+        const uint8_t *buf = (const uint8_t *)(uintptr_t)g_kbd.data_buf_page;
+        uint8_t cfg_val = buf[5];
+        if (!cfg_val) cfg_val = 1u;
+        if (!control_transfer(RT_HOST_TO_DEV_STD_DEV, USB_REQ_SET_CONFIGURATION,
+                              (uint16_t)cfg_val, 0, 0, 0)) {
+            kprintf("usb_hid: SET_CONFIGURATION failed port=%u\n",
+                    (unsigned)(g_kbd.port_idx + 1u));
+            xhci_release_current_slot();
+            return 0;
+        }
+    }
+
+    setup_input_context_ep1();
+    if (!xhci_configure_ep(g_kbd.slot_id, g_kbd.input_ctx_page)) {
+        kprintf("usb_hid: Configure Endpoint failed port=%u\n",
+                (unsigned)(g_kbd.port_idx + 1u));
+        xhci_release_current_slot();
+        return 0;
+    }
+
+    if (g_kbd.hid_boot_exact) {
+        if (!control_transfer(RT_HOST_TO_DEV_CLS_IF, HID_REQ_SET_PROTOCOL,
+                              HID_BOOT_PROTOCOL,
+                              (uint16_t)g_kbd.interface_num, 0, 0)) {
+            kprintf("usb_hid: SET_PROTOCOL failed (non fatal)\n");
+        }
+    }
+
+    control_transfer(RT_HOST_TO_DEV_CLS_IF, HID_REQ_SET_IDLE,
+                     0x0000u, (uint16_t)g_kbd.interface_num, 0, 0);
+
+    kmemset(g_kbd.last_report, 0, sizeof(g_kbd.last_report));
+    ep1_submit(g_kbd.data_buf_page);
+
+    g_kbd.backend = 1u;
+    g_kbd.present = 1;
+
+    kprintf("usb_hid: clavier OK slot=%u port=%u addr=%u ep=0x%x dci=%u mps=%u report=%u\n",
+            (unsigned)g_kbd.slot_id,
+            (unsigned)g_kbd.port_idx,
+            (unsigned)g_kbd.dev_addr,
+            (unsigned)g_kbd.ep1_addr,
+            (unsigned)g_kbd.ep1_dci,
+            (unsigned)g_kbd.ep1_mps,
+            (unsigned)g_kbd.ep1_xfer_len);
+
+    return 1;
+}
+
+static int xhci_try_controller(const UsbHostControllerInfo *info) {
+    int have_connected_port = 0;
+
+    if (!info || info->kind != USB_HC_XHCI ||
+        !info->mmio_base || info->mmio_base > 0xFFFFFFFFull ||
+        !info->port_count) {
+        return 0;
+    }
+
+    kmemset(&g_kbd, 0, sizeof(g_kbd));
+    g_kbd.mmio_base = (uint32_t)info->mmio_base;
+    g_kbd.op_base   = g_kbd.mmio_base + (uint32_t)info->cap_length;
+    g_kbd.max_slots = info->slot_count ? info->slot_count : 1u;
+    {
+        uint32_t hccparams1 = mmio_r32(g_kbd.mmio_base + XHCI_HCCPARAMS1_REG);
+        g_kbd.ctx_size = (hccparams1 & (1u << 2)) ? 64u : 32u;
+        kprintf("usb_hid: xhci b%u s%u f%u ports=%u legacy=%u csz=%u\n",
+                (unsigned)info->bus,
+                (unsigned)info->slot,
+                (unsigned)info->func,
+                (unsigned)info->port_count,
+                (unsigned)info->legacy_handoff_ok,
+                (unsigned)g_kbd.ctx_size);
+    }
+
+    if (!xhci_init_rings()) {
+        kprintf("usb_hid: OOM rings xhci b%u s%u\n",
+                (unsigned)info->bus,
+                (unsigned)info->slot);
+        return 0;
+    }
+
+    xhci_delay(DELAY_100MS);
+    evt_drain(EVT_RING_TRBS * 2u);
+
+    for (int pass = 0; pass < 2; ++pass) {
+        for (uint16_t p = 0; p < (uint16_t)info->port_count; ++p) {
+            uint8_t port = (uint8_t)p;
+            uint8_t spd = 0;
+
+            if (!port_connected(port, &spd)) continue;
+            if (port_try_priority(spd) != pass) continue;
+            have_connected_port = 1;
+
+            if (xhci_try_keyboard_port(port, spd)) {
+                return 1;
+            }
+        }
+    }
+
+    if (!have_connected_port) {
+        kprintf("usb_hid: xhci b%u s%u aucun port connecte\n",
+                (unsigned)info->bus,
+                (unsigned)info->slot);
+    }
+    return 0;
+}
+
 int usb_hid_kbd_init(void) {
-    const UsbHostControllerInfo *info = 0;
     int count = usb_probe_count();
+    int saw_xhci = 0;
 
     kmemset(&g_kbd, 0, sizeof(g_kbd));
     log_usb_hc_summary();
@@ -2052,206 +2370,28 @@ int usb_hid_kbd_init(void) {
        seulement maintenant. Ca evite de derouter trop tot les claviers USB1. */
     usb_probe_take_ownership();
 
-    /* 1. Trouver le xHCI */
+    /* Essayer tous les xHCI MMIO 32-bit, pas seulement le premier. */
     for (int i = 0; i < count; ++i) {
         const UsbHostControllerInfo *cur = usb_probe_get(i);
         if (cur && cur->kind == USB_HC_XHCI &&
-            cur->mmio_base && cur->mmio_base <= 0xFFFFFFFFull &&
-            cur->legacy_handoff_ok) {
-            info = cur;
-            break;
-        }
-    }
-    if (!info) {
-        return ohci_keyboard_init();
-    }
-
-    g_kbd.mmio_base = (uint32_t)info->mmio_base;
-    g_kbd.op_base   = g_kbd.mmio_base + (uint32_t)info->cap_length;
-    g_kbd.max_slots = info->slot_count ? info->slot_count : 1u;
-    {
-        uint32_t hccparams1 = mmio_r32(g_kbd.mmio_base + XHCI_HCCPARAMS1_REG);
-        g_kbd.ctx_size = (hccparams1 & (1u << 2)) ? 64u : 32u;
-        kprintf("usb_hid: xhci csz=%u\n", (unsigned)g_kbd.ctx_size);
-    }
-
-    /* 2. Initialiser les rings xHCI */
-    if (!xhci_init_rings()) {
-        kprintf("usb_hid: OOM rings\n");
-        if (ohci_keyboard_init()) return 1;
-        g_kbd.error = 1;
-        return 0;
-    }
-
-    /* Laisser au xHC et aux ports le temps de se stabiliser apres reset global. */
-    xhci_delay(DELAY_100MS);
-    evt_drain(EVT_RING_TRBS * 2u);
-
-    /* 3..6. Essayer chaque port connecte. On privilegie les ports USB2
-       (clavier probable) avant les ports SuperSpeed (souvent la cle de boot). */
-    {
-        int have_connected_port = 0;
-
-        for (int pass = 0; pass < 2; ++pass) {
-            for (uint8_t port = 0; port < info->port_count && port < 16u; ++port) {
-                uint8_t spd = 0;
-                uint16_t learned_mps;
-
-                if (!port_connected(port, &spd)) continue;
-                if (port_try_priority(spd) != pass) continue;
-                have_connected_port = 1;
-
-                g_kbd.port_idx = port;
-                g_kbd.speed = spd;
-                reset_attempt_state();
-
-                kprintf("usb_hid: essai port=%u speed=%u\n",
-                        (unsigned)(port + 1u),
-                        (unsigned)spd);
-
-                if (!port_reset(g_kbd.port_idx)) {
-                    uint32_t ps = xhci_portsc_read(g_kbd.port_idx);
-                    xhci_log_portsc("reset timeout", g_kbd.port_idx, ps);
-                    if (!xhci_port_ready(g_kbd.port_idx)) {
-                        continue; /* Pas d'Address Device sur un port non-enable. */
-                    }
-                } else {
-                    xhci_delay(DELAY_10MS); /* Delai post-reset USB 2.0 (spec: >=10 ms) */
-                }
-
-                g_kbd.slot_id = xhci_enable_slot();
-                if (!g_kbd.slot_id) {
-                    continue;
-                }
-
-                dcbaap_set_slot_ctx(g_kbd.slot_id, g_kbd.dev_ctx_page);
-
-                learned_mps = ep0_max_packet_size(g_kbd.speed);
-                setup_input_context_ep0(learned_mps);
-                if (!xhci_address_device(g_kbd.slot_id, g_kbd.input_ctx_page, 0)) {
-                    kprintf("usb_hid: Address Device BSR=0 failed\n");
-                    continue;
-                }
-                kprintf("usb_hid: Address Device OK port=%u mps=%u\n",
-                        (unsigned)(g_kbd.port_idx + 1u),
-                        (unsigned)learned_mps);
-
-                goto device_addressed;
+            cur->mmio_base && cur->mmio_base <= 0xFFFFFFFFull) {
+            saw_xhci = 1;
+            if (xhci_try_controller(cur)) {
+                return 1;
             }
         }
-
-        if (!have_connected_port) {
-            log_ehci_connected_ports();
-            return ohci_keyboard_init();
-        }
-
-        log_ehci_connected_ports();
-        if (ohci_keyboard_init()) {
-            return 1;
-        }
-        g_kbd.error = 1;
-        return 0;
+    }
+    if (!saw_xhci) {
+        kprintf("usb_hid: aucun xHCI MMIO utilisable\n");
     }
 
-device_addressed:
-
-    /* Lire l'adresse USB assignÃ©e depuis le Device Context */
-    {
-        const SlotCtx *sc = (const SlotCtx *)(uintptr_t)g_kbd.dev_ctx_page;
-        g_kbd.dev_addr = (uint8_t)(sc->dw3 & 0xFFu);
+    log_ehci_connected_ports();
+    if (ohci_keyboard_init()) {
+        return 1;
     }
 
-    /* 7. GET_DESCRIPTOR(Device) â€” pour valider et lire bMaxPacketSize0 */
-    {
-        uint8_t *buf = (uint8_t *)(uintptr_t)g_kbd.data_buf_page;
-        if (!control_transfer(RT_DEV_TO_HOST_STD_DEV, USB_REQ_GET_DESCRIPTOR,
-                              USB_DESC_DEVICE, 0, 18u,
-                              g_kbd.data_buf_page)) {
-            kprintf("usb_hid: GET_DESCRIPTOR Device failed\n");
-            if (ohci_keyboard_init()) return 1;
-            g_kbd.error = 1;
-            return 0;
-        }
-        /* Optionnel : mettre Ã  jour MPS EP0 si nÃ©cessaire */
-        (void)buf;
-    }
-
-    /* 8. GET_DESCRIPTOR(Configuration, wLength=255) */
-    {
-        if (!control_transfer(RT_DEV_TO_HOST_STD_DEV, USB_REQ_GET_DESCRIPTOR,
-                              USB_DESC_CONFIG, 0, 255u,
-                              g_kbd.data_buf_page)) {
-            kprintf("usb_hid: GET_DESCRIPTOR Config failed\n");
-            if (ohci_keyboard_init()) return 1;
-            g_kbd.error = 1;
-            return 0;
-        }
-
-        const uint8_t *buf = (const uint8_t *)(uintptr_t)g_kbd.data_buf_page;
-        /* wTotalLength est Ã  l'offset 2 du Config Descriptor */
-        uint16_t total = (uint16_t)(buf[2] | ((uint16_t)buf[3] << 8));
-        if (total > 255u) total = 255u;
-
-        if (!parse_config_descriptor(buf, total)) {
-            kprintf("usb_hid: no HID boot keyboard interface found\n");
-            /* Pas une erreur fatale du xHC, mais pas un clavier */
-            return ohci_keyboard_init();
-        }
-    }
-
-    /* 9. SET_CONFIGURATION(1) */
-    {
-        const uint8_t *buf = (const uint8_t *)(uintptr_t)g_kbd.data_buf_page;
-        uint8_t cfg_val = buf[5]; /* bConfigurationValue */
-        if (!cfg_val) cfg_val = 1u;
-        if (!control_transfer(RT_HOST_TO_DEV_STD_DEV, USB_REQ_SET_CONFIGURATION,
-                              (uint16_t)cfg_val, 0, 0, 0)) {
-            kprintf("usb_hid: SET_CONFIGURATION failed\n");
-            if (ohci_keyboard_init()) return 1;
-            g_kbd.error = 1;
-            return 0;
-        }
-    }
-
-    /* 10. Configure Endpoint : ajouter EP1 IN dans le Device Context */
-    setup_input_context_ep1();
-    if (!xhci_configure_ep(g_kbd.slot_id, g_kbd.input_ctx_page)) {
-        kprintf("usb_hid: Configure Endpoint failed\n");
-        if (ohci_keyboard_init()) return 1;
-        g_kbd.error = 1;
-        return 0;
-    }
-
-    /* 11. SET_PROTOCOL(Boot) â€” HID class request */
-    if (!control_transfer(RT_HOST_TO_DEV_CLS_IF, HID_REQ_SET_PROTOCOL,
-                          HID_BOOT_PROTOCOL,
-                          (uint16_t)g_kbd.interface_num, 0, 0)) {
-        kprintf("usb_hid: SET_PROTOCOL failed (non fatal)\n");
-        /* Non fatal â€” certains claviers acceptent quand mÃªme */
-    }
-
-    /* 12. SET_IDLE(0, 0) â€” Pas de rapport rÃ©pÃ©tÃ© */
-    control_transfer(RT_HOST_TO_DEV_CLS_IF, HID_REQ_SET_IDLE,
-                     0x0000u, (uint16_t)g_kbd.interface_num, 0, 0);
-    /* IgnorÃ© si refusÃ© */
-
-    /* ZÃ©roÃ¯ser le last_report */
-    kmemset(g_kbd.last_report, 0, sizeof(g_kbd.last_report));
-
-    /* Soumettre le premier TD sur EP1 IN */
-    ep1_submit(g_kbd.data_buf_page);
-
-    g_kbd.backend = 1u;
-    g_kbd.present = 1;
-
-    kprintf("usb_hid: clavier OK slot=%u port=%u addr=%u ep=0x%x mps=%u\n",
-            (unsigned)g_kbd.slot_id,
-            (unsigned)g_kbd.port_idx,
-            (unsigned)g_kbd.dev_addr,
-            (unsigned)g_kbd.ep1_addr,
-            (unsigned)g_kbd.ep1_mps);
-
-    return 1;
+    g_kbd.error = 1;
+    return 0;
 }
 
 /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
@@ -2270,7 +2410,7 @@ void usb_hid_kbd_poll(void) {
     if (ep1_check_event()) {
         /* Un rapport est arrivÃ© dans data_buf_page */
         const uint8_t *report = (const uint8_t *)(uintptr_t)g_kbd.data_buf_page;
-        process_hid_report(report);
+        process_hid_input_report(report);
         /* Remettre un TD en attente */
         ep1_submit(g_kbd.data_buf_page);
     }

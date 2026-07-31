@@ -161,6 +161,10 @@ static void usb_probe_xhci_handoff(UsbHostControllerInfo *info) {
         if (next == 0u) break;
         off += ((uint32_t)next << 2);
     }
+
+    /* Pas de capability legacy: rien a reclamer au firmware, le controleur
+       est utilisable directement. C'est courant en boot UEFI moderne. */
+    info->legacy_handoff_ok = 1;
 }
 
 static void usb_probe_ehci_handoff(UsbHostControllerInfo *info) {
@@ -173,7 +177,10 @@ static void usb_probe_ehci_handoff(UsbHostControllerInfo *info) {
     mmio = (volatile uint8_t *)(uintptr_t)info->mmio_base;
     hccparams = *(volatile uint32_t *)(const void *)(mmio + 0x08);
     eecp = (uint8_t)((hccparams >> 8) & 0xFFu);
-    if (eecp < 0x40u) return;
+    if (eecp < 0x40u) {
+        info->legacy_handoff_ok = 1;
+        return;
+    }
 
     {
         uint32_t value = pci_config_read32(info->bus, info->slot, info->func, eecp);

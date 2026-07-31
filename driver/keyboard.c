@@ -297,7 +297,8 @@ static const uint8_t sc_normal[128] = {
 /*51*/  KEY_PGDN,
 /*52*/  KEY_INSERT,
 /*53*/  KEY_DELETE,
-/*54*/  0,0,0,
+/*54*/  0,0,
+/*56*/  '<',    /* touche ISO  < / >  (entre Shift gauche et W) */
 /*57*/  KEY_F11,
 /*58*/  KEY_F12,
         0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -382,7 +383,8 @@ static const uint8_t sc_shifted[128] = {
 /*51*/  KEY_PGDN,
 /*52*/  KEY_INSERT,
 /*53*/  KEY_DELETE,
-/*54*/  0,0,0,
+/*54*/  0,0,
+/*56*/  '>',    /* touche ISO  < / >  avec Shift */
 /*57*/  KEY_F11,
 /*58*/  KEY_F12,
         0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -583,17 +585,16 @@ void keyboard_init(void) {
 
     /* Vider le buffer PS/2 avec timeout borne, puis activer le clavier. */
     kbc_flush_output();
-#if ALOS_HW_SAFE
     /*
-     * En mode HW_SAFE on preserve l'emulation USB legacy du BIOS/UEFI:
-     * certains firmwares exposent le clavier USB via le 8042 tant que l'OS
-     * ne reprogramme pas le controleur PS/2.
+     * Si le controleur PS/2 est present, on utilise le mode legacy qui
+     * preserve l'emulation USB du BIOS/UEFI (claviers USB vus comme PS/2).
+     * ps2_keyboard_enable() reinitialise completement le 8042 et casse
+     * cette emulation sur vrai hardware — on le reserve au cas sans 8042.
      */
-    if (ps2_controller_present) ps2_keyboard_enable_legacy();
-    else ps2_keyboard_enable();
-#else
-    ps2_keyboard_enable();
-#endif
+    if (ps2_controller_present)
+        ps2_keyboard_enable_legacy();
+    else
+        ps2_keyboard_enable();
     kbd_buf.head = kbd_buf.tail = kbd_buf.count = 0;
     modifiers = 0; extended = 0;
     for (int i = 0; i < 256; i++) key_active[i] = 0;

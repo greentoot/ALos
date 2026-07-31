@@ -1,7 +1,7 @@
 #include "earlydiag.h"
 
 #include "../../driver/vga.h"
-#include "../jack/font5x8.h"
+#include "../ui/font5x8.h"
 #include "../lib/string.h"
 
 #define DIAG_COLS   80
