@@ -35,22 +35,31 @@ OBJS = \
 	driver/timer.o \
 	driver/keyboard.o \
 	driver/mouse.o \
+	driver/ata.o \
+	driver/rtl8139.o \
 	driver/idt_stubs.o \
 	kernel/tty.o \
+	kernel/gdt.o \
 	kernel/shell_linux_like.o \
+	kernel/exec/asm_exec.o \
+	kernel/exec/elf_loader.o \
 	kernel/boot/bootinfo.o \
 	kernel/boot/earlydiag.o \
 	kernel/boot/fbmap.o \
 	kernel/lib/string.o \
+	kernel/lib/simd.o \
 	kernel/lib/kprintf.o \
 	kernel/lib/libc_compat.o \
 	kernel/memory/pmm.o \
+	kernel/memory/paging.o \
 	kernel/memory/heap.o \
 	kernel/process/task.o \
 	kernel/process/scheduler.o \
 	kernel/process/switch_ctx.o \
 	kernel/fs/ramfs.o \
+	kernel/fs/diskfs.o \
 	kernel/fs/vfs.o \
+	kernel/net/net.o \
 	kernel/syscall/syscall.o
 
 %.o: %.c
@@ -74,6 +83,20 @@ run-iso: iso
 
 run: run-iso
 
+PERSIST_IMG  ?= alos_persist.img
+PERSIST_SIZE ?= 8M
+
+$(PERSIST_IMG):
+	qemu-img create -f raw $(PERSIST_IMG) $(PERSIST_SIZE)
+
+# Lance l'ISO avec disque persistant (/mnt) + carte reseau RTL8139 deja
+# branches, en une seule commande. Cree alos_persist.img tout seul au
+# premier lancement (les lancements suivants reutilisent le meme fichier,
+# donc /mnt persiste bien d'un lancement a l'autre). Voir TESTING.md.
+run-full: iso $(PERSIST_IMG)
+	bash $(RUN_QEMU_SCRIPT) $(QEMU) $(QEMU_BASE_FLAGS) -display $(QEMU_DISPLAY) -cdrom $(ISO_TARGET) -boot d \
+		-hda $(PERSIST_IMG) -device rtl8139,netdev=n0 -netdev user,id=n0
+
 debug: $(TARGET)
 	$(QEMU) $(QEMU_BASE_FLAGS) -display none -kernel $(TARGET) -serial stdio 2>&1 | head -60
 
@@ -81,4 +104,4 @@ clean:
 	rm -f $(OBJS) $(TARGET) alos.iso alos-linux-like.iso alos.img alos_persist.img
 	rm -rf build
 
-.PHONY: all iso iso-linux-like run run-iso debug clean
+.PHONY: all iso iso-linux-like run run-iso run-full debug clean

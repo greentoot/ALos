@@ -9,17 +9,23 @@
 #include "driver/timer.h"
 #include "driver/keyboard.h"
 #include "driver/usb_hid_kbd.h"
+#include "driver/ata.h"
+#include "kernel/net/net.h"
 #include "kernel/tty.h"
 #include "kernel/boot/bootinfo.h"
 #include "kernel/boot/earlydiag.h"
 #include "kernel/boot/fbmap.h"
 #include "kernel/memory/pmm.h"
+#include "kernel/memory/paging.h"
 #include "kernel/memory/heap.h"
 #include "kernel/process/task.h"
 #include "kernel/process/scheduler.h"
 #include "kernel/fs/ramfs.h"
+#include "kernel/fs/diskfs.h"
 #include "kernel/fs/vfs.h"
 #include "kernel/lib/kprintf.h"
+#include "kernel/lib/simd.h"
+#include "kernel/gdt.h"
 #include "kernel/shell.h"
 #include <stdint.h>
 
@@ -158,10 +164,23 @@ void kernel_main(uint32_t multiboot_magic, uint32_t multiboot_info_addr) {
 
     earlydiag_stage("pmm init");
     pmm_init((uint32_t)&kernel_end, mem_end);
+    earlydiag_stage("simd init");
+    simd_init();
+    earlydiag_stage(simd_available() ? "simd: sse2 actif (kmemcpy/kmemset accelerees)" : "simd: sse2 indisponible, chemin scalaire");
+    earlydiag_stage("paging init");
+    paging_init();
     earlydiag_stage("heap init");
     heap_init(0);
     earlydiag_stage("ramfs init");
     ramfs_init();
+    earlydiag_stage("ata init");
+    ata_init();
+    earlydiag_stage("diskfs init");
+    diskfs_init();
+    earlydiag_stage(diskfs_available() ? "diskfs: /mnt persistant disponible" : "diskfs: pas de disque, /mnt indisponible");
+    earlydiag_stage("net init");
+    net_init();
+    earlydiag_stage(net_available() ? "net: RTL8139 detectee" : "net: pas de carte RTL8139, reseau indisponible");
     earlydiag_stage("vfs init");
     vfs_init();
     earlydiag_stage("tasks init");
@@ -170,6 +189,11 @@ void kernel_main(uint32_t multiboot_magic, uint32_t multiboot_info_addr) {
     scheduler_init();
     earlydiag_stage("timer init");
     timer_init();
+    /* IMPORTANT : doit tourner avant keyboard_init(), qui capture le %cs
+     * courant pour construire toutes les portes de l'IDT (voir kernel/gdt.h
+     * pour le detail de cette contrainte). */
+    earlydiag_stage("gdt init");
+    gdt_init();
     earlydiag_stage("keyboard init");
     keyboard_init();
 #if ALOS_HW_SAFE

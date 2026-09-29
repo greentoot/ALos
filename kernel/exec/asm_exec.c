@@ -384,15 +384,32 @@ int asmexec_run(const char *name, const char *src,
         if (!assemble_line()) return ASMEXEC_ERR_SYNTAX;
     }
 
-    /* Garantir un ret ou hlt en fin */
-    if (code_len==0 || (code_buf[code_len-1]!=0xC3 && code_buf[code_len-1]!=0xF4))
-        if (!emit(0xC3)) return ASMEXEC_ERR_TOOLONG;
+    /* Garantir une fin sure. Un simple "hlt" isole en bout de buffer ne
+     * suffit PAS : cette tache est preemptee par le timer (IRQ0), et des
+     * qu'un tick survient l'execution reprend UN OCTET APRES le hlt, donc
+     * dans les octets qui suivent dans le buffer. S'ils ne sont pas
+     * initialises (ou juste a zero), c'est du code arbitraire qui s'execute
+     * et corrompt la pile de la tache (bug reel observe : #UD/#GP aleatoire
+     * peu apres le premier tick suivant un programme finissant par "hlt").
+     * On termine donc systematiquement par une boucle fermee "hlt; jmp $-2"
+     * (sauf si le code se termine deja par un vrai "ret", qui rend
+     * proprement la main a asm_task_entry — lequel marque la tache zombie
+     * puis boucle lui-meme sur hlt avec les interruptions coupees). */
+    if (code_len==0 || code_buf[code_len-1]!=0xC3) {
+        if (!emit(0xF4)) return ASMEXEC_ERR_TOOLONG; /* hlt          */
+        if (!emit(0xEB)) return ASMEXEC_ERR_TOOLONG; /* jmp rel8     */
+        if (!emit(0xFD)) return ASMEXEC_ERR_TOOLONG; /* -> vers hlt  */
+    }
 
     if (!apply_patches()) return ASMEXEC_ERR_UNDEF;
 
     /* ── Allouer l'image ──────────────────────────────────────────────── */
     ExecImage *img = image_alloc();
     if (!img) return ASMEXEC_ERR_OOM;
+    /* Filet de securite : le reste du buffer (au-dela de code_len) doit
+     * rester inoffensif si jamais l'execution devait un jour y arriver
+     * (ex. bug futur). 0xF4 = hlt, jamais 0x00. */
+    kmemset(img->code, 0xF4, MAX_CODE_BYTES);
     kmemcpy(img->code, code_buf, code_len);
     img->size = code_len;
 

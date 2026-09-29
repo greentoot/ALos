@@ -346,6 +346,10 @@ void ramfs_init(void) {
     ramfs_mkdir("/usr/bin");
     ramfs_mkdir("/var");
     ramfs_mkdir("/var/log");
+    /* Point de montage du systeme de fichiers persistant (kernel/fs/diskfs.c).
+     * Reste un simple dossier vide cote ramfs : le contenu reel de /mnt est
+     * route vers diskfs_* par kernel/shell_linux_like.c (prefixe "/mnt"). */
+    ramfs_mkdir("/mnt");
 
     ramfs_create("/etc/os-release",
         "NAME=ALOS\n"

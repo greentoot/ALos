@@ -14,6 +14,7 @@ global _exc8,  _exc9,  _exc10, _exc11, _exc12, _exc13, _exc14, _exc15
 global _exc16, _exc17, _exc18, _exc19, _exc20, _exc21, _exc22, _exc23
 global _exc24, _exc25, _exc26, _exc27, _exc28, _exc29, _exc30, _exc31
 global irq0_stub, irq1_stub, irq12_stub, int80_stub
+global task_resume_point
 global idt_load
 extern idt_ptr
 
@@ -84,7 +85,12 @@ irq0_stub:
     out 0x20, al
     ; Context switch : passe esp courant, récupère le nouveau
     call do_context_switch
-    ; do_context_switch a déjà changé esp
+    ; do_context_switch a déjà changé esp (mov esp,eax ; ret) : le "ret"
+    ; saute ici, que la tâche choisie soit déjà en cours (retour normal
+    ; depuis une IRQ précédente) ou toute neuve. Une tâche neuve doit donc
+    ; avoir, tout en haut de sa pile initiale (voir task.c:setup_stack),
+    ; l'adresse de CETTE etiquette — sinon le "ret" saute dans le vide.
+task_resume_point:
     popa
     iret
 
